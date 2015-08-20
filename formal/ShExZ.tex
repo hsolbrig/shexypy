@@ -1,0 +1,401 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{zed}
+\usepackage{verbatim}
+\usepackage{framed}
+
+\def\spec#1{{\tt \small \textsc{{#1}} }}
+\def\req#1{{\sf {{\it #1}} }}
+\def\bnf#1{{\scriptsize {{#1}} }}
+\def\desc#1{{\small \textsl{{#1}} }}
+
+
+\raggedbottom
+\include{uml_style}
+
+\title{A Declarative Semantics for the ShEx grammar}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+
+\bibliographystyle{plain}
+\bibliography{master}
+
+\pagebreak
+\section{Interpretation of ShEx Document}
+\subsection{i\_shExDoc}
+\begin{framed}
+\noindent
+\bnf{shExDoc : directive* ((shape \textbar~ start \textbar~ startActions) statement*)?}
+\end{framed}
+\noindent
+\begin{framed}
+\noindent
+\bnf{statement       : directive \textbar  start \textbar  shape ;}
+\end{framed}
+\noindent
+
+\begin{zed}
+statement ::= \\
+\t2 directive\_statement \ldata directive \rdata | \\
+\t2 start\_statement \ldata start \rdata | \\
+\t2 start\_shape \ldata shape \rdata
+\end{zed}
+
+\begin{framed}
+\noindent
+\bnf{directive       : baseDecl \textbar  prefixDecl ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{baseDecl        : KW\_BASE IRIREF ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{prefixDecl      : KW\_PREFIX PNAME\_NS IRIREF ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{start           : KW\_START '=' ( shapeLabel \textbar  shapeDefinition semanticActions)  ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{shape           : KW\_VIRTUAL? shapeLabel shapeDefinition semanticActions ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{shapeDefinition : (includeSet \textbar  inclPropertySet \textbar  KW\_CLOSED)* '{' oneOfShape? '}' ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{includeSet      : '\&' shapeLabel ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{inclPropertySet : KW\_EXTRA predicate+ ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{oneOfShape      : someOfShape ( '\textbar ' someOfShape )* ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{someOfShape     : groupShape ( '\textbar \textbar ' groupShape )* ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{groupShape      : unaryShape ( ',' unaryShape )* ','? ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{unaryShape      : shapeid? ( tripleConstraint \textbar  include \textbar  '(' oneOfShape ')' cardinality? semanticActions) ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{include         : '\&' shapeLabel ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{shapeid         : '\$' shapeLabel ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{shapeLabel      : iri \textbar  blankNode ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{tripleConstraint : senseFlags? predicate valueClass cardinality? annotation* semanticActions;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{senseFlags      : '!' '\textrm'? \textbar  '\textrm' '!'? ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{predicate       : iri ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{valueClass      : KW\_LITERAL xsFacet*        \# valueClassLiteral}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{                \textbar  (KW\_IRI \textbar  KW\_BNODE \textbar  KW\_NONLITERAL) groupShapeConstr? stringFacet*    \# valueClassNonLiteral}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{                \textbar  datatype xsFacet*           \# valueClassDatatype}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{                \textbar  groupShapeConstr            \# valueClassGroup}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{                \textbar  valueSet                    \# valueClassValueSet}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{                \textbar  '.'                        \# valueClassAny}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{                ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{groupShapeConstr : shapeOrRef (KW\_OR shapeOrRef)* ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{shapeOrRef      : ATPNAME\_LN \textbar  ATPNAME\_NS \textbar  '@' shapeLabel \textbar  shapeDefinition ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{xsFacet         : stringFacet \textbar  numericFacet;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{stringFacet     : KW\_PATTERN string \textbar  '~' string \textbar  stringLength INTEGER ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{stringLength    : KW\_LENGTH \textbar  KW\_MINLENGTH \textbar  KW\_MAXLENGTH;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{numericFacet    : numericRange INTEGER \textbar  numericLength INTEGER ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{numericRange    : KW\_MININCLUSIVE \textbar  KW\_MINEXCLUSIVE \textbar  KW\_MAXINCLUSIVE \textbar  KW\_MAXEXCLUSIVE ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{numericLength   : KW\_TOTALDIGITS \textbar  KW\_FRACTIONDIGITS ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{datatype        : iri ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{annotation      : ';' iri (iri \textbar  literal) ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{cardinality     :  '*' \textbar  '+' \textbar  '?' \textbar  repeatRange ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{repeatRange     : '{' INTEGER (',' (INTEGER \textbar  '*')?)? '}' ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{valueSet        : valueSetList \textbar  valueSetRef ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{valueSetList    : '(' value* ')' ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{valueSetRef     : '*' iri ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{value           : iriRange \textbar  literal ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{iriRange        : iri ('~' exclusion*)?  \textbar  '.' exclusion+ ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{exclusion       : '-' iri '~'? ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{literal         : rdfLiteral \textbar  numericLiteral \textbar  booleanLiteral ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{numericLiteral  : INTEGER \textbar  DECIMAL \textbar  DOUBLE ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{rdfLiteral      : string (LANGTAG \textbar  '^^' datatype)? ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{booleanLiteral  : KW\_TRUE \textbar  KW\_FALSE ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{string          : STRING ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{iri             : IRIREF            \# IRIREF}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{                \textbar  prefixedName        \# PREFIXED\_NAME}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{                \textbar  RDF\_TYPE            \# RDF\_TYPE}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{                ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{prefixedName    : PNAME\_LN \textbar  PNAME\_NS ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{blankNode       : BLANK\_NODE\_LABEL ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{codeDecl        : '\%' codeLabel? iri? CODE? ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{codeLabel       : UCASE\_LABEL ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{startActions    : codeDecl+ ;}
+\end{framed}
+
+
+\begin{framed}
+\noindent
+\bnf{semanticActions    : codeDecl* ;}
+\end{framed}
+
+
+
+
+
+
+
+
+\end{document}

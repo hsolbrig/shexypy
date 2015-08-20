@@ -5,6 +5,12 @@ __pycache__/
 # C extensions
 *.so
 
+# LaTex 
+*.aux
+*.log
+*.synctex.gz
+*.toc
+
 # Distribution / packaging
 .Python
 env/

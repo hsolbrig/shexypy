@@ -1,0 +1,453 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{zed}
+\usepackage{verbatim}
+\usepackage{framed}
+\usepackage{fancyvrb}
+
+\def\spec#1{{\tt \small \textsc{{#1}} }}
+\def\req#1{{\sf {{\it #1}} }}
+\def\bnf#1{{\scriptsize {{#1}} }}
+\def\desc#1{{\small \textsl{{#1}} }}
+
+\def\uri#1{{\tt #1}}
+\def\triple#1 {\textbf{\textit{ #1}}}
+
+\raggedbottom
+\include{uml_style}
+
+\title{A Declarative Semantics for the ShEx grammar}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+
+
+\section{The RDF Data Model}
+We begin by defining a formal model of the RDF triple and corresponding graph. Much of the work in this section
+derives directly or indirectly from the author's previous work on
+\textit{A Formal Model for RDF Dataset Constraints}\cite{jist2013},
+\textit{Validating RDF with Shape Expressions}\cite{DBLP:journals/corr/BonevaGHPSS14} as well as
+from various submissions and contributions to the 2013 RDF Validation
+Workshop\cite{RDFVal} where similar models were used to develop  requirements for a language to specify pre and post conditions for RDF dataset updates as well as to
+describe a basic set of predicates which would allow invariants to be asserted about the state of RDF Graphs.
+
+\begin{zed}
+[String]
+\end{zed}
+
+\subsection{Basic RDF Data Structures}
+An \textbf{RDF graph} is a set of RDF Triples:
+\begin{zed}
+  Graph == \power Triple
+\end{zed}
+
+\noindent
+An \textbf{RDF triple} consists of three components:
+  \begin{itemize}
+  \item the subject, which is an IRI or a blank node
+  \item the predicate, which is an IRI
+  \item the object, which is an IRI, a literal or a blank node
+  \end{itemize}
+
+\begin{schema}{Triple}
+  s,p,o : RDFTerm
+  \where
+  iri \inv s \in IRI \lor bnode \inv s \in BNODE \\
+   iri \inv p \in IRI
+ \end{schema}
+ 
+\noindent
+IRIs, literals and blank nodes are collectively known as \textbf{RDF terms}.\\
+IRIs, literals and blank nodes are distinct and distinguishable.
+
+\begin{zed}
+[IRI, BNODE] \\
+RDFTerm ::= iri \ldata IRI \rdata | literal \ldata RDFLiteral \rdata | bnode \ldata BNODE \rdata \\
+\end{zed}
+
+\noindent
+A \textbf{literal} in an RDF graph consists of two or three elements:
+\begin{itemize}
+\item a \textbf{lexical form}, ...
+\item a \textbf{datatype IRI}, ...
+\item if there is a language tag the datatype IRI must be \\
+\uri{http://www.w3.org/1999/02/22-rdf-syntax-ns\#langString}
+\end{itemize}
+
+\begin{zed}
+[LANGTAG] 
+\end{zed}
+\begin{axdef}
+rdf\_langString : IRI
+\end{axdef}
+
+\begin{schema}{RDFLiteral}
+   v: String \\
+   dataType: \optional[IRI] \\
+   langTag: \optional[LANGTAG]
+\where
+  \#langTag > 0 \iff (\#dataType > 0 \land head~dataType = rdf\_langString)
+\end{schema}
+
+
+\subsection{Well Known RDF IRIs}
+
+\begin{axdef}
+  RDFGraph : Graph \\
+  rdf\_type, rdfs\_subClassOf, rdfs\_subPropertyOf, rdf\_first, rdf\_rest, rdf\_Nil : IRI \\
+  rdf\_List, rdf\_Seq, rdf\_Bag, xsd\_string, xsd\_integer, xsd\_double, xsd\_boolean : IRI \\
+  rdf\_Alt : IRI 
+\end{axdef}
+
+\noindent
+Define a set of synonyms to represent the above IRIs as their corresponding RDF terms.
+\begin{zed}
+  rdf\_type\_t == iri~rdf\_type \\
+  rdfs\_subClassOf\_t == iri~rdfs\_subClassOf \\
+  rdfs\_subPropertyOf\_t == iri~rdfs\_subPropertyOf \\
+  rdf\_first\_t == iri~rdf\_first \\
+  rdf\_rest\_t == iri~rdf\_rest \\
+  rdf\_Nil\_t == iri~rdf\_Nil \\
+  rdf\_Seq\_t == iri~rdf\_Seq \\
+  rdf\_List\_t == iri~rdf\_List \\
+  rdf\_Bag\_t == iri~rdf\_Bag \\
+  rdf\_Alt\_t == iri~rdf\_Alt \\
+  xsd\_string\_t == iri~xsd\_string \\
+  xsd\_integer\_t == iri~xsd\_integer \\
+  xsd\_double\_t == iri~xsd\_double \\
+  xsd\_boolean\_t == iri~xsd\_boolean
+\end{zed}
+
+\section{Graph Operations}
+This section defines a set of ``low level'' functions providing a foundation for making assertions about the members of an RDF Graph. 
+
+\paragraph{\textbf{triplesFor}} - given a graph and an RDF term, return the set of triples where the term appears as a subject
+\begin{gendef}
+  triplesFor : Graph \pfun RDFTerm \pfun \power Triple
+\where
+  \forall g:Graph; s : RDFTerm @ triplesFor~g~s = \{t : g | t.s = s \}
+\end{gendef}
+
+\paragraph{\textbf{objectsOf}} - given a graph, a subject RDF term and a predicate URI, return the set of objects occurring in triples with the given subject and predicate
+\begin{gendef}
+   objectsOf : Graph \pfun RDFTerm \pfun RDFTerm \pfun \power RDFTerm
+\where
+   \forall g : Graph; s, p : RDFTerm @ objectsOf~g~s~p = \{t : triplesFor~g~s | t.p = p @ t.o\}
+\end{gendef}
+
+\paragraph{\textbf{objectOf} }- return the unique target of a subject and predicate in a graph or rdf:Nil if there are no or more than one targets
+\begin{gendef}
+  objectOf : Graph \pfun RDFTerm \pfun RDFTerm \pfun RDFTerm
+\where
+  \forall g : Graph; s,p: RDFTerm @ objectOf~g~s~p = \\
+\t1    \IF \# (objectsOf~g~s~p) \neq 1 \THEN rdf\_Nil\_t \ELSE \\
+\t1   (\mu o : RDFTerm | o \in objectsOf~g~s~p)
+\end{gendef}
+
+\paragraph{\textbf{collection}}- the set of predicates that are collections of the given subject in the context of the graph.  A predicate represents a collection if
+it (a) its object is the subject with a \uri{rdf:type} of \uri{rdf:List}, \uri{rdf:Bag}, \uri{rdf:Seq} or \uri{rdf:Alt} or
+(b) it has an \uri{rdf:first} or \uri{rdf:rest} predicate.  Note this is still an approximation of a list because the definition of lists in RDF is surprisingly lax: `` RDFS does not require there be only one first element of a list-like structure, or even for a list-like structure to have a first element. ''\cite{rdfschema}
+ 
+\begin{gendef}
+    collection : Graph \pfun RDFTerm \pfun RDFTerm 
+\where
+    \forall g: Graph; s,p : RDFTerm @ collection~g~s = p \iff \\
+\t1 \# (objectsOf~g~s~p) = 1 \land \\
+\t1 (\exists o: objectsOf~g~(objectOf~g~s~p)~rdf\_type\_t @ \\
+\t2 o \in \{rdf\_List\_t, rdf\_Bag\_t, rdf\_Seq\_t, rdf\_Alt\_t\} ) \lor 
+\also
+\t1 (\exists p : triplesFor~g~(objectOf~g~s~p) @ \\
+\t2 p.o \in \{rdf\_first\_t, rdf\_rest\_t\})
+\end{gendef}
+ 
+
+\paragraph{\textbf{toSeq}} - return the sequence representing whose subject is the supplied RDF term.  If the subject is not declared to be a list type
+(\uri{rdf:List}, \uri{rdf:Seq}, \uri{rdf:Bag} or \uri{rdf:Alt} return 
+the set of all objects. Otherwise, unwind the list, ignoring extraneous content as ``poorly structured''\footnote{Strict validation should probably declare the entire subject as
+invalid, but our goal is to validate UML, not the internal structure of RDF.  Besides, anyone \emph{can} say anything anywhere, right?}
+
+
+In order to return a sequence of the direct targets of the predicate or more than one \uri{rdf:first} and/or \uri{rdf:next} assertion we define a function that takes a set of RDF Terms
+ and returns them as a sequence.  Order is not important, which means we cannot compare the results of any expression utilizing this function(!).
+\begin{gendef}
+   asSeq : \power RDFTerm \fun \seq RDFTerm \\
+\end{gendef}
+
+Unwind combines a sequence constructed of the targets of all of the \uri{rdf:first} predicates not \uri{rdf:Nil} with the sequence resulting
+from unwinding all of the non-\uri{rdf:Nil} \uri{rdf:rest} targets.
+\begin{gendef}
+    unwind : Graph \pfun RDFTerm \pfun \seq RDFTerm \\
+    rest : Graph \pfun \seq RDFTerm \pfun \seq RDFTerm
+\where
+    \forall g : Graph; s : RDFTerm  @ unwind~g~s = \\
+\t1 asSeq(\{f:objectsOf~g~s~rdf\_first\_t | f \neq rdf\_Nil\_t\}) \cat \\
+\t2 rest~g~(asSeq~\{rst : objectsOf~g~s~rdf\_rest\_t \})
+\also
+   \forall g: Graph; s : \seq RDFTerm @ rest~g~s = \\
+\t1 \IF s = \langle \rangle \THEN \langle  \rangle \\
+\t1 \ELSE unwind~g~(head~s) \cat rest~g~(tail~s) 
+\end{gendef}
+
+The actual $toSeq$ function:
+\begin{gendef}
+   toSeq : Graph \pfun RDFTerm \pfun RDFTerm \pfun \seq RDFTerm
+\where
+   \forall g: Graph; s,p : RDFTerm @ toSeq~g~s~p = \IF collection~g~s = p \\
+    \THEN unwind~g~s
+    \ELSE asSeq(objectsOf~g~s~p)
+\end{gendef}
+ 
+\paragraph{\textbf{isOrdered}} - determine whether a property is an ordered list.
+
+This test reflects some assumptions about RDF possibly deserving
+further examination -- the presence of the RDF List Collection
+type (see: 5.1 Container Classes and Properties in RDF
+Schema\cite{rdfschema})\footnote{Also note this section is
+  \emph{not} normative - an indication the community may be
+  moving away from the LISP like representation of RDF collections} is
+\emph{the} way ordering is represented.  We also make some
+assumptions about lists that, while valid in practice, aren't
+guaranteed.  One example is we assume a graph of the form
+below can never occur.
+\begin{Verbatim}[fontsize=\scriptsize, frame=single, fontseries=b]
+   @prefix s: <http://sample.org/sample/> .
+   @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+   
+   s:subj a s:Narwahl;
+          foaf:firstName "Jim";
+          rdf_first s:n1;
+          rdf_rest rdf\_Nil.
+\end{Verbatim}
+or, more formally that:
+
+\begin{gendef}
+   isOrdered : Graph \pfun RDFTerm \pfun RDFTerm
+\where
+   \forall g: Graph; s, p: RDFTerm @ isOrdered~g~s = p \iff \\
+\t1 \# (objectsOf~g~s~rdf\_first\_t) > 0 \land \\
+\t1 (\# (objectsOf~g~s~rdf\_rest\_t) > 0 \land \\
+\t2 (\# (triplesFor~g~s) = 2) \lor (\# (triplesFor~g~s) = 3 \land \\
+\t2 objectOf~g~s~rdf\_type\_t = rdf\_Seq\_t))
+\end{gendef}
+
+This isn't strictly true because it states ``RDFS does not require
+that there be only one first element of a list-like structure, or even
+that a list-like structure have a first element.''\cite{rdfschema}
+This may be a place where it would be useful to create some RDF
+``meta-schema'' profiles to reduce the amount of optionality.
+
+\section{Interpretation of ShEx Schema}
+\subsection{Schema}
+\verb|<xs:element name="Schema" type="shex:Schema"/>| \\
+\verb|<xs:complexType name="Schema">|
+
+\begin{zed}
+ShapeLabel == IRI
+\end{zed}
+
+\begin{schema}{Schema}
+   startActions : \optional[SemanticActions] \\
+   shape : ShapeLabel \pfun Shape \\
+   start : \optional[ShapeLabel]
+\where
+   \ran start \subseteq \dom shape \\
+   \# start > 0 \implies (shape~(head~start)).virtual = implementable
+\end{schema}
+
+\begin{schema}{Result}
+   passedTriples : Graph \\
+   excessTriples : Graph
+\end{schema}{pass}
+
+
+\begin{zed}
+EvalResult ::= pass \ldata Result \rdata | fail
+\end{zed}
+
+\begin{axdef}
+   i\_Schema : \optional[ShapeLabel] \fun Schema \fun IRI \fun Graph \fun EvalResult 
+\where
+   \forall osl : \optional[ShapeLabel]; sch: Schema; iri : IRI; g : Graph  @ \\
+   i\_Schema~osl~sch~iri~g = 
+\end{axdef}
+
+\begin{schema}{Shape}
+   ShapeConstraintGroup \\
+   include : \power ShapeLabel \\
+   extra : \power IRI \\
+   is\_virtual : \optional[Virtual] \\
+   is\_closed : \optional[Closed] 
+\also
+   virtual : Virtual \\
+   closed : Closed
+\where
+   virtual = \IF \# is\_virtual > 0 \THEN head~is\_virtual \ELSE implementable \\
+   closed = \IF \# is\_closed > 0 \THEN head~is\_closed \ELSE open
+\end{schema}
+
+
+\begin{zed}
+ShapeConstraintGroupChoice ::= \\
+\t1 scg\_tripleConstraint \ldata TripleConstraint \rdata | \\
+\t1 scg\_oneOf \ldata ShapeConstraint' \rdata | \\
+\t1 scg\_someOf \ldata ShapeConstraint' \rdata | \\
+\t1 scg\_group \ldata ShapeConstraint' \rdata | \\
+\t1 scg\_include \ldata ShapeLabel \rdata
+\end{zed}
+\begin{zed}
+Virtual ::= abstract | implementable \\
+Closed ::= fixed | open \\
+\end{zed}
+
+\begin{schema}{ShapeConstraintGroup}
+   entry : \power ShapeConstraintGroupChoice \\
+   semanticActions :  \optional[SemanticActions] 
+\end{schema}
+\subsection{TripleConstraint}
+
+\begin{schema}{TripleConstraint}
+   Cardinality \\
+   subjectConstraint : \optional[ValueClass] \\
+   predicate : IRI \\
+   objectConstraint : \optional[ValueClass] \\
+   annotation : \power Annotation \\
+   semanticActions : \optional[SemanticActions] \\
+   label : \optional[ShapeLabel] \\
+\where
+   \# subjectConstraint + \# objectConstraint \leq 1
+\end{schema}
+
+$NodeType$ comes from the triple model
+
+\begin{zed}
+AnnotationChoice ::= \\
+\t1 annot\_iriref \ldata IRI \rdata | \\
+\t1 annot\_literal \ldata RDFLiteral \rdata
+\end{zed}
+
+\begin{schema}{Annotation}
+	iri : IRI \\
+	annot : AnnotationChoice
+\end{schema}
+
+
+
+
+\subsection{Cardinality}
+\verb|<xs:attributeGroup name="Cardinality">|
+\begin{zed}
+UnboundedInt ::= num \ldata \nat \rdata | unlimited
+\end{zed}
+\begin{schema}{Cardinality}
+   min\_v : \optional[\nat] \\
+   max\_v : \optional[UnboundedInt] \\
+   min : \nat \\
+   max : UnboundedInt
+\where
+   min = \IF \# min\_v > 0 \THEN head~ min\_v \ELSE 1 \\
+   max = \IF \# max\_v > 0 \THEN head~ max\_v \ELSE num~ 1
+\end{schema}
+\begin{zed}
+[ShapeConstraint']
+\end{zed}
+
+
+\begin{schema}{ShapeConstraint}
+   ShapeConstraintGroup \\
+   Cardinality \\
+   label : \optional[ShapeLabel]
+\end{schema}
+
+
+
+
+\begin{schema}{GroupShapeConstr}
+	ref : \power ShapeLabel \\
+	stringFacet : \power StringFacet
+\end{schema}
+
+\begin{zed}
+endType ::= exclusive | inclusive
+\end{zed}
+
+\begin{schema}{Range}
+   v: \nat \\
+   is\_open : \optional[endType] \\
+   open : endType
+\where
+   open = \IF \# is\_open > 0 \THEN head~ is\_open \ELSE inclusive
+\end{schema}
+  
+\subsection{Facets}
+\begin{zed}
+StringFacet ::=  \\
+\t2 sf\_pattern \ldata String \rdata | \\
+\t2 sf\_not \ldata String \rdata  | \\
+\t2 sf\_minLength \ldata \nat \rdata  | \\
+\t2 sf\_maxLength \ldata \nat \rdata |  \\
+\t2 sf\_length \ldata \nat \rdata  
+\end{zed}
+
+\begin{zed}
+NumericFacet ::= \\
+\t2 nf\_minValue \ldata Range \rdata  | \\
+\t2 nf\_maxValue \ldata Range \rdata  | \\
+\t2 nf\_totalDigits \ldata \nat \rdata |  \\
+\t2 nf\_fractionDigits \ldata \nat \rdata
+\end{zed}
+
+\begin{zed}
+XSFacet ::=  \\
+\t2 xsf\_pattern \ldata String \rdata | \\
+\t2 xsf\_not \ldata String \rdata  | \\
+\t2 xsf\_minLength \ldata \nat \rdata  | \\
+\t2 xsf\_maxLength \ldata \nat \rdata |  \\
+\t2 xsf\_length \ldata \nat \rdata  | \\
+\t2 xsf\_minValue \ldata Range \rdata  | \\
+\t2 xsf\_maxValue \ldata Range \rdata  | \\
+\t2 xsf\_totalDigits \ldata \nat \rdata |  \\
+\t2 xsf\_fractionDigits \ldata \nat \rdata
+\end{zed}
+
+\begin{zed}
+ValueClassChoice ::= \\
+\t2 facet \ldata XSFacet \rdata | \\
+\t2 groupShapeConstr \ldata GroupShapeConstr \rdata | \\
+\t2 valueSet \ldata ValueSet \rdata
+\end{zed}
+
+\subsection{ValueClass}
+\begin{schema}{ValueClass}
+	entry : \power_1 ValueClassChoice
+\end{schema}
+
+\subsection{ValueSet}
+\begin{schema}{ValueSet}
+   filler: \nat
+\end{schema}
+
+\subsection{SemanticActions}
+\begin{zed}
+[CODE\_LABEL, CODE\_BODY]  \\
+CODE\_DECL \defs [iri: \optional[IRI]; body: CODE\_BODY] \\
+SemanticAction ::= codeLabel \ldata CODE\_LABEL \rdata | \\
+\t1 codeDecl \ldata CODE\_DECL \rdata \\
+SemanticActions == \power SemanticAction
+\end{zed}
+
+
+
+
+\section{Optional elements}
+Representing optional elements of type $T$.  Representing it as a sequence allows us to
+determine absence by $\#T = 0$ and the value by $head~T$. 
+
+\begin{zed} 
+  \optional[T] == \{ s : \seq T \mid \# s \leq 1 \} 
+\end{zed}
+
+
+
+\end{document}
