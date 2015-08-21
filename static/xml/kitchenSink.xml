@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema start="http://ex.example/IssueShape" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schem" xmlns:UserShape="http://ex.example/#UserShape" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/" default-namespace="http://ex.example/" xsi:schemaLocation="file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" xmlns:foaf="http://xmlns.com/foaf/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns1="http://ex.example/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns" xmlns:ex="http://ex.example/">
+    <startActions>
+        <action>
+            <codeDecl iri="ns1:foo"> initializer for ignored extension </codeDecl>
+        </action>
+    </startActions>
+    <shape label="http://ex.example/IssueShape">
+        <group>
+        <tripleConstraint object="ex:Issue" predicate="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" min="0"/>
+        <tripleConstraint predicate="ex:state">
+            <objectConstraint>
+                <valueSet>
+                    <iriRange stem="true" base="ex:state">
+                    <exclusion base="ex:state_resolved"/>
+            </iriRange>
+        </valueSet>
+    </objectConstraint>
+    <annotation iri="rdfs:label">
+        <literal>State</literal>
+    </annotation>
+    <annotation iri="rdfs:description">
+        <literal>the sit</literal>
+    </annotation>
+</tripleConstraint>
+<tripleConstraint predicate="ex:reportedBy" objectShape="UserShape" objectType="IRI"/>
+<tripleConstraint predicate="ex:reportedOn" datatype="xsd:dateTime"/>
+<tripleConstraint objectShape="http://ex.example/IssueShape" predicate="ex:related" max="unbounded" min="0"/>
+<group min="0">
+<group>
+<tripleConstraint predicate="ex:reproducedBy" objectShape=":EmployeeShape" objectType="NONLITERAL"/>
+<tripleConstraint predicate="ex:reproducedOn" datatype="xsd:dateTime"/>
+</group>
+<semanticActions>
+<action>
+<codeDecl iri="ns1:foo"> asdfasdf </codeDecl>
+</action>
+</semanticActions>
+</group>
+</group>
+</shape>
+<shape label="UserShape:">
+<group label="http://ex.example/name">
+<tripleConstraint predicate="foaf:mbox" objectType="IRI"/>
+<tripleConstraint predicate="ex:id" objectShape="_:IDshape" objectType="BNODE"/>
+<group>
+<oneOf>
+<tripleConstraint predicate="foaf:name" datatype="xsd:string"/>
+<group>
+<tripleConstraint predicate="foaf:givenName" max="unbounded" datatype="xsd:string"/>
+<tripleConstraint predicate="foaf:familyName" datatype="xsd:string"/>
+</group>
+</oneOf>
+</group>
+</group>
+</shape>
+<shape label=":EmployeeShape">
+<group>
+<tripleConstraint predicate="foaf:givenName" max="unbounded" datatype="xsd:string"/>
+<tripleConstraint predicate="foaf:familyName" datatype="xsd:string"/>
+<tripleConstraint predicate="foaf:phone" objectType="IRI" max="unbounded" min="0"/>
+<tripleConstraint predicate="foaf:mbox" objectType="IRI" min="0"/>
+</group>
+</shape>
+<shape label="_:IDshape" virtual="true">
+<someOf>
+<group>
+<tripleConstraint predicate="ex:code" objectType="LITERAL"/>
+<tripleConstraint predicate="ex:system" objectType="IRI"/>
+<tripleConstraint predicate="ex:literal" max="3" min="2">
+<objectConstraint>
+<valueSet>
+<rdfLiteral>a</rdfLiteral>
+<rdfLiteral datatype="ex:c">b</rdfLiteral>
+<rdfLiteral langtag="@en">c</rdfLiteral>
+<rdfLiteral langtag="@en-fr">d</rdfLiteral>
+</valueSet>
+</objectConstraint>
+</tripleConstraint>
+<tripleConstraint predicate="ex:misc" negated="true" objectType="BNODE">
+<semanticActions>
+<action>
+<codeDecl iri="ns1:foo"> ignored </codeDecl>
+</action>
+<action>
+<codeDecl iri="ns1:bar"> also ignored </codeDecl>
+</action>
+</semanticActions>
+</tripleConstraint>
+</group>
+<group>
+<tripleConstraint objectShape="ex:IssueShape" predicate="ex:issues" max="unbounded" min="0"/>
+<tripleConstraint objectShape="ex:IssueShape" predicate="ex:seeAlso" max="unbounded" min="0"/>
+<tripleConstraint objectShape=":EmployeeShape" predicate="ex:says" max="unbounded" min="0"/>
+<group>
+<group>
+<tripleConstraint predicate="ex:ref">
+<subjectConstraint>
+<valueSet>
+<boolean>true</boolean>
+<boolean>false</boolean>
+</valueSet>
+</subjectConstraint>
+</tripleConstraint>
+<tripleConstraint predicate="ex:miscRef" negated="true"/>
+</group>
+</group>
+</group>
+</someOf>
+</shape>
+<shape label="ex:FooID" closed="true">
+<include ref="_:IDshape"/>
+<extra ref="ex:code"/>
+<extra ref="ex:system"/>
+</shape>
+</Schema>

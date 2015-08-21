@@ -1,0 +1,274 @@
+{
+  "_xmlns": "http://www.w3.org/shex/",
+  "Schema": {
+    "xsi:schemaLocation": "ShEx.xsd",
+    "default-namespace": "http://ex.example/",
+    "start": "http://ex.example/IssueShape",
+    "exclude-prefixes": "xsi shex",
+    "startActions": {
+      "action": {
+        "iri": "ns1:foo",
+        "_content": " initializer for ignored extension "
+      }
+    },
+    "shape": [
+      {
+        "label": "http://ex.example/IssueShape",
+        "group": {
+          "tripleConstraint": [
+            {
+              "min": "0",
+              "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+              "object": "ex:Issue"
+            },
+            {
+              "predicate": "ex:state",
+              "objectConstraint": {
+                "valueSet": {
+                  "iriRange": {
+                    "base": "ex:state",
+                    "stem": "true",
+                    "exclusion": {
+                      "base": "ex:state_resolved"
+                    }
+                  }
+                }
+              },
+              "annotation": [
+                {
+                  "iri": "rdfs:label",
+                  "literal": "State"
+                },
+                {
+                  "iri": "rdfs:description",
+                  "literal": "the sit"
+                }
+              ]
+            },
+            {
+              "objectShape": "UserShape",
+              "objectType": "IRI",
+              "predicate": "ex:reportedBy"
+            },
+            {
+              "datatype": "xsd:dateTime",
+              "predicate": "ex:reportedOn"
+            },
+            {
+              "min": "0",
+              "max": "unbounded",
+              "predicate": "ex:related",
+              "objectShape": "http://ex.example/IssueShape"
+            }
+          ],
+          "group": {
+            "min": "0",
+            "group": {
+              "tripleConstraint": [
+                {
+                  "objectShape": ":EmployeeShape",
+                  "objectType": "NONLITERAL",
+                  "predicate": "ex:reproducedBy"
+                },
+                {
+                  "datatype": "xsd:dateTime",
+                  "predicate": "ex:reproducedOn"
+                }
+              ]
+            },
+            "semanticActions": {
+              "action": {
+                "iri": "ns1:foo",
+                "_content": " asdfasdf "
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "UserShape:",
+        "group": {
+          "label": "http://ex.example/name",
+          "tripleConstraint": [
+            {
+              "objectType": "IRI",
+              "predicate": "foaf:mbox"
+            },
+            {
+              "objectShape": "_:IDshape",
+              "objectType": "BNODE",
+              "predicate": "ex:id"
+            }
+          ],
+          "group": {
+            "oneOf": {
+              "tripleConstraint": {
+                "datatype": "xsd:string",
+                "predicate": "foaf:name"
+              },
+              "group": {
+                "tripleConstraint": [
+                  {
+                    "datatype": "xsd:string",
+                    "max": "unbounded",
+                    "predicate": "foaf:givenName"
+                  },
+                  {
+                    "datatype": "xsd:string",
+                    "predicate": "foaf:familyName"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": ":EmployeeShape",
+        "group": {
+          "tripleConstraint": [
+            {
+              "datatype": "xsd:string",
+              "max": "unbounded",
+              "predicate": "foaf:givenName"
+            },
+            {
+              "datatype": "xsd:string",
+              "predicate": "foaf:familyName"
+            },
+            {
+              "min": "0",
+              "objectType": "IRI",
+              "max": "unbounded",
+              "predicate": "foaf:phone"
+            },
+            {
+              "min": "0",
+              "objectType": "IRI",
+              "predicate": "foaf:mbox"
+            }
+          ]
+        }
+      },
+      {
+        "label": "_:IDshape",
+        "virtual": "true",
+        "someOf": {
+          "group": [
+            {
+              "tripleConstraint": [
+                {
+                  "objectType": "LITERAL",
+                  "predicate": "ex:code"
+                },
+                {
+                  "objectType": "IRI",
+                  "predicate": "ex:system"
+                },
+                {
+                  "min": "2",
+                  "max": "3",
+                  "predicate": "ex:literal",
+                  "objectConstraint": {
+                    "valueSet": {
+                      "rdfLiteral": [
+                        "a",
+                        {
+                          "datatype": "ex:c",
+                          "_content": "b"
+                        },
+                        {
+                          "langtag": "@en",
+                          "_content": "c"
+                        },
+                        {
+                          "langtag": "@en-fr",
+                          "_content": "d"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "objectType": "BNODE",
+                  "negated": "true",
+                  "predicate": "ex:misc",
+                  "semanticActions": {
+                    "action": [
+                      {
+                        "iri": "ns1:foo",
+                        "_content": " ignored "
+                      },
+                      {
+                        "iri": "ns1:bar",
+                        "_content": " also ignored "
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "tripleConstraint": [
+                {
+                  "min": "0",
+                  "max": "unbounded",
+                  "predicate": "ex:issues",
+                  "objectShape": "ex:IssueShape"
+                },
+                {
+                  "min": "0",
+                  "max": "unbounded",
+                  "predicate": "ex:seeAlso",
+                  "objectShape": "ex:IssueShape"
+                },
+                {
+                  "min": "0",
+                  "max": "unbounded",
+                  "predicate": "ex:says",
+                  "objectShape": ":EmployeeShape"
+                }
+              ],
+              "group": {
+                "group": {
+                  "tripleConstraint": [
+                    {
+                      "predicate": "ex:ref",
+                      "subjectConstraint": {
+                        "valueSet": {
+                          "boolean": [
+                            "true",
+                            "false"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "negated": "true",
+                      "predicate": "ex:miscRef"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "label": "ex:FooID",
+        "closed": "true",
+        "include": {
+          "ref": "_:IDshape"
+        },
+        "extra": [
+          {
+            "ref": "ex:code"
+          },
+          {
+            "ref": "ex:system"
+          }
+        ]
+      }
+    ]
+  }
+}

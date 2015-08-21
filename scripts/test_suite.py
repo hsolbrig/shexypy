@@ -26,33 +26,39 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
-from rdflib import Graph
-from shexyparser.schema.ShEx import *
-
-
-class ShapeEvaluator:
-    def __init__(self, schema: Schema):
-        self._schema = schema
-        self._shapes = {sh.label: sh for sh in schema.shape}
-
-    def compile(self, shape_name: ShapeLabel):
-        return ShapeEvaluator.CompiledShape(self._shapes[shape_name])
-
-    class CompiledShape:
-        def __init__(self, shape):
-            self._triples = self.depth_first_triples(shape)
-            print(self._triples)
-
-        @staticmethod
-        def depth_first_triples(node):
-            rval = []
-            for n in node._validatedChildren():
-                if(n.elementDeclaration._ElementDeclaration__id == 'tripleConstraint'):
-                    rval.append(n.value)
-                else:
-                    rval += ShapeEvaluator.CompiledShape.depth_first_triples(n.value)
-            return rval
+import sys
+import rdflib
+import argparse
 
 
 
+def build_argparser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Run shexspec test suite (http://shexspec.github.io/test-suite)")
+    parser.add_argument("manifest", help="Manifest file location")
+    return parser
 
+
+def parse_args(argparser: argparse.ArgumentParser, args: list) -> argparse.Namespace:
+    """ Parse the input arguments
+    :return: Parsed input arguments
+    """
+    parsed_args = argparser.parse_args(args)
+    parsed_args.lexerOnly = False
+    parsed_args.grammar_title = parsed_args.grammar[0].upper() + parsed_args.grammar[1:]
+    return parsed_args
+
+def eval_manifest(opts: argparse.Namespace, manifest: rdflib.Graph):
+    for m in manifest.subjects()
+
+def main(argv: list):
+    parser_args = build_argparser()
+    opts = parse_args(parser_args, argv)
+    manifest_g = rdflib.Graph()
+    manifest = g.parse(opts.manifest)
+
+    result = do_test(opts, FileStream(opts.infile) if opts.infile else StdInputStream())
+    if result:
+        print(result)
+
+if __name__ == '__main__':
+    main(sys.argv[1:])

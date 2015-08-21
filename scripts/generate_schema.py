@@ -1,11 +1,13 @@
-# -*- coding: utf-8 -*-
+#!/usr/local/bin/python
+
+#  -*- coding: utf-8 -*-
 # Copyright (c) 2015, Mayo Clinic
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
 # are permitted provided that the following conditions are met:
 #
-# Redistributions of source code must retain the above copyright notice, this
+#     Redistributions of source code must retain the above copyright notice, this
 #     list of conditions and the following disclaimer.
 #
 #     Redistributions in binary form must reproduce the above copyright notice,
@@ -26,33 +28,60 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
-from rdflib import Graph
-from shexyparser.schema.ShEx import *
+
+# Copied from pyxbgen 1.2.3
+
+# This module generates the shexyParser/schema/ShEx.py module from the XML Schema in the static directory
+
+import pyxb.xmlschema
+import pyxb.binding.generate
+import pyxb.utils.utility
+import pyxb.utils.domutils
+
+schemaroot = "../static/xsd/"
 
 
-class ShapeEvaluator:
-    def __init__(self, schema: Schema):
-        self._schema = schema
-        self._shapes = {sh.label: sh for sh in schema.shape}
+cmdline = '--schema-root %s -u ShEx.xsd -m ShEx --binding-root=../shexyparser/schema' % schemaroot
 
-    def compile(self, shape_name: ShapeLabel):
-        return ShapeEvaluator.CompiledShape(self._shapes[shape_name])
-
-    class CompiledShape:
-        def __init__(self, shape):
-            self._triples = self.depth_first_triples(shape)
-            print(self._triples)
-
-        @staticmethod
-        def depth_first_triples(node):
-            rval = []
-            for n in node._validatedChildren():
-                if(n.elementDeclaration._ElementDeclaration__id == 'tripleConstraint'):
-                    rval.append(n.value)
-                else:
-                    rval += ShapeEvaluator.CompiledShape.depth_first_triples(n.value)
-            return rval
+import logging
+logging.basicConfig()
+log_ = logging.getLogger(__name__)
 
 
+generator = pyxb.binding.generate.Generator()
+parser = generator.optionParser()
 
+(options, args) = parser.parse_args(cmdline.split())
 
+generator.applyOptionValues(options, args)
+
+generator.resolveExternalSchema()
+
+if 0 == len(generator.namespaces()):
+    parser.print_help()
+    sys.exit(1)
+
+import sys
+import traceback
+
+# Save binding source first, so name-in-binding is stored in the
+# parsed schema file
+try:
+    tns = generator.namespaces().pop()
+    modules = generator.bindingModules()
+    print('Python for %s requires %d modules' % (tns, len(modules)))
+
+    top_module = None
+    path_dirs = set()
+    for m in modules:
+        m.writeToModuleFile()
+
+    generator.writeNamespaceArchive()
+except Exception as e:
+    print('Exception generating bindings: %s' % (e,))
+    traceback.print_exception(*sys.exc_info())
+    sys.exit(3)
+
+# LocalVariables:
+# mode:python
+# End:

@@ -26,33 +26,3 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
-from rdflib import Graph
-from shexyparser.schema.ShEx import *
-
-
-class ShapeEvaluator:
-    def __init__(self, schema: Schema):
-        self._schema = schema
-        self._shapes = {sh.label: sh for sh in schema.shape}
-
-    def compile(self, shape_name: ShapeLabel):
-        return ShapeEvaluator.CompiledShape(self._shapes[shape_name])
-
-    class CompiledShape:
-        def __init__(self, shape):
-            self._triples = self.depth_first_triples(shape)
-            print(self._triples)
-
-        @staticmethod
-        def depth_first_triples(node):
-            rval = []
-            for n in node._validatedChildren():
-                if(n.elementDeclaration._ElementDeclaration__id == 'tripleConstraint'):
-                    rval.append(n.value)
-                else:
-                    rval += ShapeEvaluator.CompiledShape.depth_first_triples(n.value)
-            return rval
-
-
-
-
