@@ -1,0 +1,18 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "maxlength": 20,
+                    "type": "valueClass",
+                    "nodeKind": "bnode"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

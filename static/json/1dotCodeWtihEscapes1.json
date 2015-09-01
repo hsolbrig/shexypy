@@ -1,0 +1,19 @@
+{
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "type": "shape",
+            "expression": {
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint",
+                "semAct": {
+                    "http://a.example/semAct1": "%{\\%};"
+                },
+                "value": {
+                    "type": "valueClass"
+                }
+            }
+        }
+    },
+    "prefixes": {}
+}

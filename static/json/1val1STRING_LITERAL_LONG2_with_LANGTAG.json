@@ -1,0 +1,19 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "values": [
+                        "\"STRING_LITERAL_LONG2\"@en"
+                    ],
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "startAct": [
+        {
+            "http://a.example/semAct1": " code1 "
+        },
+        {
+            "http://a.example/semAct2": " code2 "
+        },
+        {
+            "http://a.example/semAct3": " code3 "
+        }
+    ],
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

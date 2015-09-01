@@ -1,0 +1,21 @@
+{
+    "prefixes": {
+        "ex": "http://a.example/"
+    },
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "values": [
+                        "\"ab\"^^http://a.example/bloodType"
+                    ],
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

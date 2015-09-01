@@ -1,0 +1,18 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "nodeKind": "iri",
+                    "minlength": 20,
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

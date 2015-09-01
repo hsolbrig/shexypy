@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns:IssueShape="http://a.example/IssueShape" xsi:schemaLocation="file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" exclude-prefixes="xsi shex" xmlns:p1="http://a.example/p1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.w3.org/shex/">
+    <shape label="IssueShape:">
+        <tripleConstraint predicate="p1:"/>
+    </shape>
+</Schema>

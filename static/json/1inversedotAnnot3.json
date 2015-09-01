@@ -1,0 +1,31 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "annotations": [
+                    [
+                        "http://a.example/annot1",
+                        "\"1\""
+                    ],
+                    [
+                        "http://a.example/annot2",
+                        "\"2\""
+                    ],
+                    [
+                        "http://a.example/annot3",
+                        "\"3\""
+                    ]
+                ],
+                "predicate": "http://a.example/p1",
+                "inverse": true,
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

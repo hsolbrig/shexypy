@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xsi:schemaLocation="file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/">
+    <shape label="_:Na84e358075a24ee4bcc7c7647212c176">
+        <tripleConstraint predicate="http://a.example/p1"/>
+    </shape>
+    <shape label="http://a.example/EmployeeShape">
+        <tripleConstraint predicate="http://a.example/p2" objectShape="_:Na84e358075a24ee4bcc7c7647212c176"/>
+    </shape>
+</Schema>

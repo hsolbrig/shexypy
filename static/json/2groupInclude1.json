@@ -1,0 +1,35 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/PersonShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "http://a.example/EmployeeShape": {
+            "expression": {
+                "expressions": [
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "type": "include",
+                        "include": "http://a.example/PersonShape"
+                    }
+                ],
+                "type": "group"
+            },
+            "type": "shape"
+        }
+    }
+}

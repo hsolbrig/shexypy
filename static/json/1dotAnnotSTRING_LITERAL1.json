@@ -1,0 +1,22 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "annotations": [
+                    [
+                        "http://a.example/annot",
+                        "\"STRING_LITERAL1\""
+                    ]
+                ],
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

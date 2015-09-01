@@ -1,5 +1,3 @@
-#!/usr/local/bin/python
-
 #  -*- coding: utf-8 -*-
 # Copyright (c) 2015, Mayo Clinic
 # All rights reserved.
@@ -41,7 +39,7 @@ import pyxb.utils.domutils
 schemaroot = "../static/xsd/"
 
 
-cmdline = '--schema-root %s -u ShEx.xsd -m ShEx --binding-root=../shexyparser/schema' % schemaroot
+cmdline = '--schema-root %s -u ShEx.xsd -m ShEx --binding-root=../shexypy/schema' % schemaroot
 
 import logging
 logging.basicConfig()

@@ -1,0 +1,63 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/PersonShape": {
+            "expression": {
+                "value": {
+                    "reference": "http://a.example/EntityShape",
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p3",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "http://a.example/EntityShape": {
+            "expression": {
+                "expressions": [
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "value": {
+                            "reference": "http://a.example/EmployeeShape",
+                            "type": "valueClass"
+                        },
+                        "max": 1,
+                        "predicate": "http://a.example/p2",
+                        "min": 0,
+                        "type": "tripleConstraint"
+                    }
+                ],
+                "type": "group"
+            },
+            "type": "shape"
+        },
+        "http://a.example/OtherShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p4",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "http://a.example/EmployeeShape": {
+            "expression": {
+                "value": {
+                    "reference": "http://a.example/PersonShape",
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p5",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

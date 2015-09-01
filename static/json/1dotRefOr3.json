@@ -1,0 +1,54 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/PlaceShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p2",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "http://a.example/PersonShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "http://a.example/ThingShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p3",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "http://a.example/EmployeeShape": {
+            "expression": {
+                "value": {
+                    "reference": {
+                        "disjuncts": [
+                            "http://a.example/PersonShape",
+                            "http://a.example/PlaceShape",
+                            "http://a.example/ThingShape"
+                        ],
+                        "type": "or"
+                    },
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p4",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

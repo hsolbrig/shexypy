@@ -1,0 +1,28 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "expressions": [
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint"
+                    }
+                ],
+                "type": "someOf"
+            },
+            "type": "shape"
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "_:0": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "http://a.example/EmployeeShape": {
+            "expression": {
+                "value": {
+                    "reference": "_:0",
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p2",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

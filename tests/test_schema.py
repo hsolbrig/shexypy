@@ -28,9 +28,11 @@
 # OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import unittest
-from shexyparser.schema.ShEx import *
-from shexyparser.utils.xmlutils import prettyxml
+
 from pyxb.utils import domutils
+
+from shexypy.schema.ShEx import *
+from shexypy.utils.xmlutils import prettyxml
 
 
 class SchemaTestCase(unittest.TestCase):

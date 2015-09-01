@@ -1,0 +1,27 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/EmployeeShape": {
+            "expression": {
+                "value": {
+                    "reference": "_:Na84e358075a24ee4bcc7c7647212c176",
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p2",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "_:Na84e358075a24ee4bcc7c7647212c176": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

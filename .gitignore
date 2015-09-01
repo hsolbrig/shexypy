@@ -11,6 +11,9 @@ __pycache__/
 *.synctex.gz
 *.toc
 
+# pycharm / ideaj
+.idea
+
 # Distribution / packaging
 .Python
 env/

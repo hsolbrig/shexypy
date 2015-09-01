@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xsi:schemaLocation="file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" xmlns:ex="http://a.example/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/">
+    <shape label="ex:PersonShape">
+        <tripleConstraint predicate="ex:p1"/>
+    </shape>
+    <shape label="ex:MemberShape">
+        <tripleConstraint predicate="ex:p2"/>
+    </shape>
+    <shape label="ex:ManagedShape">
+        <tripleConstraint predicate="ex:p3"/>
+    </shape>
+    <shape label="ex:EmployeeShape">
+        <tripleConstraint predicate="ex:p4"/>
+        <include ref="ex:PersonShape"/>
+        <include ref="ex:MemberShape"/>
+        <include ref="ex:ManagedShape"/>
+    </shape>
+</Schema>

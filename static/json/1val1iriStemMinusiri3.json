@@ -1,0 +1,27 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "values": [
+                        {
+                            "stem": "http://a.example/v",
+                            "exclusions": [
+                                "http://a.example/v1",
+                                "http://a.example/v2",
+                                "http://a.example/v3"
+                            ],
+                            "type": "stemRange"
+                        }
+                    ],
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

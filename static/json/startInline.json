@@ -1,0 +1,17 @@
+{
+    "start": "_:Na2b8c5fc53d641ceb637eec0aeec43d8",
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "_:Na2b8c5fc53d641ceb637eec0aeec43d8": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

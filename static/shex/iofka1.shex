@@ -1,3 +1,6 @@
+BASE <http://ex.example/#>
+PREFIX : <http://ex.example/foo/#>
+
 <S> { :a @<T1>*, (:a @<T2>+ | :b xsd:integer), :b .}
 <T1> { :b @<T3> }
 <T2> { :b @<T4> }

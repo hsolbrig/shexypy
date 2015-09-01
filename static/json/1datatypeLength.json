@@ -1,0 +1,18 @@
+{
+    "prefixes": {},
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+                    "type": "valueClass",
+                    "length": 5
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

@@ -1,0 +1,98 @@
+{
+    "shapes": {
+        "T3": {
+            "expression": {
+                "predicate": "http://ex.example/foo/c",
+                "value": {
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "T4": {
+            "expression": {
+                "predicate": "http://ex.example/foo/d",
+                "value": {
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "T2": {
+            "expression": {
+                "predicate": "http://ex.example/foo/b",
+                "value": {
+                    "reference": "T4",
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "T1": {
+            "expression": {
+                "predicate": "http://ex.example/foo/b",
+                "value": {
+                    "reference": "T3",
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "S": {
+            "expression": {
+                "expressions": [
+                    {
+                        "predicate": "http://ex.example/foo/a",
+                        "value": {
+                            "reference": "T1",
+                            "type": "valueClass"
+                        },
+                        "max": "*",
+                        "min": 0,
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "predicate": "http://ex.example/foo/b",
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "expressions": [
+                            {
+                                "predicate": "http://ex.example/foo/a",
+                                "value": {
+                                    "reference": "T2",
+                                    "type": "valueClass"
+                                },
+                                "max": "*",
+                                "min": 1,
+                                "type": "tripleConstraint"
+                            },
+                            {
+                                "predicate": "http://ex.example/foo/b",
+                                "value": {
+                                    "datatype": "xsd:integer",
+                                    "type": "valueClass"
+                                },
+                                "type": "tripleConstraint"
+                            }
+                        ],
+                        "type": "someOf"
+                    }
+                ],
+                "type": "group"
+            },
+            "type": "shape"
+        }
+    },
+    "prefixes": {
+        "": "http://ex.example/foo/"
+    },
+    "type": "schema"
+}

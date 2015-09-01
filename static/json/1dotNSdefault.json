@@ -1,0 +1,18 @@
+{
+    "prefixes": {
+        "": "http://a.example/"
+    },
+    "type": "schema",
+    "shapes": {
+        "http://a.example/": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    }
+}

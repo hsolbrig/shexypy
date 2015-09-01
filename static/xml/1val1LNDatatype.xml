@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xsi:schemaLocation="file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" xmlns:ex="http://a.example/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/">
+    <shape label="http://a.example/IssueShape">
+        <tripleConstraint predicate="http://a.example/p1">
+            <objectConstraint>
+                <valueSet>
+                    <rdfLiteral datatype="ex:bloodType">ab</rdfLiteral>
+                </valueSet>
+            </objectConstraint>
+        </tripleConstraint>
+    </shape>
+</Schema>

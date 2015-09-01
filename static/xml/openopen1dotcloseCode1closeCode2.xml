@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.w3.org/shex/ file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" xmlns="http://www.w3.org/shex/" exclude-prefixes="xsi shex">
+    <shape label="http://a.example/IssueShape">
+        <wrapper>
+            <tripleConstraint predicate="http://a.example/p1">
+                <actions>
+                    <action>
+                        <codeDecl iri="http://a.example/semAct1"> code1 </codeDecl>
+                    </action>
+                </actions>
+            </tripleConstraint>
+            <actions>
+                <action>
+                    <codeDecl iri="http://a.example/semAct2"> code2 </codeDecl>
+                </action>
+            </actions>
+        </wrapper>
+    </shape>
+</Schema>
