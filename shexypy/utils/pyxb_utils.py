@@ -26,10 +26,14 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
+import re
 from pyxb import binding
 
 
 class PyxbWrapper:
+
+    unicode_re = re.compile(r'\\u([a-fA-F0-9]{4})|\\U([a-fA-F0-9]{8})')
+
     def __init__(self, node):
         self._node = node
 
@@ -53,3 +57,33 @@ class PyxbWrapper:
         @property
         def value(self):
             return PyxbWrapper(self._el.value)
+
+    @staticmethod
+    def mixed_content(item):
+        return ''.join([PyxbWrapper.proc_unicode(e.value) if isinstance(e, binding.basis.NonElementContent)
+                        else "toDOM(e)" for e in item.orderedContent()])
+
+    @staticmethod
+    def proc_unicode(txt):
+        def map_unicode(hex_str) -> str:
+            char_code = int(hex_str, 16)
+            if char_code < 0xFFFF:
+                return chr(char_code)
+            else:
+                char_code -= 0x10000
+                return chr(0xD800 + (char_code >> 10)) + chr(0xDC00 + (char_code & 0x3FF))
+
+        def unescape(t):
+            """ Unescape the CODE escape characters in txt
+            :param t: string to be unescaped
+            :return: unescaped equivalent
+            """
+            return re.sub(r'\\\\', r'\\', re.sub(r'\\%', '%', t)) if t else ""
+
+        rval = ''
+        pos = 0
+        utxt = unescape(txt)
+        for e in PyxbWrapper.unicode_re.finditer(utxt):
+            rval += utxt[pos:e.start()] + map_unicode(e.group(1))
+            pos = e.end()
+        return rval + utxt[pos:]

@@ -140,7 +140,8 @@ def compare_filter(kv1: (str, object), kv2: (str, object)) -> bool:
         if kv1[0].split('.')[-1] in ["semAct", "startAct"] and kv2[0] == kv1[0]:
             # This fails because kv2 is unordered
             return sorted(kv1[1], key=ks) == sorted([{k: v} for k, v in kv2[1].items()], key=ks)
-        if node_name(kv1) == 'values' and node_name(kv1) == node_name(kv2):
+        if node_name(kv1) == 'values' and node_name(kv1) == node_name(kv2) and \
+                not (isinstance(kv1[1], dict) or isinstance(kv1[1][0], dict)):
             return all([comp_values(v1, v2) for v1, v2 in zip(kv1[1], kv2[1])])
 
     return False

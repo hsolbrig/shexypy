@@ -28,10 +28,13 @@
 # OF THE POSSIBILITY OF SUCH DAMAGE.
 import sys
 import argparse
+
 from rdflib import URIRef, Graph
-from shexyparser.schema.ShEx import CreateFromDocument, ShapeLabel
-from realshexy.interpretations import ShapeEvaluator
-from shexyparser.utils.xmlutils import prettyxml
+
+from shexypy.schema.ShEx import CreateFromDocument, ShapeLabel
+from shexypy.shexyinterpreter.interpretations import ShapeEvaluator
+from shexypy.utils.xmlutils import prettyxml
+
 
 def build_argparser() -> argparse.ArgumentParser:
     """ Construct a basic argument parser.  This is a separate module so main specific parameters
@@ -39,6 +42,10 @@ def build_argparser() -> argparse.ArgumentParser:
     :return: argument parser
     """
     parser = argparse.ArgumentParser(description="Run ShExDoc parser")
+    parser.add_argument("infile", help="Interpretation file.")
+    parser.add_argument("graph", help="Name of file containing the graph")
+    parser.add_argument("-f", "--format", help="Graph file format", default="turtle")
+    parser.add_argument("-p", "--print", help="Print parsed XML", action="store_true")
     return parser
 
 
@@ -52,10 +59,6 @@ def parse_args(argparser: argparse.ArgumentParser, args: list) -> argparse.Names
 
 def main(argv: list):
     parser_args = build_argparser()
-    parser_args.add_argument("infile", help="Interpretation file.")
-    parser_args.add_argument("graph", help="Name of file containing the graph")
-    parser_args.add_argument("-f", "--format", help="Graph file format", default="turtle")
-    parser_args.add_argument("-p", "--print", help="Print parsed XML", action="store_true")
     opts = parse_args(parser_args, argv)
 
     schema = CreateFromDocument(open(opts.infile).read())

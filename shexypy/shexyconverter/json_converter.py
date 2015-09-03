@@ -26,8 +26,7 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
-import re
-from collections import Iterable
+
 from urllib.parse import urljoin
 
 from rdflib import URIRef, XSD
@@ -70,9 +69,6 @@ class PrefixMap:
         return self._map
 
 
-unicode_re = re.compile(r'\\u([a-fA-F0-9]{4})|\\U([a-fA-F0-9]{8})')
-
-
 class ShExSchema:
 
     """ ShEx XML Schema to JSON wrapper
@@ -85,82 +81,117 @@ class ShExSchema:
         self.json = dict(type="schema")
 
         self._prefixmap = PrefixMap(dom_schema, self.schema)
-        # TODO: look up the namespaces below rather than just using the prefixes
-        _exclude_prefixes = self.schema.exclude_prefixes.split(' ') + \
-                            ['xmlns', 'xml', 'xsi', 'rdf', 'rdfs', 'xml1', 'default1']
+        self._exclude_prefixes = self.schema.exclude_prefixes.split(' ') + ['xml', 'xmlns']
+        self.shex_schema()
+
+    def shex_schema(self):
+        """ <code>xs:Element name="Schema" type="shex:Schema</code>
+        """
         self.json["prefixes"] = {prefix: url for prefix, url in self._prefixmap.namespaces().items()
-                                 if prefix is not None and url and prefix not in _exclude_prefixes}
-
+                                 if prefix is not None and url and prefix not in self._exclude_prefixes}
         if self.schema.startActions:
-            self.json["startAct"] = self.semantic_action(self.schema.startActions)
-
+            self.json["startAct"] = self.shex_semantic_actions(self.schema.startActions)
+        if self.schema.shape:
+            self.json["shapes"] = {self._uri(s.label): self.shex_shape(s) for s in self.schema.shape}
+        if self.schema.valueClass:
+            self.json["valueClasses"] = {self._uri(vc.valueClassLabel):
+                                             self.shex_value_class_definition(vc)
+                                         for vc in self.schema.valueClass}
         if self.schema.start:
             self.json["start"] = self._uri(self.schema.start)
 
-        if self.schema.shape:
-            self.json["shapes"] = {self._prefixmap.uri_for(s.label): self.eval_shape(s) for s in self.schema.shape}
-
-        # TODO: value class is nested in XML -- fix it
-        if self.schema.valueClass:
-            self.json["valueClasses"] = {self._uri(self.valueClass.valueClassLabel): self.schema_value_class(vc.valueClass)
-                                         for vc in self.schema.valueClass}
-
-    def schema_value_class(self, vc):
-        vcd = dict(type="valueClass")
-        self.value_class(vcd, vc)
-        return vcd
-
-    def eval_shape(self, shape: Shape) -> dict:
-        """ Process an XML Shape Element
+    def shex_shape(self, shape: Shape) -> dict:
+        """ <code>xs:complexType name="shape"</code>
         :param shape: XML Shape
-        :return: Corresponding S-Json dictionary
+        :return: S-JSON Shape Entry
         """
         rval = dict(type="shape")
+        w_shape = PyxbWrapper(shape)
+        self.shex_annotations_and_actions(rval, w_shape)
+        [self.shex_expression_choice(rval, e) for e in w_shape.elements]
+        for e in w_shape.elements:
+            if e.type == "import_":
+                rval.setdefault("inherit", []).append(self.shex_shape_ref(e.value.node))
+            elif e.type == "extra":
+                rval.setdefault(e.type, []).append(self._uri(e.value.node.ref))
+
+        # shape.label is the dictionary key in the Schema container
         if shape.virtual:
             rval["virtual"] = shape.virtual
         if shape.closed:
             rval["closed"] = shape.closed
-        w_shape = PyxbWrapper(shape)
-        expressions = []
-        for e in w_shape.elements:
-            if e.type == "extra":
-                rval.setdefault(e.type, []).append(self._uri(e.value.node.ref))
-            elif e.type == "include":
-                rval.setdefault("inherit", []).append(self._uri(e.value.node.ref))
-            elif e.type == "actions":
-                rval["semAct"] = self.semantic_action(e.value.node)
-            elif e.type == "annotation":
-                rval.setdefault(e.type, []).extend(self.annotations(e.value.node))
-            else:
-                expressions.append(self.expression_group(e))
-        if len(expressions) > 1:
-            rval["expression"] = dict(type="group")
-            rval["expression"]["type"] = "group"
-            rval["expression"]["expressions"] = expressions
-        elif len(expressions):
-            rval["expression"] = expressions[0]
         return rval
 
-    def expression_group(self, e: PyxbWrapper.PyxbElement) -> dict:
-        """ Process the expression group represented by e
-        :param e: Wrapper for expressionGroup choice
+    def shex_value_class_definition(self, vcd: ValueClassDefinition) -> dict:
+        """ <code>xs:complexType name="ValueClassDefinition"</code>
+        :param vcd:
         :return:
         """
-        if e.type == "someOf":
-            return dict(type=e.type, expressions=[self.expression_group(s) for s in e.value.elements])
-        elif e.type == "group":
-            return dict(type=e.type, expressions=[self.expression_group(s) for s in e.value.elements])
-        elif e.type == "tripleConstraint":
-            return self.triple_constraint(e.value.node)
-        elif e.type == "include":
-            return dict(type=e.type, include=self._uri(e.value.node.ref))
-        elif e.type == "wrapper":
-            return self.wrapper(e.value.node)
+        rval = dict(type="valueClass")
+        if vcd.external:
+            rval["external"] = True
         else:
-            assert False, "Unknown type %s" % e.type
+            if vcd.definition:
+                rval["values"] = self.shex_value_class_expression(vcd.definition)
+            if vcd.actions:
+                rval["semAct"] = self.shex_semantic_action(vcd.actions)
+        return rval
 
-    def triple_constraint(self, tc: TripleConstraint):
-        """ Process a triple constraint
+    @staticmethod
+    def _typed_expression(typ: str, val: dict) -> dict:
+        val["type"]=typ
+        return val
+
+    def shex_expression_choice(self, target: dict, e: PyxbWrapper.PyxbElement):
+        """ <code>xs:group name="ExpressionChoice"</code>
+        :param target: target type with ExpressionChoice mixin
+        :param e: Wrapper for ExpressionChoice element
+        """
+        if e.type in ["someOf", "group"]:
+            expr = self.shex_shape_constraint(e.value.node)
+        elif e.type == "tripleConstraint":
+            expr = self._typed_expression(e.type, self.shex_triple_constraint(e.value.node))
+        elif e.type == "include":
+            expr = self.shex_shape_ref(e.value.node)
+        elif e.type == "wrapper":
+            expr = self.shex_wrapper(e.value.node)
+        else:
+            expr = None
+        if expr:
+            target["expression"] = self._typed_expression(e.type, expr)
+
+    def shex_wrapper(self, w: Wrapper) -> dict:
+        rval = dict(type="wrapper")
+        w_wrapper = PyxbWrapper(w)
+        [self.shex_expression_choice(rval, e) for e in w_wrapper.elements]
+        self.shex_annotations_and_actions(rval, w_wrapper)
+        self.shex_cardinality(rval, w_wrapper)
+        return rval
+
+    def shex_annotations_and_actions(self, target: dict, ew: PyxbWrapper):
+        """ <code>xs:group name="AnnotationsAndActions</code>
+        :param target: dictionary using the group
+        :param ew: xml element that contains the group
+        """
+        for e in ew.elements:
+            if e.type == "actions":
+                target["semAct"] = self.shex_semantic_actions(e.value.node)
+            elif e.type == "annotation":
+                target.setdefault("annotations", []).append(self.shex_annotation(e.value.node))
+
+    def shex_shape_constraint(self, sc: ShapeConstraint) -> dict:
+        """ <code>xs:complexType name="ShapeConstraint"</code>
+        :param sc: A complete shape constraint
+        :return: S-JSON expression
+        """
+        rval = dict(type="expression")
+        sc_wrapper = PyxbWrapper(sc)
+        [self.shex_expression_choice(rval, e) for e in sc_wrapper.elements]
+        self.shex_annotations_and_actions(rval, sc_wrapper)
+        self.shex_cardinality(rval, sc_wrapper)
+
+    def shex_triple_constraint(self, tc: TripleConstraint) -> dict:
+        """ <code>xs:complexType name="TripleConstraint"</code>
         :param tc: TripleConstraint to process
         :return: SJson equivalent
         """
@@ -170,159 +201,256 @@ class ShExSchema:
 
         tc_dict = dict(type="tripleConstraint", predicate=self._uri(tc.predicate))
         vc_dict = dict(type="valueClass")
-        self.cardinality(tc, tc_dict)
         if tc.objectConstraint:
-            self.value_class(vc_dict, tc.objectConstraint)
+            vc_dict.update(self.shex_triple_constraint_value_class(tc.objectConstraint))
         if tc.object:
-            vc_dict["values"] = [self._uri(tc.object)]
+            vc_dict["values"] = [self.shex_iri(tc.object)]
         if tc.objectShape:
-            vc_dict["reference"] = self._uri(tc.objectShape)
+            vc_dict["reference"] = self.shex_shape_label(tc.objectShape)
         if tc.objectType:
-            vc_dict["nodeKind"] = tc.objectType.lower()
+            vc_dict["nodeKind"] = self.shex_node_type(tc.objectType)
 
         if tc.subjectConstraint or tc.subject or tc.subjectShape or tc.subjectType or tc.inverse:
             tc_dict["inverse"] = True
             if tc.subjectConstraint:
-                self.value_class(vc_dict, tc.subjectConstraint)
-            if tc.subject:
-                vc_dict["values"] = [self._uri(tc.subject)]
-            if tc.subjectShape:
-                vc_dict["reference"] = self._uri(tc.subjectShape)
-            if tc.subjectType:
-                vc_dict["nodeKind"] = tc.subjectType.lower()
+                vc_dict.update(self.shex_triple_constraint_value_class(tc.subjectConstraint))
+        if tc.subject:
+            vc_dict["values"] = [self.shex_iri(tc.subject)]
+        if tc.subjectShape:
+            vc_dict["reference"] = self.shex_shape_label(tc.subjectShape)
+        if tc.subjectType:
+            vc_dict["nodeKind"] = self.shex_node_type(tc.subjectType)
 
         if tc.datatype:
-            vc_dict["datatype"] = tc.datatype
+            vc_dict["datatype"] = self._uri(tc.datatype)
         if tc.negated:
             tc_dict["negated"] = tc.negated
-        if tc.annotation:
-            tc_dict["annotations"] = self.annotations(tc.annotation)
-        if tc.actions:
-            tc_dict["semAct"] = self.semantic_action(tc.actions)
+        tc_wrapper = PyxbWrapper(tc)
+        self.shex_annotations_and_actions(tc_dict, tc_wrapper)
+        self.shex_cardinality(tc_dict, tc_wrapper)
         tc_dict["value"] = vc_dict
         return tc_dict
 
-    def wrapper(self, wrap: PyxbWrapper.PyxbElement):
-        wrapd = dict(type="wrapper")
-        # TODO: figure out how to get the inner expression installed correctly
-        self.cardinality(wrap.value.node, wrapd)
+    @staticmethod
+    def shex_node_type(nt: NodeType):
+        return str(nt).lower()
 
-        for e in wrap.value.node.wrapper.elements:
-            if e.type == 'annotation':
-                wrapd["annotations"] = self.annotations(e.value.node.annotation)
-            if e.type == "actions":
-                wrapd["semAct"] = self.semantic_action(e.value.node.actions)
-        return wrapd
-
-
-    def value_class(self, vcd: dict, vc: ValueClass):
-        """ Process a value class
-        :param vcd: value class dictionary
-        :param vc: value class object
+    def shex_annotation(self, annot: Annotation) -> list:
+        """ <code>xs:complexType name="Annotation"</code>
+        :param annot: Annotation
+        :return: S-JSON equivalent
         """
-        for facet in vc.facet:
-            self.facet(vcd, facet)
-        if vc.or_:
-            for or_entry in vc.or_:
-                disjuncts = [self._uri(e.ref) for e in or_entry.disjunct]
-                vcd["reference"] = dict(type="or")
-                vcd["reference"]["disjuncts"] = disjuncts
-        if vc.valueSet:
-            vcd["values"] = [self.value_set(e) for e in PyxbWrapper(vc.valueSet[0]).elements]
-        # TODO: Have some sort of problem here - single ref, multiple labels
-        if vc.valueClassLabel:
-            vcd["valueClassRef"] = self._uri(vc.valueClassLabel[0].ref)
-
-    def value_set(self, entry: PyxbWrapper.PyxbElement) -> object:
-        node = entry.value.node
-        if entry.type == 'iriRange':
-            if not node.exclusion and not node.stem:
-                return self._uri(node.base)
-            else:
-                stem_uri = self._uri(node.base)
-                rval = dict(type="stemRange", stem=stem_uri if stem_uri else dict(type="wildcard"))
-                exclusions = [self.stem_or_iri(n) for n in node.exclusion]
-                if exclusions:
-                    rval["exclusions"] = exclusions
-                return rval
-        elif entry.type == 'rdfLiteral':
-            if node.datatype:
-                suffix = "^^%s" % self._uri(node.datatype)
-            elif node.langtag:
-                suffix = "@%s" % node.langtag
-            else:
-                suffix = ''
-            return '"%s"' % node.value() + suffix
-        elif entry.type == 'integer':
-            return '"%i"^^%s' % (node, XSD.integer)
-        elif entry.type == 'decimal':
-            return '"%d"^^%s' % (node, XSD.decimal)
-        elif entry.type == 'double':
-            return '"%e"^^%s' % (node, XSD.double)
-        elif entry.type == 'boolean':
-            return '"%s"^^%s' % (node, XSD.boolean)
+        rval = [self._uri(annot.iri)] if annot.iri else []
+        if annot.literal:
+            rval.append(self.shex_rdf_literal(annot.literal))
         else:
-            assert False, "Unknown ValueSet type: " + entry.type
-
-    def annotations(self, annots):
-        """ Create a list of annotations.
-        :param annots: annotation node(s)
-        :return: list of S-Json annotation references
-        """
-        rval = []
-        for a in (annots if isinstance(annots, Iterable) else [annots]):
-            annot = [self._uri(a.iri)] if a.iri else []
-            if a.literal:
-                annot.append(self.rdf_literal(a.literal))
-            else:
-                annot.append(self._uri(a.iriref))
-            rval.append(annot)
+            rval.append(self.shex_iri_ref(annot.iriref))
         return rval
 
-    def semantic_action(self, actions):
-        """ Return a list of semantic actions
-        :param actions: set of actions to be listified
-        :return: list of S-Json representations
+    def shex_semantic_actions(self, acts: SemanticActions) -> list:
+        """ <code>xs:complexType name="SemanticActions"</code>
+        :param acts: actions
+        :return: list of actions
         """
-        return [{self._uri(cd.codeDecl.iri): "%s" % self._mixed_content(cd.codeDecl)} for cd in actions.action]
+        return [self.shex_semantic_action(a) for a in acts.action]
+
+    def shex_semantic_action(self, act: SemanticAction) -> dict:
+        """ <code>xs:complexType name="SemanticAction"</code>
+        :param act: action
+        :return: S-JSON representation
+        """
+        # TODO: validating
+        return {self._uri(act.codeDecl.iri): "%s" % self.shex_code_decl(act.codeDecl)}
 
     @staticmethod
-    def facet(vc: dict, f: XSFacet):
-        """ Process a facet and transform the result into the dictionary
-        :param vc: target dictionary (ValueClass)
+    def shex_code_decl(cd: CodeDecl):
+        """ <code>xs:complexType name="CodeDecl" mixed="true"</code>
+        :param cd:
+        :return:
+        """
+        return PyxbWrapper.mixed_content(cd)
+
+    def shex_value_class_expression(self, vce: ValueClassExpression) -> dict:
+        """ <code>xs:complexType name="ValueClassExpression</code>
+        :param vce: ValueClassExpression
+        :return: S-JSON equivalent
+        """
+        rval = dict(type="valueClass")
+        vce_wrapper = PyxbWrapper(vce)
+        for e in vce_wrapper.elements:
+            if e.type == "nodetype":
+                rval["nodeKind"] = self.shex_node_type(e.value.node)
+            elif e.type == "datatype":
+                rval[e.type] = self._uri(e.value.node)
+            elif e.type == "facet":
+                self.shex_xs_facet(rval, e.value.node)
+            elif e.type == "or_":
+                rval["reference"] = self.shex_group_shape_constr(e.value.node)
+            elif e.type == "valueSet":
+                rval["values"] = self.shex_value_set(e.value.node)
+            elif e.type == "valueClassLabel":
+                rval["valueClassRef"] = self.shex_value_class_ref(e.value.node)
+            else:
+                assert False, "Unknown ValueClassExpression choice entry: %s" % e.type
+        return rval
+
+    def shex_group_shape_constr(self, gsc: GroupShapeConstr) -> dict:
+        """ <code>xs:complexType name="GroupShapeConstr"</code>
+        :param gsc:
+        :return:
+        """
+        rval = dict(type="or", disjuncts=[self.shex_shape_ref(d) for d in gsc.disjunct])
+        if gsc.stringFacet:
+            [self.shex_xs_facet(rval, e) for e in gsc.stringFacet]
+        return rval
+
+    # noinspection PyTypeChecker
+    def shex_triple_constraint_value_class(self, tcvc: TripleConstraintValueClass) -> dict:
+        return self.shex_value_class_expression(tcvc)
+
+    def shex_value_class_label(self, l: ValueClassLabel) -> str:
+        """ <code>xs:simpleType name="ValueClassLabel"</code>
+        :param l:
+        :return:
+        """
+        return self.shex_iri(str(l))
+
+    def shex_value_class_ref(self, lr: ValueClassRef) -> str:
+        """ <code>xs:complexType name="ValueClassRef"</code>
+        :param lr:
+        :return:
+        """
+        return self.shex_value_class_label(lr.ref)
+
+    def shex_shape_label(self, sl: ShapeLabel) -> str:
+        """ <code>xs:simpleType name="ShapeLabel"</code>
+        :param sl:
+        :return:
+        """
+        return self.shex_iri(sl)
+
+    def shex_shape_ref(self, sr: ShapeRef) -> str:
+        """ <code>xs:complexType name="ShapeRef"</code>
+        :param sr:
+        :return:
+        """
+        return self.shex_shape_label(sr.ref)
+
+    @staticmethod
+    def shex_code_label(cl: CodeLabel) -> str:
+        """ <code>xs:complexType name="CodeLabel"</code>
+        :param cl:
+        :return:
+        """
+        return cl.ref.value()
+
+    @staticmethod
+    def shex_xs_facet(target: dict, f: XSFacet):
+        """ <code>xs:complexType name="XSFacet"</code>
+        :param target: target dictionary (ValueClass)
         :param f: facet to transform
         """
         if f.pattern:
-            vc["pattern"] = f.pattern
+            target["pattern"] = f.pattern
         elif f.not_:
-            vc["negated"] = True
+            target["negated"] = True
         elif f.minLength:
-            vc["minlength"] = f.minLength
+            target["minlength"] = f.minLength
         elif f.maxLength:
-            vc["maxlength"] = f.maxLength
+            target["maxlength"] = f.maxLength
         elif f.length:
-            vc["length"] = f.length
+            target["length"] = f.length
         elif f.minValue:
             if f.minValue.open:
-                vc["minexclusive"] = f.minValue.value()
+                target["minexclusive"] = f.minValue.value()
             else:
-                vc["mininclusive"] = f.minValue.value()
+                target["mininclusive"] = f.minValue.value()
         elif f.maxValue:
             if f.maxValue.open:
-                vc["maxexclusive"] = f.maxValue.value()
+                target["maxexclusive"] = f.maxValue.value()
             else:
-                vc["maxinclusive"] = f.maxValue.value()
+                target["maxinclusive"] = f.maxValue.value()
         elif f.totalDigits:
-            vc["totaldigits"] = f.totalDigits
+            target["totaldigits"] = f.totalDigits
         elif f.fractionDigits:
-            vc["fractiondigits"] = f.fractionDigits
+            target["fractiondigits"] = f.fractionDigits
         else:
             assert False, "Unknown facet %s" % f
 
+    # shex_endpoint  is covered in the xs_facet logic above
+
+    # noinspection PyTypeChecker
     @staticmethod
-    def cardinality(card, target):
-        minv = card.min if card.min is not None else 1
-        maxv = card.max if card.max is not None else 1
+    def shex_string_facet(target: dict, sf: StringFacet):
+        ShExSchema.shex_xs_facet(target, sf)
+
+    # noinspection PyTypeChecker
+    @staticmethod
+    def shex_numeric_facet(target: dict, nf: NumericFacet):
+        ShExSchema.shex_xs_facet(target, nf)
+
+    def shex_value_set(self, vs: ValueSet) -> list:
+        if vs.iriRange:
+            return [self.shex_iri_range(e) for e in vs.iriRange]
+        elif vs.rdfLiteral:
+            return [self.shex_rdf_literal(e) for e in vs.rdfLiteral]
+        elif vs.integer:
+            return ['"%i"^^%s' % (e, XSD.integer) for e in vs.integer]
+        elif vs.decimal:
+            return ['"%d"^^%s' % (e, XSD.decimal) for e in vs.decimal]
+        elif vs.double:
+            return ['"%e"^^%s' % (e, XSD.double) for e in vs.double]
+        elif vs.boolean:
+            return ['"%s"^^%s' % (e, XSD.boolean) for e in vs.boolean]
+        else:
+            assert False, "Unknown ValueSet type"
+
+    def shex_iri_stem(self, ist: IRIStem) -> dict:
+        if ist.base and not ist.stem:
+            return self.shex_iri(ist.base)
+        else:
+            return dict(stem=self.shex_iri(ist.base)) if ist.base else dict(stem=dict(type="wildcard"))
+
+    def shex_iri_range(self, irir: IRIRange) -> object:
+        """
+        :param irir:
+        :return:
+        """
+        def add_stem_type(d: dict, v: IRIStem):
+            if v.stem:
+                d["type"] = "stem"
+            return d
+
+        # If just a base, return the IRI
+        if irir.base and not irir.stem and not irir.exclusion:
+            return self.shex_iri(irir.base)
+        rval = dict(type="stemRange")
+        rval.update(self.shex_iri_stem(irir))
+        if irir.exclusion:
+            rval["exclusions"] = [add_stem_type(self.shex_iri_stem(e), e) for e in irir.exclusion]
+        return rval
+
+    def shex_rdf_literal(self, lit: RDFLiteral) -> str:
+        rval = '"' + lit.value() + '"'
+        if lit.datatype:
+            rval += '^^' + self.shex_iri(lit.datatype)
+        if lit.langtag:
+            rval += '@' + lit.langtag
+        return rval
+
+    def shex_iri(self, iri: IRI) -> str:
+        return self._uri(str(iri))
+
+    def shex_iri_ref(self, ref: IRIRef) -> str:
+        return self.shex_iri(ref.ref)
+
+    def shex_prefixed_name(self, pn: PrefixedName) -> str:
+        return self._uri(str(pn))
+
+    @staticmethod
+    def shex_cardinality(target: dict, card: PyxbWrapper):
+        minv = card.node.min if card.node.min is not None else 1
+        maxv = card.node.max if card.node.max is not None else 1
         if minv == maxv:
             if minv != 1:
                 target["length"] = minv
@@ -330,50 +458,9 @@ class ShExSchema:
             target["min"] = minv
             target["max"] = '*' if maxv == "unbounded" else maxv
 
-    def rdf_literal(self, lit):
-        rval = '"' + lit.value() + '"'
-        if lit.datatype:
-            rval += '^^' + self._uri(lit.datatype)
-        if lit.langtag:
-            rval += '@' + lit.langtag
-        return rval
-
     def _uri(self, element):
-        return self._prefixmap.uri_for(self.proc_unicode(element))
-
-    @staticmethod
-    def proc_unicode(txt):
-        def map_unicode(hex_str) -> str:
-            char_code = int(hex_str, 16)
-            if char_code < 0xFFFF:
-                return chr(char_code)
-            else:
-                char_code -= 0x10000
-                return chr(0xD800 + (char_code >> 10)) + chr(0xDC00 + (char_code & 0x3FF))
-
-        def unescape(t):
-            """ Unescape the CODE escape characters in txt
-            :param t: string to be unescaped
-            :return: unescaped equivalent
-            """
-            return re.sub(r'\\\\', r'\\', re.sub(r'\\%', '%', t)) if t else ""
-
-        rval = ''
-        pos = 0
-        utxt = unescape(txt)
-        for e in unicode_re.finditer(utxt):
-            rval += utxt[pos:e.start()] + map_unicode(e.group(1))
-            pos = e.end()
-        return rval + utxt[pos:]
-
-    @staticmethod
-    def _mixed_content(item):
-        return ''.join([ShExSchema.proc_unicode(e.value) if isinstance(e, pyxb.binding.basis.NonElementContent)
-                        else "toDOM(e)" for e in item.orderedContent()])
-
-    def stem_or_iri(self, node):
-        if node.stem:
-            stem_uri = self._uri(node.base)
-            return dict(type="stem", stem=stem_uri if stem_uri else dict(type="wildcard"))
-        else:
-            return self._uri(node.base)
+        """ Map element into a complete URI
+        :param element: URI or QNAME
+        :return: URI
+        """
+        return self._prefixmap.uri_for(PyxbWrapper.proc_unicode(element))

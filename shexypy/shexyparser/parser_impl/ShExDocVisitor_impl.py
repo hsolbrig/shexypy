@@ -29,6 +29,8 @@
 from xml.sax.saxutils import escape
 from urllib.parse import urljoin
 
+from collections import Iterable
+
 from rdflib import RDF, BNode
 from pyxb.xmlschema.structures import datatypes
 from pyxb.utils import domutils
@@ -68,6 +70,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         exclusions = [ns for ns in exclude_namespaces if ns not in self.namespaces]
         if exclusions:
             self._schema.exclude_prefixes = ' '.join(exclusions)
+
         schema_dom = self._schema.toDOM()
         bs = domutils.BindingDOMSupport()
         for ns, url in self.namespaces.items():
@@ -77,7 +80,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
                                        ns)
         schema_dom.documentElement.setAttributeNS(Namespace.uri(),
                                     'xsi:schemaLocation',
-                                    'file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd')
+                                    '../xsd/ShEx.xsd')
         schema_dom.documentElement.setAttributeNS(xmlns.uri, 'xmlns:xsi', xsi.uri())
         return schema_dom
 
@@ -104,7 +107,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         if ctx.KW_EXTERNAL():
             vcd.external = True
         else:
-            vcd.valueClass = self.visit(ctx.valueClassExpr())
+            vcd.definition = self.visit(ctx.valueClassExpr())
             acts = self.visit(ctx.semanticActions())
             if acts:
                 vcd.actions = acts
@@ -119,35 +122,35 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         #       visitValueClassValueSet
         #       visitValueClassAny
         assert self.cur_tc is None, "Recursion not allowed on value class definitions"
-        rval = ValueClassExpression()
+        vce = ValueClassExpression()
         for c in ctx.valueClass():
+            # We fill this out as if it were a triple constraint and then fold it back to a value class
+            # Note that predicate, inverse, actions and annotations are noe included in a value class definition
             self.cur_tc = TripleConstraint()
             self.cur_tc.reversed = False
             self.visit(c)
-            fvc = FullValueClass()
             if self.cur_tc.objectConstraint:
                 oc = self.cur_tc.objectConstraint
-                fvc.facet = oc.facet
-                fvc.or_ = oc.or_
-                fvc.valueSet = oc.valueSet
-                fvc.valueClassLabel = oc.valueClassLabel
+                vce.facet = oc.facet
+                vce.or_ = oc.or_
+                vce.valueSet = oc.valueSet
+                vce.valueClassLabel = oc.valueClassLabel
             if self.cur_tc.object:
                 vs = ValueSet()
                 irir = IRIRange(base=self.cur_tc.object)
                 vs.iriRange = irir
-                fvc.valueSet.append(vs)
+                vce.valueSet.append(vs)
             if self.cur_tc.objectShape:
                 gsc = GroupShapeConstr()
                 sr = ShapeRef(ref=self.cur_tc.objectShape)
                 gsc.disjunct.append(sr)
-                fvc.or_.append(gsc)
+                vce.or_.append(gsc)
             if self.cur_tc.objectType:
-                fvc.nodetype.append = self.cur_tc.objectType
+                vce.nodetype.append = self.cur_tc.objectType
             if self.cur_tc.datatype:
-                fvc.datatype.append(self.cur_tc.datatype)
-            rval.append(fvc)
+                vce.datatype.append(self.cur_tc.datatype)
             self.cur_tc = None
-        return rval
+        return vce
 
     def visitValueClassLabel(self, ctx: ShExDocParser.ValueClassLabelContext):
         # valueClassLabel : '$' iri ;
@@ -198,7 +201,12 @@ class ShExDocVisitor_impl(ShExDocVisitor):
     def visitShapeDefinition(self, ctx: ShExDocParser.ShapeDefinitionContext) -> Shape:
         # shapeDefinition : (includeSet | inclPropertySet | KW_CLOSED)* '{' someOfShape? '}' ;
         self._push_shape(Shape())
-        [self.visit(e) for e in ctx.includeSet()]
+        # This is really screwey, as, on the shape definition label there are multiple sets of includes, while
+        # on the tripleConstraint level there are just single includes.  We loose the "settiness" and make one
+        # bit include set here
+        if ctx.includeSet():
+            [self.visit(c) for c in ctx.includeSet()]
+
         [self.visit(ips) for ips in ctx.inclPropertySet()]
         if ctx.KW_CLOSED():
             self.cur_shape.closed = True
@@ -208,19 +216,18 @@ class ShExDocVisitor_impl(ShExDocVisitor):
 
     def visitIncludeSet(self, ctx: ShExDocParser.IncludeSetContext):
         # includeSet : '&' shapeLabel+
-        [self.cur_shape.include.append(IncludeShape(ref=self.visit(sl))) for sl in ctx.shapeLabel()]
+        [self.cur_shape.import_.append(ShapeRef(ref=self.visit(sl))) for sl in ctx.shapeLabel()]
 
     def visitInclPropertySet(self, ctx: ShExDocParser.InclPropertySetContext):
         # inclPropertySet : KW_EXTRA predicate+
-        self.cur_shape.extra += [IncludeProperty(ref=self.visit(p)) for p in ctx.predicate()]
+        self.cur_shape.extra += [IRIRef(ref=self.visit(p)) for p in ctx.predicate()]
 
     def visitSomeOfShape(self, ctx: ShExDocParser.SomeOfShapeContext):
         # someOfShape : groupShape ( '|' groupShape) *
         if len(ctx.groupShape()) > 1:
             self._push_shape(ShapeConstraint())
             [self.visit(c) for c in ctx.groupShape()]
-            so = self._pop_shape()
-            self.cur_shape.someOf.append(so)
+            self._set_someof(self._pop_shape())
         else:
             self.visitChildren(ctx)         # If there is only one group, don't wrap it in a someOf
 
@@ -229,45 +236,63 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         if len(ctx.unaryShape()) > 1:
             self._push_shape(ShapeConstraint())
             [self.visit(c) for c in ctx.unaryShape()]
-            g = self._pop_shape()
-            self.cur_shape.group.append(g)
+            self._set_group(self._pop_shape())
         else:
             self.visitChildren(ctx)
 
+    @staticmethod
+    def _has_card_annot_semacts(element):
+        """ Return true if element has cardinality, annotations or semantic actions
+        :param element:
+        :return:
+        """
+        return element.min != 1 or element.max != 1 or element.actions or element.annotation
+
+    def _proc_card_annot_semacts(self, target, ctx):
+        """ Process cardinality, annotations and semantic actions for target
+        :param target:
+        :param ctx:
+        :return:
+        """
+        self._cardinality(target, ctx)
+        acts = self.visit(ctx.semanticActions())
+        if acts:
+            target.actions = acts
+        [target.annotation.append(self.visit(a)) for a in ctx.annotation()]
+
     def visitUnaryShape(self, ctx: ShExDocParser.UnaryShapeContext):
         # unaryShape : tripleConstraint | include | '(' someOfShape ')' cardinality? annotation* semanticActions ;
-        # TODO: Cardinality isn't 100% correct below
         if ctx.tripleConstraint() or ctx.include():
             return self.visitChildren(ctx)
         else:
-            self._push_shape(ShapeConstraint())
+            self._push_shape(Wrapper())
             self.visit(ctx.someOfShape())
-            inner_shape = self._pop_shape()
-            if inner_shape.tripleConstraint:
-                if len(inner_shape.tripleConstraint) == 1:
-                    self._cardinality(inner_shape.tripleConstraint[0], ctx)
-                self.cur_shape.tripleConstraint += inner_shape.tripleConstraint
-                self.cur_shape.actions = inner_shape.actions
-            elif inner_shape.group:
-                if len(inner_shape.group) == 1:
-                    self._cardinality(inner_shape.group[0], ctx)
-                self.cur_shape.group += inner_shape.group
-            elif len(inner_shape.someOf) == 1:
-                self._cardinality(inner_shape.someOf[0], ctx)
-                self.cur_shape.someOf.append(inner_shape.someOf[0])
-            else:
-                self.cur_shape.someOf += inner_shape.someOf
-            [self.cur_shape.annotation.append(self.visit(a)) for a in ctx.annotation()]
-            acts = self.visit(ctx.semanticActions())
-            if acts:
-                if self.cur_shape.actions:
-                    self.cur_shape.actions.action += acts.action
+            wrapper = self._pop_shape()
+            wrapped_element = wrapper.someOf if wrapper.someOf else \
+                wrapper.group if wrapper.group else \
+                wrapper.tripleConstraint if wrapper.tripleConstraint else \
+                wrapper.wrapper if wrapper.wrapper else None
+            if wrapped_element:
+                if not self._has_card_annot_semacts(wrapped_element):
+                    self._proc_card_annot_semacts(wrapped_element, ctx)
+                    if wrapper.someOf:
+                        self._set_someof(wrapped_element)
+                    elif wrapper.group:
+                        self._set_group(wrapped_element)
+                    elif wrapper.tripleConstraint:
+                        self._set_tc(wrapped_element)
+                    else:
+                        self._set_wrapper(wrapped_element)
                 else:
-                    self.cur_shape.actions = acts
+                    self._proc_card_annot_semacts(wrapper, ctx)
+                    if self._has_card_annot_semacts(wrapper):
+                        self._set_wrapper(wrapper)
+            else:
+                self._set_wrapper(wrapper)
 
     def visitInclude(self, ctx: ShExDocParser.IncludeContext):
-        # include : '&' shapeLabel+
-        self.cur_shape.include.append(IncludeShape(ref=self.visit(ctx.shapeLabel())))
+        # include : '&' shapeLabel
+        self.cur_shape.include.append(ShapeRef(ref=self.visit(ctx.shapeLabel())))
 
     def visitShapeLabel(self, ctx: ShExDocParser.ShapeLabelContext) -> ShapeLabel:
         # shapeLabel : iri | blankNode
@@ -287,12 +312,8 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         self.visit(ctx.valueClassOrRef())
         self.cur_tc = parent_tc
         tc.__dict__.pop("reversed", None)
-        self._cardinality(tc, ctx)
-        [tc.annotation.append(self.visit(e)) for e in ctx.annotation()]
-        acts = self.visit(ctx.semanticActions())
-        if acts:
-            tc.actions = acts
-        self.cur_shape.tripleConstraint.append(tc)
+        self._proc_card_annot_semacts(tc, ctx)
+        self._set_tc(tc)
 
     def visitSenseFlags(self, ctx: ShExDocParser.SenseFlagsContext):
         # senseFlags : '!' '^'? | '^' '!'? ;
@@ -303,14 +324,14 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         if ctx.RDF_TYPE():
             return str(RDF.type)
         else:
-            return self.visitChildren(ctx)
+            return self.visit(ctx.iri())
 
     def visitValueClassOrRef(self, ctx: ShExDocParser.ValueClassOrRefContext):
         # valueClassOrRef : valueClass | valueClassLabel ;
         # Note that valueClass isn't visited directly -- it is one of valueClassLiteral, valueClassNonLiteral, etc.
         if ctx.valueClassLabel():
-            vc = ValueClass()
-            vc.valueClassLabel.append(IRIRef(ref=self.visit(ctx.valueClassLabel())))
+            vc = TripleConstraintValueClass()
+            vc.valueClassLabel.append(ValueClassRef(ref=self.visit(ctx.valueClassLabel())))
             self._subj_obj_constraint(vc)
         else:
             return self.visitChildren(ctx)
@@ -319,7 +340,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         # valueClass : KW_LITERAL xsFacet*
         self._subj_obj_type(NodeType.LITERAL)
         if ctx.xsFacet():
-            vc = ValueClass()
+            vc = TripleConstraintValueClass()
             for f in ctx.xsFacet():
                 vc.facet.append(self.visit(f))
             self._subj_obj_constraint(vc)
@@ -336,11 +357,11 @@ class ShExDocVisitor_impl(ShExDocVisitor):
                 else:
                     self.cur_tc.objectShape = gsc.disjunct[0].ref
             else:
-                vc = ValueClass()
+                vc = TripleConstraintValueClass()
                 vc.groupShapeConstr = gsc
         if ctx.stringFacet():
             if vc is None:
-                vc = ValueClass()
+                vc = TripleConstraintValueClass()
             for sf in ctx.stringFacet():
                 facet = XSFacet()
                 self._proc_string_facet(facet, sf)
@@ -352,7 +373,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         # valueClass : datatype xsFacet*  # valueClassDatatype
         self.cur_tc.datatype = self.visit(ctx.datatype())
         if ctx.xsFacet():
-            vc = ValueClass()
+            vc = TripleConstraintValueClass()
             for f in ctx.xsFacet():
                 vc.facet.append(self.visit(f))
             self._subj_obj_constraint(vc)
@@ -366,7 +387,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
             else:
                 self.cur_tc.objectShape = gsc.disjunct[0].ref
         else:
-            vc = ValueClass()
+            vc = TripleConstraintValueClass()
             vc.or_.append(gsc)
             self._subj_obj_constraint(vc)
 
@@ -382,7 +403,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
             else:
                 self.cur_tc.object = vs.iriRange[0].base
         else:
-            vc = ValueClass()
+            vc = TripleConstraintValueClass()
             vc.valueSet.append(vs)
             self._subj_obj_constraint(vc)
 
@@ -459,7 +480,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
                 lit = RDFLiteral(lit)
             rval.literal = lit
         else:
-            rval.iriref = self.visit(ctx.iri(1))
+            rval.iriref = IRIRef(ref=self.visit(ctx.iri(1)))
         return rval
 
     def visitCardinality(self, ctx: ShExDocParser.CardinalityContext) -> list:
@@ -651,7 +672,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         else:
             self.cur_tc.objectType = node_type
 
-    def _subj_obj_constraint(self, vc: ValueClass):
+    def _subj_obj_constraint(self, vc: TripleConstraintValueClass):
         if self.cur_tc.reversed:
             self.cur_tc.subjectConstraint = vc
         else:
@@ -667,13 +688,13 @@ class ShExDocVisitor_impl(ShExDocVisitor):
                 target.fractionDigits = val
         else:
             if ctx.numericRange().KW_MININCLUSIVE():
-                target.minValue = Range(val)
+                target.minValue = EndPoint(val)
             elif ctx.numericRange().KW_MINEXCLUSIVE():
-                target.minValue = Range(val, open=True)
+                target.minValue = EndPoint(val, open=True)
             elif ctx.numericRange().KW_MAXINCLUSIVE():
-                target.maxValue = Range(val)
+                target.maxValue = EndPoint(val)
             else:
-                target.maxValue = Range(val, open=True)
+                target.maxValue = EndPoint(val, open=True)
         return target
 
     def _proc_string_facet(self, target, ctx: ShExDocParser.StringFacetContext) -> NumericFacet:
@@ -693,3 +714,27 @@ class ShExDocVisitor_impl(ShExDocVisitor):
             else:
                 target.pattern = self.visit(ctx.string())
         return target
+
+    def _set_someof(self, v):
+        if isinstance(self.cur_shape.someOf, Iterable):
+            self.cur_shape.someOf.append(v)
+        else:
+            self.cur_shape.someOf = v
+
+    def _set_group(self, v):
+        if isinstance(self.cur_shape.group, Iterable):
+            self.cur_shape.group.append(v)
+        else:
+            self.cur_shape.group = v
+
+    def _set_tc(self, v):
+        if isinstance(self.cur_shape.tripleConstraint, Iterable):
+            self.cur_shape.tripleConstraint.append(v)
+        else:
+            self.cur_shape.tripleConstraint = v
+
+    def _set_wrapper(self, v):
+        if isinstance(self.cur_shape.wrapper, Iterable):
+            self.cur_shape.wrapper.append(v)
+        else:
+            self.cur_shape.wrapper = v

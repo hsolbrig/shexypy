@@ -110,7 +110,7 @@ def main(argv: list):
     sys.path.append(os.path.join(_curdir, '../shexypy/shexyparser/parser_impl'))
 
     dlp = DirectoryListProcessor(argv, "ShEx to XML Parser", '.shex', '.xml')
-    nfiles, npassed = dlp.run(proc_file)
+    nfiles, npassed = dlp.run(proc_file, file_filter=lambda e: '_all' not in e)
     print(file=sys.stderr)
     print("***** " + ("Success" if nfiles == npassed else "FAILURE") + " *****", file=sys.stderr)
     print("\t%d File%s Processed" % (nfiles, '' if nfiles == 1 else 's'), file=sys.stderr)

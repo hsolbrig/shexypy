@@ -42,6 +42,7 @@ semactEscapeReplacements = {'\\': '\\', '%': '%' }
 def sub_unicode4(unicode4):
     return chr(int(unicode4, 16))
 
+
 def sub_unicode8(unicode8):
     char_code = int(unicode8, 16)
     if char_code < 0xFFFF:
