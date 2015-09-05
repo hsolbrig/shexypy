@@ -1,35 +1,35 @@
 {
-    "prefixes": {},
     "type": "schema",
+    "prefixes": {},
     "shapes": {
         "http://a.example/IssueShape": {
+            "type": "shape",
             "expression": {
+                "type": "group",
                 "expressions": [
                     {
-                        "value": {
-                            "type": "valueClass"
-                        },
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p1",
-                        "type": "tripleConstraint"
-                    },
-                    {
                         "value": {
                             "type": "valueClass"
-                        },
+                        }
+                    },
+                    {
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p2",
-                        "type": "tripleConstraint"
-                    },
-                    {
                         "value": {
                             "type": "valueClass"
-                        },
+                        }
+                    },
+                    {
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p3",
-                        "type": "tripleConstraint"
+                        "value": {
+                            "type": "valueClass"
+                        }
                     }
-                ],
-                "type": "group"
-            },
-            "type": "shape"
+                ]
+            }
         }
     }
 }

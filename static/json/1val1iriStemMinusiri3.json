@@ -7,19 +7,19 @@
                 "value": {
                     "values": [
                         {
-                            "stem": "http://a.example/v",
                             "exclusions": [
                                 "http://a.example/v1",
                                 "http://a.example/v2",
                                 "http://a.example/v3"
                             ],
+                            "stem": "http://a.example/v",
                             "type": "stemRange"
                         }
                     ],
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

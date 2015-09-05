@@ -21,9 +21,9 @@
                         "\"3\""
                     ]
                 ],
-                "predicate": "http://a.example/p1",
                 "inverse": true,
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

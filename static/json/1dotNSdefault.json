@@ -9,8 +9,8 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/"
             },
             "type": "shape"
         }

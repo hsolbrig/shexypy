@@ -72,6 +72,8 @@ def to_json(infile: str, outfile: str, opts) -> bool:
     if not infile:
         print("Enter Schema XML to parse:")
         print()
+    else:
+        print("FILE: %s" % infile)
     xml_dom = StringToDOM(open(infile, encoding='utf-8').read() if infile else sys.stdin.read())
     dict_schema = ShExSchema(xml_dom).json
     json_schema = json.dumps(dict_schema, indent=4)
@@ -94,12 +96,13 @@ def compare_output(opts: argparse.Namespace, dict_schema: dict, outfile: str) ->
     dc_result, match_result = dict_compare(dict_schema, json_dict, d1name="Input", d2name="Expected",
                                            filtr=compare_filter)
     if not dc_result:
-        print("FILE: %s" % os.path.split(outfile)[1])
+        print("FILE: %s" % os.path.split(outfile)[1], file=sys.stderr)
         print(match_result, file=sys.stderr)
     return dc_result
 
-
+ignore_order = False
 def compare_filter(kv1: (str, object), kv2: (str, object)) -> bool:
+
     def ks(de):
         return list(de.keys())[0]
 
@@ -143,6 +146,8 @@ def compare_filter(kv1: (str, object), kv2: (str, object)) -> bool:
         if node_name(kv1) == 'values' and node_name(kv1) == node_name(kv2) and \
                 not (isinstance(kv1[1], dict) or isinstance(kv1[1][0], dict)):
             return all([comp_values(v1, v2) for v1, v2 in zip(kv1[1], kv2[1])])
+        if isinstance(kv1[1], list) and isinstance(kv2[1], list):
+            return ignore_order and len(kv1[1]) == len(kv2[1]) and all(e in kv2[1] for e in kv1[1])
 
     return False
 
@@ -151,8 +156,14 @@ def main(argv: list):
 
     def add_args(parser: argparse.ArgumentParser):
         parser.add_argument("-cd", "--comparedir", help="Directory of target JSON")
+        parser.add_argument("-io", "--ignoreorder", help="Ignore list ordering when validating", action="store_true")
 
-    dlp = DirectoryListProcessor(argv, "ShEx to XML Parser", '.xml', '.json', add_args)
+    def get_order(opts: argparse.Namespace):
+        global ignore_order
+        ignore_order = opts.ignoreorder
+
+
+    dlp = DirectoryListProcessor(argv, "ShEx to XML Parser", '.xml', '.json', addargs=add_args, postparse=get_order)
     nfiles, npassed = dlp.run(to_json, file_filter=lambda fn: fn not in failing_tests)
     print(file=sys.stderr)
     print("***** " + ("Success" if nfiles == npassed else "FAILURE") + " *****", file=sys.stderr)

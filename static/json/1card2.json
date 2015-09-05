@@ -7,9 +7,9 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
+                "length": 2,
                 "type": "tripleConstraint",
-                "length": 2
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

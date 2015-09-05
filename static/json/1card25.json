@@ -8,9 +8,9 @@
                     "type": "valueClass"
                 },
                 "max": 5,
-                "predicate": "http://a.example/p1",
                 "min": 2,
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

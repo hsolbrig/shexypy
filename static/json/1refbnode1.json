@@ -2,24 +2,24 @@
     "prefixes": {},
     "type": "schema",
     "shapes": {
-        "_:PersonShape": {
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
-        },
         "http://a.example/EmployeeShape": {
             "expression": {
                 "value": {
                     "reference": "_:PersonShape",
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p2",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p2"
+            },
+            "type": "shape"
+        },
+        "_:PersonShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

@@ -7,21 +7,21 @@
                 "value": {
                     "values": [
                         {
-                            "stem": {
-                                "type": "wildcard"
-                            },
                             "exclusions": [
                                 "http://a.example/v1",
                                 "http://a.example/v2",
                                 "http://a.example/v3"
                             ],
+                            "stem": {
+                                "type": "wildcard"
+                            },
                             "type": "stemRange"
                         }
                     ],
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

@@ -5,12 +5,12 @@
         "http://a.example/IssueShape": {
             "expression": {
                 "value": {
+                    "nodeKind": "literal",
                     "fractiondigits": 5,
-                    "type": "valueClass",
-                    "nodeKind": "literal"
+                    "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

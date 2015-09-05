@@ -7,23 +7,23 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         },
         "http://a.example/EmployeeShape": {
+            "inherit": [
+                "http://a.example/PersonShape"
+            ],
             "expression": {
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p2",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p2"
             },
-            "type": "shape",
-            "inherit": [
-                "http://a.example/PersonShape"
-            ]
+            "type": "shape"
         }
     }
 }

@@ -2,23 +2,13 @@
     "prefixes": {},
     "type": "schema",
     "shapes": {
-        "http://a.example/PlaceShape": {
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "predicate": "http://a.example/p2",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
-        },
         "http://a.example/PersonShape": {
             "expression": {
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         },
@@ -27,8 +17,18 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p3",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p3"
+            },
+            "type": "shape"
+        },
+        "http://a.example/PlaceShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p2"
             },
             "type": "shape"
         },
@@ -45,8 +45,8 @@
                     },
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p4",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p4"
             },
             "type": "shape"
         }

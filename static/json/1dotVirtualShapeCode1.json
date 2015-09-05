@@ -3,20 +3,20 @@
     "type": "schema",
     "shapes": {
         "http://a.example/IssueShape": {
-            "virtual": 1,
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape",
             "semAct": [
                 {
                     "http://a.example/semAct1": " code1 "
                 }
-            ]
+            ],
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
+            },
+            "type": "shape",
+            "virtual": 1
         }
     }
 }

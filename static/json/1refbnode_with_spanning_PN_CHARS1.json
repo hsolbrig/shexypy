@@ -2,24 +2,24 @@
     "prefixes": {},
     "type": "schema",
     "shapes": {
-        "_:a\u00b7\u0300\u036f\u203f.\u2040": {
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
-        },
         "http://a.example/EmployeeShape": {
             "expression": {
                 "value": {
                     "reference": "_:a\u00b7\u0300\u036f\u203f.\u2040",
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p2",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p2"
+            },
+            "type": "shape"
+        },
+        "_:a\u00b7\u0300\u036f\u203f.\u2040": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

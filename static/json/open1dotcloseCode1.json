@@ -1,21 +1,21 @@
 {
-    "prefixes": {},
     "type": "schema",
+    "prefixes": {},
     "shapes": {
         "http://a.example/IssueShape": {
+            "type": "shape",
             "expression": {
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1",
+                "semAct": [
+                    {
+                        "http://a.example/semAct1": " code1 "
+                    }
+                ],
                 "value": {
                     "type": "valueClass"
-                },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape",
-            "semAct": [
-                {
-                    "http://a.example/semAct1": " code1 "
                 }
-            ]
+            }
         }
     }
 }

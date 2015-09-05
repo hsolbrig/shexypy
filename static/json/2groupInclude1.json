@@ -7,27 +7,27 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         },
         "http://a.example/EmployeeShape": {
             "expression": {
+                "type": "group",
                 "expressions": [
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "predicate": "http://a.example/p2",
-                        "type": "tripleConstraint"
+                        "type": "tripleConstraint",
+                        "predicate": "http://a.example/p2"
                     },
                     {
-                        "type": "include",
-                        "include": "http://a.example/PersonShape"
+                        "include": "http://a.example/PersonShape",
+                        "type": "include"
                     }
-                ],
-                "type": "group"
+                ]
             },
             "type": "shape"
         }

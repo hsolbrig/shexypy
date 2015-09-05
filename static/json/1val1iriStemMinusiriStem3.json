@@ -7,7 +7,6 @@
                 "value": {
                     "values": [
                         {
-                            "stem": "http://a.example/v",
                             "exclusions": [
                                 {
                                     "stem": "http://a.example/v1",
@@ -22,13 +21,14 @@
                                     "type": "stem"
                                 }
                             ],
+                            "stem": "http://a.example/v",
                             "type": "stemRange"
                         }
                     ],
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

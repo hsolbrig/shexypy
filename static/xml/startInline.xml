@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xsi:schemaLocation="file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" start="_:Na2b8c5fc53d641ceb637eec0aeec43d8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/">
-    <shape label="_:Na2b8c5fc53d641ceb637eec0aeec43d8">
+<Schema xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" start="_:N19baeab7249f49b0b7be1e63b1a794eb" exclude-prefixes="xsi shex" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd">
+    <shape label="_:N19baeab7249f49b0b7be1e63b1a794eb">
         <tripleConstraint predicate="http://a.example/p1"/>
     </shape>
 </Schema>

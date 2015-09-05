@@ -9,6 +9,8 @@
                           5) Added IRIRef type
                           6) Added valueSetReference to ValueClass
         08/23/2015 - HS - 1) Major overhaul after ShEx FTF meeting
+        
+        09/02/2015 - HS - Simplification and more documentation
       -->
 
     <!-- Schema -->
@@ -59,17 +61,21 @@
     </xs:complexType>
 
 
-    <!-- Shape -->
     <xs:complexType name="Shape">
         <xs:annotation>
             <xs:documentation>A labeled definition of an RDF shape.</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:group ref="shex:ExpressionChoice" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="shex:ExpressionGroup"/>
-            <xs:element name="extra" type="shex:IncludeProperty" minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="shex:ExpressionChoice" minOccurs="0"/>
+            <xs:group ref="shex:AnnotationsAndActions"/>
+            <xs:element name="import" type="shex:ShapeRef" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                    <xs:documentation>The set of properties included with the shape definition. Must be empty if <code>closed</code> is true.</xs:documentation>
+                    <xs:documentation>Shapes that are included externally</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="extra" type="shex:IRIRef" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>A list of property IRI's that can be "open" in the sense that, if they remain after the shape is evaluated they can be ignored</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -90,29 +96,6 @@
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
-
-    <xs:complexType name="ValueClassDefinition">
-        <xs:sequence>
-            <xs:element name="valueClass" type="shex:ValueClassExpression" minOccurs="0"/>
-            <xs:element name="actions" type="shex:SemanticActions" minOccurs="0"/>
-        </xs:sequence>
-        <xs:attribute name="valueClassLabel" type="shex:IRI"/>
-        <xs:attribute name="external" type="xs:boolean" default="false"/>
-    </xs:complexType>
-
-    <xs:complexType name="IncludeShape">
-        <xs:annotation>
-            <xs:documentation>A reference to an external or internal shape definition that is considered to be part of this shape definition.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="ref" type="shex:ShapeLabel" use="required"/>
-    </xs:complexType>
-
-    <xs:complexType name="IncludeProperty">
-        <xs:annotation>
-            <xs:documentation>For valid typing. A property that may be present in a graph that is not defined by a given shape.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="ref" type="shex:IRI" use="required"/>
-    </xs:complexType>
     
     <xs:group name="ExpressionChoice">
         <xs:annotation>
@@ -131,7 +114,7 @@
                 <xs:element name="someOf" type="shex:ShapeConstraint"/>
                 <xs:element name="group" type="shex:ShapeConstraint"/>
                 <xs:element name="tripleConstraint" type="shex:TripleConstraint"/>
-                <xs:element name="include" type="shex:IncludeShape"/>
+                <xs:element name="include" type="shex:ShapeRef"/>
                 <xs:element name="wrapper" type="shex:Wrapper"/>
             </xs:choice>
         </xs:sequence>
@@ -149,13 +132,15 @@
         </xs:annotation>
         <xs:sequence>
             <xs:group ref="shex:ExpressionChoice"/>
-            <xs:element name="annotation" type="shex:Annotation" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="actions" type="shex:SemanticActions" minOccurs="0"/>
+            <xs:group ref="shex:AnnotationsAndActions"/>
         </xs:sequence>
         <xs:attributeGroup ref="shex:Cardinality"/>
     </xs:complexType>
 
-    <xs:group name="ExpressionGroup">
+    <xs:group name="AnnotationsAndActions">
+        <xs:annotation>
+            <xs:documentation>A set of annotations and/or actions associated with a shape</xs:documentation>
+        </xs:annotation>
         <xs:sequence>
             <xs:element name="annotation" type="shex:Annotation" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="actions" type="shex:SemanticActions" minOccurs="0"/>
@@ -168,20 +153,25 @@
         </xs:annotation>
         <xs:sequence>
             <xs:group ref="shex:ExpressionChoice" maxOccurs="unbounded"/>
-            <xs:group ref="shex:ExpressionGroup"/>
+            <xs:group ref="shex:AnnotationsAndActions"/>
         </xs:sequence>
         <xs:attributeGroup ref="shex:Cardinality"/>
     </xs:complexType>
 
     <xs:complexType name="TripleConstraint">
-        <!-- Inverse is realized by the <code>subject</code> or <code>subjectValue</code> element -->
+        <xs:annotation>
+            <xs:documentation>TripleConstraint represents a user-friendly view of the ShEx TripleConstraint, where
+            the simple and frequently used constraints have been flattened into attributes.  The TripleConstraintValueClass
+            is a subset of the ValueClassEntry types, where:
+            
+            </xs:documentation>
+        </xs:annotation>
         <xs:sequence>
             <xs:choice minOccurs="0">
-                <xs:element name="objectConstraint" type="shex:ValueClass"/>
-                <xs:element name="subjectConstraint" type="shex:ValueClass"/>
+                <xs:element name="objectConstraint" type="shex:TripleConstraintValueClass"/>
+                <xs:element name="subjectConstraint" type="shex:TripleConstraintValueClass"/>
             </xs:choice>
-            <xs:element name="annotation" type="shex:Annotation" minOccurs="0" maxOccurs="unbounded"></xs:element>
-            <xs:element name="actions" type="shex:SemanticActions" minOccurs="0"/>
+            <xs:group ref="shex:AnnotationsAndActions"/>
         </xs:sequence>
         <xs:attribute name="predicate" type="shex:IRI" use="required"/>
         <xs:attribute name="inverse" type="xs:boolean">
@@ -229,6 +219,11 @@
                 <xs:documentation>True means that the match is NOT what is in the constraint</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="valueClass" type="shex:ValueClassLabel">
+            <xs:annotation>
+                <xs:documentation>Must be stand-alone (we need a relax-ng extension to cover this...)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attributeGroup ref="shex:Cardinality"/>
     </xs:complexType>
 
@@ -243,7 +238,7 @@
 
     <xs:complexType name="Annotation">
         <xs:choice>
-            <xs:element name="iriref" type="shex:IRI"/>
+            <xs:element name="iriref" type="shex:IRIRef"/>
             <xs:element name="literal" type="shex:RDFLiteral"/>
         </xs:choice>
         <xs:attribute name="iri" type="shex:IRI"/>
@@ -300,65 +295,124 @@
         </xs:attribute>
     </xs:complexType>
 
+
+    <!-- =============================================================
+        Value Class Definitions
+        ============================================================== -->
+    
+    <xs:complexType name="ValueClassDefinition">
+        <xs:choice>
+            <xs:element name="definition" type="shex:InlineValueClassDefinition"/>
+            <xs:element name="external" type="shex:ValueClassRef"/>
+        </xs:choice>
+    </xs:complexType>
+    
+    <xs:complexType name="InlineValueClassDefinition">
+        <xs:annotation>
+            <xs:documentation>The description of a set of possible object (or subject) conditions with accompanying semantic actions</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="nodetype" type="shex:NodeType"/>
+                <xs:element name="datatype" type="xs:anyURI"/>
+                <xs:element name="facet" type="shex:XSFacet" maxOccurs="unbounded"/>
+                <xs:element name="or" type="shex:GroupShapeConstr"/>
+                <xs:element name="valueSet" type="shex:ValueSet"/>
+            </xs:choice>
+            <xs:element name="actions" type="shex:SemanticActions" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="valueClassLabel" type="shex:IRI" use="required"/>
+    </xs:complexType>
+
+   
+    <xs:complexType name="GroupShapeConstr">
+        <xs:annotation>
+            <xs:documentation></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="disjunct" type="shex:ShapeRef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="stringFacet" type="shex:StringFacet" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TripleConstraintValueClass">
+        <xs:annotation>
+            <xs:documentation>Represents literal, iri, bnode and non-literal facets as well as multiple group shape and non simple value sets</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="facet" type="shex:XSFacet" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Occurs in:
+                    <xs:ul>
+                        <xs:li>KW_LITERAL xsFacet*</xs:li>
+                        <xs:li>(KW_IRI | KW_BNODE | KW_NONLITERAL) groupShapeConstr? stringFacet*</xs:li>
+                        <xs:li>datatype xsFacet*</xs:li>
+                    </xs:ul></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="or" type="shex:GroupShapeConstr">
+                <xs:annotation>
+                    <xs:documentation>Occurs in:
+                        <xs:ul>
+                            <xs:li>(KW_IRI | KW_BNODE | KW_NONLITERAL) groupShapeConstr? stringFacet*</xs:li>
+                            <xs:li>groupShapeConstr</xs:li>
+                        </xs:ul>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="valueSet" type="shex:ValueSet">
+                <xs:annotation>
+                    <xs:documentation>valueSet</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    
+    <!-- =============================================================
+        Identifiers
+        ============================================================== --> 
+    
+    <xs:simpleType name="ValueClassLabel">
+        <xs:annotation>
+            <xs:documentation>The identifier of a value class definition</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="shex:IRI"/>
+    </xs:simpleType>
+    
+    
+    <xs:complexType name="ValueClassRef">
+        <xs:annotation>
+            <xs:documentation>A reference to a shape definition</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="ref" type="shex:ValueClassLabel" use="required"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="ShapeLabel">
+        <xs:annotation>
+            <xs:documentation>The identifier of a shape definition</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="shex:IRI"/>
+    </xs:simpleType>
+
+    <xs:complexType name="ShapeRef">
+        <xs:annotation>
+            <xs:documentation>A reference to a shape definition</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="ref" type="shex:ShapeLabel" use="required"/>
+    </xs:complexType>
+    
     <xs:complexType name="CodeLabel">
         <xs:annotation>
             <xs:documentation>A label that identifies an external process to be invoked</xs:documentation>
         </xs:annotation>
         <xs:attribute name="ref" type="shex:UCASE_LABEL" use="required"/>
     </xs:complexType>
-
+    
     <xs:simpleType name="UCASE_LABEL">
         <xs:restriction base="xs:string">
             <xs:pattern value="[A-Z0-9_]+"/>
         </xs:restriction>
     </xs:simpleType>
-
-    <!-- =============================================================
-        Value Class
-        ============================================================== -->
-    <xs:complexType name="ValueClass">
-        <xs:annotation>
-            <xs:documentation>Represents literal, iri, bnode and non-literal facets as well as multiple group shape and non simple value sets</xs:documentation>
-        </xs:annotation>
-        <xs:choice minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="facet" type="shex:XSFacet"/>
-            <xs:element name="or" type="shex:GroupShapeConstr"/>
-            <xs:element name="valueSet" type="shex:ValueSet"/>
-            <xs:element name="valueClassLabel" type="shex:IRIRef"/>
-        </xs:choice>
-    </xs:complexType>
-    
-    <xs:complexType name="FullValueClass">
-        <xs:choice minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="nodetype" type="shex:NodeType"/>
-            <xs:element name="datatype" type="xs:anyURI"/>
-            <xs:element name="facet" type="shex:XSFacet"/>
-            <xs:element name="or" type="shex:GroupShapeConstr"/>
-            <xs:element name="valueSet" type="shex:ValueSet"/>
-            <xs:element name="valueClassLabel" type="shex:IRIRef"/>
-        </xs:choice>
-    </xs:complexType>
-    
-    <xs:complexType name="ValueClassExpression">
-        <xs:sequence>
-            <xs:element name="entry" type="shex:FullValueClass" maxOccurs="unbounded"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="GroupShapeConstr">
-        <xs:sequence>
-            <xs:element name="disjunct" type="shex:ShapeRef" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="stringFacet" type="shex:StringFacet" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="IRIRef">
-        <xs:attribute name="ref" type="shex:IRI" use="required"/>
-    </xs:complexType>
-
-    <xs:complexType name="ShapeRef">
-        <xs:attribute name="ref" type="shex:ShapeLabel" use="required"/>
-    </xs:complexType>
 
     <!-- =============================================================
         Facets
@@ -373,14 +427,14 @@
             <xs:element name="minLength" type="xs:int"/>
             <xs:element name="maxLength" type="xs:int"/>
             <xs:element name="length" type="xs:int"/>
-            <xs:element name="minValue" type="shex:Range"/>
-            <xs:element name="maxValue" type="shex:Range"/>
+            <xs:element name="minValue" type="shex:EndPoint"/>
+            <xs:element name="maxValue" type="shex:EndPoint"/>
             <xs:element name="totalDigits" type="xs:int"/>
             <xs:element name="fractionDigits" type="xs:int"/>
         </xs:choice>
     </xs:complexType>
 
-    <xs:complexType name="Range">
+    <xs:complexType name="EndPoint">
         <xs:simpleContent>
             <xs:extension base="xs:int">
                 <xs:attribute name="open" type="xs:boolean" default="false"/>
@@ -389,6 +443,9 @@
     </xs:complexType>
 
     <xs:complexType name="StringFacet">
+        <xs:annotation>
+            <xs:documentation>A restriction on the set of possible string values</xs:documentation>
+        </xs:annotation>
         <xs:choice>
             <xs:element name="pattern" type="xs:string"/>
             <xs:element name="not" type="xs:string"/>
@@ -399,9 +456,12 @@
     </xs:complexType>
 
     <xs:complexType name="NumericFacet">
+        <xs:annotation>
+            <xs:documentation>A restriction on the set of possible numeric values</xs:documentation>
+        </xs:annotation>
         <xs:choice>
-            <xs:element name="minValue" type="shex:Range"/>
-            <xs:element name="maxValue" type="shex:Range"/>
+            <xs:element name="minValue" type="shex:EndPoint"/>
+            <xs:element name="maxValue" type="shex:EndPoint"/>
             <xs:element name="totalDigits" type="xs:int"/>
             <xs:element name="fractionDigits" type="xs:int"/>
         </xs:choice>
@@ -411,19 +471,41 @@
         Data Types
         ============================================================== -->
     <xs:complexType name="ValueSet">
+        <xs:annotation>
+            <xs:documentation>A list of of the possible value(s) in the object or subject</xs:documentation>
+        </xs:annotation>
         <xs:choice maxOccurs="unbounded">
-            <xs:element name="iriRange" type="shex:IRIRange"/>
-            <xs:element name="rdfLiteral" type="shex:RDFLiteral"/>
-            <xs:element name="integer" type="xs:int"/>
-            <xs:element name="decimal" type="xs:decimal"/>
-            <xs:element name="double" type="xs:double"/>
-            <xs:element name="boolean" type="xs:boolean"/>
+            <xs:element name="iriRange" type="shex:IRIRange">
+                <xs:annotation>
+                    <xs:documentation>Match an iri or a range of iris</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rdfLiteral" type="shex:RDFLiteral">
+                <xs:annotation>
+                    <xs:documentation>Match a specific RDF literal</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="integer" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>Match a specific integer value</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="decimal" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>Match a decimal value</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="double" type="xs:double">
+                <xs:annotation>
+                    <xs:documentation>Match a double value</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="boolean" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Match a boolean value</xs:documentation></xs:annotation>
+            </xs:element>
         </xs:choice>
     </xs:complexType>
-
-    <xs:simpleType name="ShapeLabel">
-        <xs:restriction base="shex:IRI"/>
-    </xs:simpleType>
 
     <xs:complexType name="IRIStem">
         <xs:annotation>
@@ -449,6 +531,14 @@
     </xs:complexType>
 
     <xs:complexType name="RDFLiteral">
+        <xs:annotation>
+            <xs:documentation>RDF Literal.  Forms:
+            <ol>
+                <li>String only - implicit datatype of xsd:string</li>
+                <li>String and langtag - implicit datatype rdfs:langString</li>
+                <li>Both langtag and datatype should not be present</li>
+            </ol></xs:documentation>
+        </xs:annotation>
         <xs:simpleContent>
             <xs:extension base="xs:string">
                 <xs:attribute name="datatype" type="shex:IRI"/>
@@ -461,6 +551,10 @@
         <xs:restriction base="xs:anyURI"/>
     </xs:simpleType>
 
+    <xs:complexType name="IRIRef">
+        <xs:attribute name="ref" type="shex:IRI"/>
+    </xs:complexType>
+    
     <xs:simpleType name="PrefixedName">
         <xs:restriction base="xs:QName"/>
     </xs:simpleType>
@@ -476,7 +570,7 @@
                         <xs:restriction base="xs:nonNegativeInteger"/>
                     </xs:simpleType>
                     <xs:simpleType>
-                        <xs:restriction base="xs:string">
+                        <xs:restriction base="xs:NMTOKEN">
                             <xs:enumeration value="unbounded"/>
                         </xs:restriction>
                     </xs:simpleType>
@@ -484,7 +578,4 @@
             </xs:simpleType>
         </xs:attribute>
     </xs:attributeGroup>
-
-
-
 </xs:schema>

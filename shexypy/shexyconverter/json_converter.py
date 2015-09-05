@@ -34,8 +34,6 @@ from rdflib import URIRef, XSD
 from shexypy.schema.ShEx import *
 from shexypy.utils.pyxb_utils import PyxbWrapper
 
-# TODO: resolve the thing below -- I believe that GetNodeContext in pyxb.namespaces.resolution.py is what we need
-
 
 class PrefixMap:
 
@@ -60,7 +58,7 @@ class PrefixMap:
         if iri and ':' in iri and '://' not in iri:
             ns, local = iri.split(':', 1)
             if ':' not in local and ns in self._map:
-                return urljoin(self._map[ns], local)
+                return urljoin(self._map[ns], local, allow_fragments=False)
         elif ':' not in iri and iri in self._map:
             return self._map[iri]
         return str(URIRef(iri)) if iri is not None else ""
@@ -94,9 +92,9 @@ class ShExSchema:
         if self.schema.shape:
             self.json["shapes"] = {self._uri(s.label): self.shex_shape(s) for s in self.schema.shape}
         if self.schema.valueClass:
-            self.json["valueClasses"] = {self._uri(vc.valueClassLabel):
-                                             self.shex_value_class_definition(vc)
-                                         for vc in self.schema.valueClass}
+            self.json["valueClasses"] = \
+                {self.shex_iri(vc.definition.valueClassLabel if vc.definition else vc.external.ref):
+                     self.shex_value_class_definition(vc) for vc in self.schema.valueClass}
         if self.schema.start:
             self.json["start"] = self._uri(self.schema.start)
 
@@ -122,43 +120,30 @@ class ShExSchema:
             rval["closed"] = shape.closed
         return rval
 
-    def shex_value_class_definition(self, vcd: ValueClassDefinition) -> dict:
-        """ <code>xs:complexType name="ValueClassDefinition"</code>
-        :param vcd:
-        :return:
-        """
-        rval = dict(type="valueClass")
-        if vcd.external:
-            rval["external"] = True
-        else:
-            if vcd.definition:
-                rval["values"] = self.shex_value_class_expression(vcd.definition)
-            if vcd.actions:
-                rval["semAct"] = self.shex_semantic_action(vcd.actions)
-        return rval
-
     @staticmethod
     def _typed_expression(typ: str, val: dict) -> dict:
-        val["type"]=typ
+        val["type"] = typ
         return val
 
-    def shex_expression_choice(self, target: dict, e: PyxbWrapper.PyxbElement):
+    def shex_expression_choice(self, target: dict, e: PyxbWrapper.PyxbElement) -> dict:
         """ <code>xs:group name="ExpressionChoice"</code>
         :param target: target type with ExpressionChoice mixin
         :param e: Wrapper for ExpressionChoice element
+        :return: target
         """
         if e.type in ["someOf", "group"]:
             expr = self.shex_shape_constraint(e.value.node)
         elif e.type == "tripleConstraint":
-            expr = self._typed_expression(e.type, self.shex_triple_constraint(e.value.node))
+            expr = self.shex_triple_constraint(e.value.node)
         elif e.type == "include":
-            expr = self.shex_shape_ref(e.value.node)
+            expr = dict(include=self._uri(e.value.node.ref))
         elif e.type == "wrapper":
             expr = self.shex_wrapper(e.value.node)
         else:
             expr = None
         if expr:
             target["expression"] = self._typed_expression(e.type, expr)
+        return target
 
     def shex_wrapper(self, w: Wrapper) -> dict:
         rval = dict(type="wrapper")
@@ -184,11 +169,16 @@ class ShExSchema:
         :param sc: A complete shape constraint
         :return: S-JSON expression
         """
-        rval = dict(type="expression")
+        rval = dict()
         sc_wrapper = PyxbWrapper(sc)
-        [self.shex_expression_choice(rval, e) for e in sc_wrapper.elements]
+        for e in sc_wrapper.elements:
+            entry = self.shex_expression_choice({}, e)
+            if "expression" in entry:
+                rval.setdefault("expressions", []).append(entry["expression"])
         self.shex_annotations_and_actions(rval, sc_wrapper)
         self.shex_cardinality(rval, sc_wrapper)
+        return rval
+
 
     def shex_triple_constraint(self, tc: TripleConstraint) -> dict:
         """ <code>xs:complexType name="TripleConstraint"</code>
@@ -199,36 +189,39 @@ class ShExSchema:
                (tc.subjectConstraint or tc.subject or tc.subjectShape or tc.subjectType)), \
             "Cannot mix subject and object constraints"
 
-        tc_dict = dict(type="tripleConstraint", predicate=self._uri(tc.predicate))
-        vc_dict = dict(type="valueClass")
-        if tc.objectConstraint:
-            vc_dict.update(self.shex_triple_constraint_value_class(tc.objectConstraint))
-        if tc.object:
-            vc_dict["values"] = [self.shex_iri(tc.object)]
-        if tc.objectShape:
-            vc_dict["reference"] = self.shex_shape_label(tc.objectShape)
-        if tc.objectType:
-            vc_dict["nodeKind"] = self.shex_node_type(tc.objectType)
+        tc_dict = dict(type="tripleConstraint", predicate=self.shex_iri(tc.predicate))
+        if tc.valueClass:
+            tc_dict["valueClassRef"] = self.shex_value_class_label(tc.valueClass)
+        else:
+            vc_dict = dict(type="valueClass")
+            if tc.objectConstraint:
+                self.shex_triple_constraint_value_class(vc_dict, tc.objectConstraint)
+            if tc.object:
+                vc_dict["values"] = [self.shex_iri(tc.object)]
+            if tc.objectShape:
+                vc_dict["reference"] = self.shex_shape_label(tc.objectShape)
+            if tc.objectType:
+                vc_dict["nodeKind"] = self.shex_node_type(tc.objectType)
 
-        if tc.subjectConstraint or tc.subject or tc.subjectShape or tc.subjectType or tc.inverse:
-            tc_dict["inverse"] = True
-            if tc.subjectConstraint:
-                vc_dict.update(self.shex_triple_constraint_value_class(tc.subjectConstraint))
-        if tc.subject:
-            vc_dict["values"] = [self.shex_iri(tc.subject)]
-        if tc.subjectShape:
-            vc_dict["reference"] = self.shex_shape_label(tc.subjectShape)
-        if tc.subjectType:
-            vc_dict["nodeKind"] = self.shex_node_type(tc.subjectType)
+            if tc.subjectConstraint or tc.subject or tc.subjectShape or tc.subjectType or tc.inverse:
+                tc_dict["inverse"] = True
+                if tc.subjectConstraint:
+                    self.shex_triple_constraint_value_class(vc_dict, tc.subjectConstraint)
+            if tc.subject:
+                vc_dict["values"] = [self.shex_iri(tc.subject)]
+            if tc.subjectShape:
+                vc_dict["reference"] = self.shex_shape_label(tc.subjectShape)
+            if tc.subjectType:
+                vc_dict["nodeKind"] = self.shex_node_type(tc.subjectType)
 
-        if tc.datatype:
-            vc_dict["datatype"] = self._uri(tc.datatype)
-        if tc.negated:
-            tc_dict["negated"] = tc.negated
-        tc_wrapper = PyxbWrapper(tc)
-        self.shex_annotations_and_actions(tc_dict, tc_wrapper)
-        self.shex_cardinality(tc_dict, tc_wrapper)
-        tc_dict["value"] = vc_dict
+            if tc.datatype:
+                vc_dict["datatype"] = self._uri(tc.datatype)
+            if tc.negated:
+                tc_dict["negated"] = tc.negated
+            tc_wrapper = PyxbWrapper(tc)
+            self.shex_annotations_and_actions(tc_dict, tc_wrapper)
+            self.shex_cardinality(tc_dict, tc_wrapper)
+            tc_dict["value"] = vc_dict
         return tc_dict
 
     @staticmethod
@@ -270,29 +263,42 @@ class ShExSchema:
         """
         return PyxbWrapper.mixed_content(cd)
 
-    def shex_value_class_expression(self, vce: ValueClassExpression) -> dict:
-        """ <code>xs:complexType name="ValueClassExpression</code>
-        :param vce: ValueClassExpression
-        :return: S-JSON equivalent
+    def shex_value_class_definition(self, vcd: ValueClassDefinition) -> dict:
+        """ <code>xs:complexType name="ValueClassDefinition"</code>
+        :param vcd:
+        :return:
         """
         rval = dict(type="valueClass")
-        vce_wrapper = PyxbWrapper(vce)
-        for e in vce_wrapper.elements:
+        if vcd.external:
+            rval["external"] = self.shex_value_class_ref(vcd.external)
+        else:
+            innerdef = {}
+            self.shex_inline_value_class_definition(rval, vcd.definition)
+            if vcd.definition.actions:
+                rval["semAct"] = self.shex_semantic_actions(vcd.definition.actions)
+        return rval
+
+    def shex_inline_value_class_definition(self, vc: dict, ivcd: InlineValueClassDefinition) -> list:
+        """ <code>xs:complexType name="InlineValueClassDefinition"</code>
+        :param vc: dictionary to record the actual elements
+        :param ivcd:
+        :return:
+        """
+        # valueClassLabel becomes the identity
+        vcd_wrapper = PyxbWrapper(ivcd)
+        for e in vcd_wrapper.elements:
             if e.type == "nodetype":
-                rval["nodeKind"] = self.shex_node_type(e.value.node)
+                vc["nodeKind"] = self.shex_node_type(e.value.node)
             elif e.type == "datatype":
-                rval[e.type] = self._uri(e.value.node)
+                vc[e.type] = self._uri(e.value.node)
             elif e.type == "facet":
-                self.shex_xs_facet(rval, e.value.node)
+                self.shex_xs_facet(vc, e.value.node)
             elif e.type == "or_":
-                rval["reference"] = self.shex_group_shape_constr(e.value.node)
+                vc["reference"] = self.shex_group_shape_constr(e.value.node)
             elif e.type == "valueSet":
-                rval["values"] = self.shex_value_set(e.value.node)
-            elif e.type == "valueClassLabel":
-                rval["valueClassRef"] = self.shex_value_class_ref(e.value.node)
+                vc["values"] = self.shex_value_set(e.value.node)
             else:
                 assert False, "Unknown ValueClassExpression choice entry: %s" % e.type
-        return rval
 
     def shex_group_shape_constr(self, gsc: GroupShapeConstr) -> dict:
         """ <code>xs:complexType name="GroupShapeConstr"</code>
@@ -305,15 +311,15 @@ class ShExSchema:
         return rval
 
     # noinspection PyTypeChecker
-    def shex_triple_constraint_value_class(self, tcvc: TripleConstraintValueClass) -> dict:
-        return self.shex_value_class_expression(tcvc)
+    def shex_triple_constraint_value_class(self, vc: dict, tcvc: TripleConstraintValueClass) -> (dict, dict):
+        return self.shex_inline_value_class_definition(vc, tcvc)
 
     def shex_value_class_label(self, l: ValueClassLabel) -> str:
         """ <code>xs:simpleType name="ValueClassLabel"</code>
         :param l:
         :return:
         """
-        return self.shex_iri(str(l))
+        return self.shex_iri(l)
 
     def shex_value_class_ref(self, lr: ValueClassRef) -> str:
         """ <code>xs:complexType name="ValueClassRef"</code>
@@ -464,3 +470,4 @@ class ShExSchema:
         :return: URI
         """
         return self._prefixmap.uri_for(PyxbWrapper.proc_unicode(element))
+

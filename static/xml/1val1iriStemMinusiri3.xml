@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xsi:schemaLocation="file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/">
+<Schema xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd">
     <shape label="http://a.example/IssueShape">
         <tripleConstraint predicate="http://a.example/p1">
             <objectConstraint>
                 <valueSet>
-                    <iriRange stem="true" base="http://a.example/v">
+                    <iriRange base="http://a.example/v" stem="true">
                         <exclusion base="http://a.example/v1"/>
                         <exclusion base="http://a.example/v2"/>
                         <exclusion base="http://a.example/v3"/>

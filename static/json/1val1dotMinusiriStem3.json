@@ -7,9 +7,6 @@
                 "value": {
                     "values": [
                         {
-                            "stem": {
-                                "type": "wildcard"
-                            },
                             "exclusions": [
                                 {
                                     "stem": "http://a.example/v1",
@@ -24,13 +21,16 @@
                                     "type": "stem"
                                 }
                             ],
+                            "stem": {
+                                "type": "wildcard"
+                            },
                             "type": "stemRange"
                         }
                     ],
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

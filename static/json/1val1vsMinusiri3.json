@@ -1,16 +1,32 @@
 {
+    "valueClasses": {
+        "http://a.example/vs1": {
+            "values": [
+                {
+                    "exclusions": [
+                        "http://a.example/v1",
+                        "http://a.example/v2",
+                        "http://a.example/v3"
+                    ],
+                    "stem": {
+                        "type": "wildcard"
+                    },
+                    "type": "stemRange"
+                }
+            ],
+            "type": "valueClass"
+        }
+    },
     "prefixes": {},
+    "type": "schema",
     "shapes": {
         "http://a.example/IssueShape": {
             "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
+                "valueClassRef": "http://a.example/vs1",
                 "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }
-    },
-    "type": "schema"
+    }
 }

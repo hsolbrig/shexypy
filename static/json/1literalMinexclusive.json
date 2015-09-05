@@ -5,12 +5,12 @@
         "http://a.example/IssueShape": {
             "expression": {
                 "value": {
+                    "minexclusive": 5,
                     "nodeKind": "literal",
-                    "type": "valueClass",
-                    "minexclusive": 5
+                    "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }

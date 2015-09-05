@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xmlns:UserShape="http://ex.example/#UserShape" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" start="IssueShape" exclude-prefixes="xsi shex" xmlns:ex="http://ex.example/" xmlns:foaf="http://xmlns.com/foaf/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schem" default-namespace="http://ex.example/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns" xmlns="http://www.w3.org/shex/">
+<Schema xmlns:foaf="http://xmlns.com/foaf/" xmlns:UserShape="http://ex.example/#UserShape" default-namespace="http://ex.example/#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/shex/" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schem#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex" start="http://ex.example/IssueShape" xmlns:ex="http://ex.example/#" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd">
     <startActions>
         <action>
             <codeDecl iri="ex:foo"> initializer for ignored extension </codeDecl>
         </action>
     </startActions>
-    <shape label="IssueShape">
+    <shape label="http://ex.example/IssueShape">
         <group>
             <group min="0">
-                <tripleConstraint predicate="ex:reproducedBy" objectShape=":EmployeeShape" objectType="NONLITERAL"/>
+                <tripleConstraint predicate="ex:reproducedBy" objectType="NONLITERAL" objectShape=":EmployeeShape"/>
                 <tripleConstraint predicate="ex:reproducedOn" datatype="xsd:dateTime"/>
+                <actions>
+                    <action>
+                        <codeDecl iri="ex:foo"> asdfasdf </codeDecl>
+                    </action>
+                </actions>
             </group>
-                <tripleConstraint predicate="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" object="ex:Issue" min="0"/>
+                <tripleConstraint predicate="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" min="0" object="ex:Issue"/>
                 <tripleConstraint predicate="ex:state">
                     <objectConstraint>
                         <valueSet>
@@ -27,14 +32,9 @@
                         <literal>the sit</literal>
                     </annotation>
                 </tripleConstraint>
-                    <tripleConstraint predicate="ex:reportedBy" objectShape="UserShape" objectType="IRI"/>
+                    <tripleConstraint predicate="ex:reportedBy" objectType="IRI" objectShape="UserShape"/>
                     <tripleConstraint predicate="ex:reportedOn" datatype="xsd:dateTime"/>
-                    <tripleConstraint max="unbounded" predicate="ex:related" objectShape="IssueShape" min="0"/>
-                    <actions>
-                        <action>
-                            <codeDecl iri="ex:foo"> asdfasdf </codeDecl>
-                        </action>
-                    </actions>
+                    <tripleConstraint max="unbounded" predicate="ex:related" min="0" objectShape="http://ex.example/IssueShape"/>
                 </group>
             </shape>
             <shape label="UserShape:">
@@ -53,18 +53,18 @@
                                 </facet>
                             </objectConstraint>
                         </tripleConstraint>
-                            <tripleConstraint predicate="ex:id" objectShape="_:IDshape" objectType="BNODE"/>
+                            <tripleConstraint predicate="ex:id" objectType="BNODE" objectShape="_:IDshape"/>
                         </group>
                     </shape>
                     <shape label=":EmployeeShape">
                         <group>
                             <tripleConstraint max="unbounded" predicate="foaf:givenName" datatype="xsd:string"/>
                             <tripleConstraint predicate="foaf:familyName" datatype="xsd:string"/>
-                            <tripleConstraint max="unbounded" predicate="foaf:phone" objectType="IRI" min="0"/>
-                            <tripleConstraint predicate="foaf:mbox" objectType="IRI" min="0"/>
+                            <tripleConstraint max="unbounded" predicate="foaf:phone" min="0" objectType="IRI"/>
+                            <tripleConstraint predicate="foaf:mbox" min="0" objectType="IRI"/>
                         </group>
                     </shape>
-                    <shape virtual="true" label="_:IDshape">
+                    <shape label="_:IDshape" virtual="true">
                         <someOf>
                             <group>
                                 <tripleConstraint predicate="ex:code" objectType="LITERAL"/>
@@ -79,7 +79,7 @@
                                         </valueSet>
                                     </objectConstraint>
                                 </tripleConstraint>
-                                <tripleConstraint predicate="ex:misc" objectType="BNODE" negated="true">
+                                <tripleConstraint negated="true" predicate="ex:misc" objectType="BNODE">
                                     <actions>
                                         <action>
                                             <codeDecl iri="ex:foo"> ignored </codeDecl>
@@ -100,16 +100,16 @@
                                             </valueSet>
                                         </subjectConstraint>
                                     </tripleConstraint>
-                                        <tripleConstraint predicate="ex:miscRef" inverse="true" negated="true"/>
+                                        <tripleConstraint negated="true" predicate="ex:miscRef" inverse="true"/>
                                     </group>
-                                        <tripleConstraint max="unbounded" predicate="ex:issues" objectShape="ex:IssueShape" min="0"/>
-                                        <tripleConstraint max="unbounded" predicate="ex:seeAlso" objectShape="ex:IssueShape" min="0"/>
-                                        <tripleConstraint max="unbounded" predicate="ex:says" objectShape=":EmployeeShape" min="0"/>
+                                        <tripleConstraint max="unbounded" predicate="ex:issues" min="0" objectShape="ex:IssueShape"/>
+                                        <tripleConstraint max="unbounded" predicate="ex:seeAlso" min="0" objectShape="ex:IssueShape"/>
+                                        <tripleConstraint max="unbounded" predicate="ex:says" min="0" objectShape=":EmployeeShape"/>
                                     </group>
                                 </someOf>
                             </shape>
                             <shape label="ex:FooID" closed="true">
-                                <include ref="_:IDshape"/>
+                                <import ref="_:IDshape"/>
                                 <extra ref="ex:code"/>
                                 <extra ref="ex:system"/>
                             </shape>

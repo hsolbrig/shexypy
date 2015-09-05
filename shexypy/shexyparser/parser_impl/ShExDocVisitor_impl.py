@@ -80,7 +80,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
                                        ns)
         schema_dom.documentElement.setAttributeNS(Namespace.uri(),
                                     'xsi:schemaLocation',
-                                    '../xsd/ShEx.xsd')
+                                    'http://www.w3.org/shex/ ../xsd/ShEx.xsd')
         schema_dom.documentElement.setAttributeNS(xmlns.uri, 'xmlns:xsi', xsi.uri())
         return schema_dom
 
@@ -103,17 +103,18 @@ class ShExDocVisitor_impl(ShExDocVisitor):
 
     def visitValueClassDefinition(self, ctx: ShExDocParser.ValueClassDefinitionContext):
         # valueClassDefinition : valueClassLabel ('=' valueClassExpr semanticActions | KW_EXTERNAL) ;
-        vcd = ValueClassDefinition(valueClassLabel=self.visit(ctx.valueClassLabel()))
+        vcd = ValueClassDefinition()
         if ctx.KW_EXTERNAL():
-            vcd.external = True
+            vcd.external = self.visit(ctx.valueClassLabel())
         else:
             vcd.definition = self.visit(ctx.valueClassExpr())
+            vcd.definition.valueClassLabel = self.visit(ctx.valueClassLabel())
             acts = self.visit(ctx.semanticActions())
             if acts:
                 vcd.actions = acts
         self._schema.valueClass.append(vcd)
 
-    def visitValueClassExpr(self, ctx: ShExDocParser.ValueClassExprContext):
+    def visitValueClassExpr(self, ctx: ShExDocParser.ValueClassExprContext) -> InlineValueClassDefinition:
         # valueClassExpr  : valueClass ('+' valueClass)*
         # Note that there is no visitValueClass -- just the sublabels:
         #       visitValueClassLiteral
@@ -122,7 +123,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         #       visitValueClassValueSet
         #       visitValueClassAny
         assert self.cur_tc is None, "Recursion not allowed on value class definitions"
-        vce = ValueClassExpression()
+        ivcd = InlineValueClassDefinition()
         for c in ctx.valueClass():
             # We fill this out as if it were a triple constraint and then fold it back to a value class
             # Note that predicate, inverse, actions and annotations are noe included in a value class definition
@@ -131,26 +132,25 @@ class ShExDocVisitor_impl(ShExDocVisitor):
             self.visit(c)
             if self.cur_tc.objectConstraint:
                 oc = self.cur_tc.objectConstraint
-                vce.facet = oc.facet
-                vce.or_ = oc.or_
-                vce.valueSet = oc.valueSet
-                vce.valueClassLabel = oc.valueClassLabel
+                ivcd.facet = oc.facet
+                ivcd.or_ = oc.or_
+                ivcd.valueSet = oc.valueSet
             if self.cur_tc.object:
                 vs = ValueSet()
                 irir = IRIRange(base=self.cur_tc.object)
                 vs.iriRange = irir
-                vce.valueSet.append(vs)
+                ivcd.valueSet.append(vs)
             if self.cur_tc.objectShape:
                 gsc = GroupShapeConstr()
                 sr = ShapeRef(ref=self.cur_tc.objectShape)
                 gsc.disjunct.append(sr)
-                vce.or_.append(gsc)
+                ivcd.or_.append(gsc)
             if self.cur_tc.objectType:
-                vce.nodetype.append = self.cur_tc.objectType
+                ivcd.nodetype.append = self.cur_tc.objectType
             if self.cur_tc.datatype:
-                vce.datatype.append(self.cur_tc.datatype)
+                ivcd.datatype.append(self.cur_tc.datatype)
             self.cur_tc = None
-        return vce
+        return ivcd
 
     def visitValueClassLabel(self, ctx: ShExDocParser.ValueClassLabelContext):
         # valueClassLabel : '$' iri ;
@@ -164,14 +164,12 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         # prefixDecl : KW_PREFIX PNAME_NS IRIREF
         ns_txt = self._iriref(ctx)
         prefix = ctx.PNAME_NS().getText().split(':')[0]
-        # TODO: Figure out why the xml schema namespace makes this blow up
-        if prefix != 'xsd':
-            if prefix:
-                self.nsc.declareNamespace(pyxb.namespace.Namespace(ns_txt), prefix)
-                self.namespaces[prefix] = ns_txt
-            else:
-                self.nsc.setDefaultNamespace(pyxb.namespace.Namespace(ns_txt))
-                self._schema.default_namespace = ns_txt
+        if prefix:
+            self.nsc.declareNamespace(pyxb.namespace.Namespace(ns_txt), prefix)
+            self.namespaces[prefix] = ns_txt
+        else:
+            self.nsc.setDefaultNamespace(pyxb.namespace.Namespace(ns_txt))
+            self._schema.default_namespace = ns_txt
 
     def visitStart(self, ctx: ShExDocParser.StartContext):
         # start : KW_START '=' (shapeLabel | shapeDefinition semanticActions)
@@ -308,9 +306,13 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         tc.predicate = self.visit(ctx.predicate())
         tc.reversed = '^' in sf
         parent_tc = self.cur_tc
-        self.cur_tc = tc
-        self.visit(ctx.valueClassOrRef())
-        self.cur_tc = parent_tc
+        if ctx.valueClassOrRef().valueClassLabel():
+            tc.valueClass = self.visit(ctx.valueClassOrRef().valueClassLabel())
+        else:
+            parent_tc = self.cur_tc
+            self.cur_tc = tc
+            self.visit(ctx.valueClassOrRef().valueClass())
+            self.cur_tc = parent_tc
         tc.__dict__.pop("reversed", None)
         self._proc_card_annot_semacts(tc, ctx)
         self._set_tc(tc)
@@ -329,12 +331,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
     def visitValueClassOrRef(self, ctx: ShExDocParser.ValueClassOrRefContext):
         # valueClassOrRef : valueClass | valueClassLabel ;
         # Note that valueClass isn't visited directly -- it is one of valueClassLiteral, valueClassNonLiteral, etc.
-        if ctx.valueClassLabel():
-            vc = TripleConstraintValueClass()
-            vc.valueClassLabel.append(ValueClassRef(ref=self.visit(ctx.valueClassLabel())))
-            self._subj_obj_constraint(vc)
-        else:
-            return self.visitChildren(ctx)
+        assert False, "Should not be visited"
 
     def visitValueClassLiteral(self, ctx: ShExDocParser.ValueClassLiteralContext):
         # valueClass : KW_LITERAL xsFacet*
@@ -388,7 +385,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
                 self.cur_tc.objectShape = gsc.disjunct[0].ref
         else:
             vc = TripleConstraintValueClass()
-            vc.or_.append(gsc)
+            vc.or_ = gsc
             self._subj_obj_constraint(vc)
 
     def visitValueClassValueSet(self, ctx: ShExDocParser.ValueClassValueSetContext):
@@ -404,7 +401,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
                 self.cur_tc.object = vs.iriRange[0].base
         else:
             vc = TripleConstraintValueClass()
-            vc.valueSet.append(vs)
+            vc.valueSet = vs
             self._subj_obj_constraint(vc)
 
     def visitValueClassAny(self, ctx: ShExDocParser.ValueClassAnyContext):
@@ -592,7 +589,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
     def visitIri(self, ctx: ShExDocParser.IriContext):
         # iri : IRIREF | prefixedName ;
         if ctx.IRIREF():
-            return escape(ctx.IRIREF().getText()[1:-1])
+            return self._iriref(ctx)
         else:
             return escape(self.visitChildren(ctx))
 
@@ -657,7 +654,11 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         return rval
 
     def _iriref(self, ctx):
-        return urljoin(self.base, ctx.IRIREF().getText()[1:-1])
+        """ Parse a uri in the form "<iri>"
+        :param ctx: container with an IRIREF inside
+        :return: absolute URI
+        """
+        return urljoin(self.base, ctx.IRIREF().getText()[1:-1], allow_fragments=False)
 
     def _cardinality(self, container, ctx):
         minr, maxr = self.visitCardinality(ctx.cardinality())

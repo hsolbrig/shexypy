@@ -49,6 +49,9 @@ def compare_dicts(d1: dict, d2: dict, d1name: str="dict1", d2name: str="dict2", 
     def f(t1, t2):
         return False if filtr is None else filtr(t1, t2)
 
+    def d_key(d):
+        return ':'.join(d.keys())
+
     if d1 == d2:
         return True
 
@@ -66,6 +69,10 @@ def compare_dicts(d1: dict, d2: dict, d1name: str="dict1", d2name: str="dict2", 
             if isinstance(d1[k], dict) and isinstance(d2[k], dict):
                 if not compare_dicts(d1[k], d2[k], n1(k), n2(k), file, filtr):
                     n_errors += 1
+            elif isinstance(d1[k], list) and isinstance(d2[k], list):
+                if len(d1[k]) == len(d2[k]) and all(e in d1[k] for e in d2[k]):
+                    n_errors += 1
+                    print("<ordering> %s: %s" % (d1name + '.' + k, d1[k]), file=file)
             else:
                 n_errors += 1
                 print("< %s: %s" % (d1name + '.' + k, d1[k]), file=file)

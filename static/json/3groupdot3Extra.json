@@ -4,30 +4,30 @@
     "shapes": {
         "http://a.example/IssueShape": {
             "expression": {
+                "type": "group",
                 "expressions": [
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "predicate": "http://a.example/p1",
-                        "type": "tripleConstraint"
+                        "type": "tripleConstraint",
+                        "predicate": "http://a.example/p1"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "predicate": "http://a.example/p2",
-                        "type": "tripleConstraint"
+                        "type": "tripleConstraint",
+                        "predicate": "http://a.example/p2"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "predicate": "http://a.example/p3",
-                        "type": "tripleConstraint"
+                        "type": "tripleConstraint",
+                        "predicate": "http://a.example/p3"
                     }
-                ],
-                "type": "group"
+                ]
             },
             "type": "shape",
             "extra": [

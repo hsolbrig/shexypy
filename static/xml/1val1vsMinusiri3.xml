@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="file:/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd" xmlns="http://www.w3.org/shex/" exclude-prefixes="xsi shex">
+<Schema xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex">
     <shape label="http://a.example/IssueShape">
-        <tripleConstraint predicate="http://a.example/p1">
-            <objectConstraint>
-                <valueClassLabel ref="http://a.example/vs1"/>
-            </objectConstraint>
-        </tripleConstraint>
+        <tripleConstraint predicate="http://a.example/p1" valueClass="http://a.example/vs1"/>
     </shape>
-    <valueClass valueClassLabel="http://a.example/vs1">
-        <valueClass>
-            <entry>
-                <valueSet>
-                    <iriRange>
-                        <exclusion base="http://a.example/v1"/>
-                        <exclusion base="http://a.example/v2"/>
-                        <exclusion base="http://a.example/v3"/>
-                    </iriRange>
-                </valueSet>
-            </entry>
-        </valueClass>
+    <valueClass>
+        <definition valueClassLabel="http://a.example/vs1">
+            <valueSet>
+                <iriRange>
+                    <exclusion base="http://a.example/v1"/>
+                    <exclusion base="http://a.example/v2"/>
+                    <exclusion base="http://a.example/v3"/>
+                </iriRange>
+            </valueSet>
+        </definition>
     </valueClass>
 </Schema>

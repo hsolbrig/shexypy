@@ -5,12 +5,12 @@
         "http://a.example/IssueShape": {
             "expression": {
                 "value": {
-                    "nodeKind": "iri",
                     "minlength": 20,
+                    "nodeKind": "iri",
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             },
             "type": "shape"
         }
