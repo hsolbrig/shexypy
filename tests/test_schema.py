@@ -44,12 +44,12 @@ class SchemaTestCase(unittest.TestCase):
         irirange.base = "rdf:type"
         vs = ValueSet()
         vs.iriRange.append(irirange)
-        oc = ValueClass()
+        oc = TripleConstraintValueClass()
         oc.valueSet = vs
         tc = TripleConstraint()
         tc.predicate = "rdf:type"
         tc.objectConstraint = oc
-        shape.tripleConstraint.append(tc)
+        shape.tripleConstraint = (tc)
         schema.shape.append(shape)
         print()
         print(prettyxml(schema))
@@ -77,7 +77,7 @@ class SchemaTestCase(unittest.TestCase):
         tc.min = 2
         tc.max = "unbounded"
         tc.predicate = "http://foo.bar"
-        shape.tripleConstraint.append(tc)
+        shape.tripleConstraint = tc
         print()
         print(prettyxml(schema))
 
@@ -86,14 +86,15 @@ class SchemaTestCase(unittest.TestCase):
         tc = TripleConstraint()
         ann = Annotation()
         ann.iri = "http://ann.com"
-        ann.iriref = "http://ann.com/2"
+        ann.iriref = IRIRef(ref="http://ann.com/2")
         tc.annotation.append(ann)
         ann = Annotation()
         ann.iri = "http://ann.com/2"
         lit = RDFLiteral("abc")
         ann.literal = lit
         tc.annotation.append(ann)
-        shape.tripleConstraint.append(tc)
+        tc.predicate = "http://some.org/predicate"
+        shape.tripleConstraint = tc
         print()
         print(prettyxml(schema))
 
@@ -111,7 +112,7 @@ class SchemaTestCase(unittest.TestCase):
         tc.datatype = "xs:string"
         tc.objectType = NodeType.LITERAL
         tc.subjectType = NodeType.IRI
-        shape.tripleConstraint.append(tc)
+        shape.tripleConstraint = tc
         print()
         print(prettyxml(schema))
 

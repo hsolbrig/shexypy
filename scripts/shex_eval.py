@@ -109,7 +109,7 @@ def eval_manifest_entry(e: (str, Iterable), opts: argparse.Namespace):
     mes = e[1]
     for me in mes:
         print("   Entry: %s - " % me.entryuri, end='')
-        rslt = eval_entry(me.schema, me.start_shape, me.subject_iri, me.instances(fmt=opts.format), opts)
+        rslt = eval_entry(me.schema, me.start_shape, me.subject_iri, me.instance(fmt=opts.format), opts)
         print("PASS" if rslt == me.should_pass else "FAIL")
 
 
