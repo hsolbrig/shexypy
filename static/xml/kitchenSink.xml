@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xmlns:foaf="http://xmlns.com/foaf/" xmlns:UserShape="http://ex.example/#UserShape" default-namespace="http://ex.example/#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/shex/" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schem#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex" start="http://ex.example/IssueShape" xmlns:ex="http://ex.example/#" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd">
+<Schema xmlns="http://www.w3.org/shex/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schem#" default-namespace="http://ex.example/#" exclude-prefixes="xsi shex" xmlns:UserShape="http://ex.example/#UserShape" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ex="http://ex.example/#" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" start="http://ex.example/IssueShape" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:foaf="http://xmlns.com/foaf/">
     <startActions>
         <action>
             <codeDecl iri="ex:foo"> initializer for ignored extension </codeDecl>
@@ -9,14 +9,14 @@
         <group>
             <group min="0">
                 <tripleConstraint predicate="ex:reproducedBy" objectType="NONLITERAL" objectShape=":EmployeeShape"/>
-                <tripleConstraint predicate="ex:reproducedOn" datatype="xsd:dateTime"/>
+                <tripleConstraint datatype="xsd:dateTime" predicate="ex:reproducedOn"/>
                 <actions>
                     <action>
                         <codeDecl iri="ex:foo"> asdfasdf </codeDecl>
                     </action>
                 </actions>
             </group>
-                <tripleConstraint predicate="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" min="0" object="ex:Issue"/>
+                <tripleConstraint predicate="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" object="ex:Issue" min="0"/>
                 <tripleConstraint predicate="ex:state">
                     <objectConstraint>
                         <valueSet>
@@ -33,20 +33,20 @@
                     </annotation>
                 </tripleConstraint>
                     <tripleConstraint predicate="ex:reportedBy" objectType="IRI" objectShape="UserShape"/>
-                    <tripleConstraint predicate="ex:reportedOn" datatype="xsd:dateTime"/>
-                    <tripleConstraint max="unbounded" predicate="ex:related" min="0" objectShape="http://ex.example/IssueShape"/>
+                    <tripleConstraint datatype="xsd:dateTime" predicate="ex:reportedOn"/>
+                    <tripleConstraint predicate="ex:related" objectShape="http://ex.example/IssueShape" max="unbounded" min="0"/>
                 </group>
             </shape>
             <shape label="UserShape:">
                 <group>
                     <someOf>
                         <group>
-                            <tripleConstraint max="unbounded" predicate="foaf:givenName" datatype="xsd:string"/>
-                            <tripleConstraint predicate="foaf:familyName" datatype="xsd:string"/>
+                            <tripleConstraint datatype="xsd:string" max="unbounded" predicate="foaf:givenName"/>
+                            <tripleConstraint datatype="xsd:string" predicate="foaf:familyName"/>
                         </group>
-                            <tripleConstraint predicate="foaf:name" datatype="xsd:string"/>
+                            <tripleConstraint datatype="xsd:string" predicate="foaf:name"/>
                         </someOf>
-                        <tripleConstraint predicate="foaf:mbox" objectType="IRI">
+                        <tripleConstraint objectType="IRI" predicate="foaf:mbox">
                             <objectConstraint>
                                 <facet>
                                     <pattern>^mailto:</pattern>
@@ -58,18 +58,18 @@
                     </shape>
                     <shape label=":EmployeeShape">
                         <group>
-                            <tripleConstraint max="unbounded" predicate="foaf:givenName" datatype="xsd:string"/>
-                            <tripleConstraint predicate="foaf:familyName" datatype="xsd:string"/>
-                            <tripleConstraint max="unbounded" predicate="foaf:phone" min="0" objectType="IRI"/>
-                            <tripleConstraint predicate="foaf:mbox" min="0" objectType="IRI"/>
+                            <tripleConstraint datatype="xsd:string" max="unbounded" predicate="foaf:givenName"/>
+                            <tripleConstraint datatype="xsd:string" predicate="foaf:familyName"/>
+                            <tripleConstraint objectType="IRI" predicate="foaf:phone" max="unbounded" min="0"/>
+                            <tripleConstraint predicate="foaf:mbox" objectType="IRI" min="0"/>
                         </group>
                     </shape>
                     <shape label="_:IDshape" virtual="true">
                         <someOf>
                             <group>
-                                <tripleConstraint predicate="ex:code" objectType="LITERAL"/>
-                                <tripleConstraint predicate="ex:system" objectType="IRI"/>
-                                <tripleConstraint max="3" predicate="ex:literal" min="2">
+                                <tripleConstraint objectType="LITERAL" predicate="ex:code"/>
+                                <tripleConstraint objectType="IRI" predicate="ex:system"/>
+                                <tripleConstraint predicate="ex:literal" max="3" min="2">
                                     <objectConstraint>
                                         <valueSet>
                                             <rdfLiteral>a</rdfLiteral>
@@ -79,7 +79,7 @@
                                         </valueSet>
                                     </objectConstraint>
                                 </tripleConstraint>
-                                <tripleConstraint negated="true" predicate="ex:misc" objectType="BNODE">
+                                <tripleConstraint objectType="BNODE" negated="true" predicate="ex:misc">
                                     <actions>
                                         <action>
                                             <codeDecl iri="ex:foo"> ignored </codeDecl>
@@ -100,15 +100,15 @@
                                             </valueSet>
                                         </subjectConstraint>
                                     </tripleConstraint>
-                                        <tripleConstraint negated="true" predicate="ex:miscRef" inverse="true"/>
+                                        <tripleConstraint inverse="true" negated="true" predicate="ex:miscRef"/>
                                     </group>
-                                        <tripleConstraint max="unbounded" predicate="ex:issues" min="0" objectShape="ex:IssueShape"/>
-                                        <tripleConstraint max="unbounded" predicate="ex:seeAlso" min="0" objectShape="ex:IssueShape"/>
-                                        <tripleConstraint max="unbounded" predicate="ex:says" min="0" objectShape=":EmployeeShape"/>
+                                        <tripleConstraint predicate="ex:issues" objectShape="ex:IssueShape" max="unbounded" min="0"/>
+                                        <tripleConstraint predicate="ex:seeAlso" objectShape="ex:IssueShape" max="unbounded" min="0"/>
+                                        <tripleConstraint predicate="ex:says" objectShape=":EmployeeShape" max="unbounded" min="0"/>
                                     </group>
                                 </someOf>
                             </shape>
-                            <shape label="ex:FooID" closed="true">
+                            <shape closed="true" label="ex:FooID">
                                 <import ref="_:IDshape"/>
                                 <extra ref="ex:code"/>
                                 <extra ref="ex:system"/>

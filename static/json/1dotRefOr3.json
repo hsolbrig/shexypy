@@ -1,34 +1,12 @@
 {
-    "prefixes": {},
-    "type": "schema",
     "shapes": {
         "http://a.example/PersonShape": {
             "expression": {
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1"
-            },
-            "type": "shape"
-        },
-        "http://a.example/ThingShape": {
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p3"
-            },
-            "type": "shape"
-        },
-        "http://a.example/PlaceShape": {
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p2"
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
             },
             "type": "shape"
         },
@@ -45,10 +23,32 @@
                     },
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p4"
+                "predicate": "http://a.example/p4",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "http://a.example/ThingShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p3",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        },
+        "http://a.example/PlaceShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p2",
+                "type": "tripleConstraint"
             },
             "type": "shape"
         }
-    }
+    },
+    "prefixes": {},
+    "type": "schema"
 }

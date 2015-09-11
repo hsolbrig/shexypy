@@ -1,6 +1,4 @@
 {
-    "prefixes": {},
-    "type": "schema",
     "shapes": {
         "http://a.example/IssueShape": {
             "expression": {
@@ -10,26 +8,28 @@
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p1"
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p2"
+                        "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p3"
+                        "predicate": "http://a.example/p3",
+                        "type": "tripleConstraint"
                     }
                 ]
             },
             "type": "shape"
         }
-    }
+    },
+    "prefixes": {},
+    "type": "schema"
 }

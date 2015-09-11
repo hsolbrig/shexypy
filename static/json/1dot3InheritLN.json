@@ -1,16 +1,12 @@
 {
-    "prefixes": {
-        "ex": "http://a.example/"
-    },
-    "type": "schema",
     "shapes": {
         "http://a.example/PersonShape": {
             "expression": {
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1"
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
             },
             "type": "shape"
         },
@@ -19,8 +15,8 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p2"
+                "predicate": "http://a.example/p2",
+                "type": "tripleConstraint"
             },
             "type": "shape"
         },
@@ -29,25 +25,29 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p3"
+                "predicate": "http://a.example/p3",
+                "type": "tripleConstraint"
             },
             "type": "shape"
         },
         "http://a.example/EmployeeShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p4",
+                "type": "tripleConstraint"
+            },
             "inherit": [
                 "http://a.example/PersonShape",
                 "http://a.example/MemberShape",
                 "http://a.example/ManagedShape"
             ],
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p4"
-            },
             "type": "shape"
         }
-    }
+    },
+    "prefixes": {
+        "ex": "http://a.example/"
+    },
+    "type": "schema"
 }

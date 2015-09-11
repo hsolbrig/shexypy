@@ -1,10 +1,11 @@
 {
-    "prefixes": {
-        "ex": "http://a.example/"
-    },
-    "type": "schema",
     "shapes": {
         "http://a.example/IssueShape": {
+            "extra": [
+                "http://a.example/p1",
+                "http://a.example/p2",
+                "http://a.example/p3"
+            ],
             "expression": {
                 "type": "group",
                 "expressions": [
@@ -12,31 +13,30 @@
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p1"
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p2"
+                        "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p3"
+                        "predicate": "http://a.example/p3",
+                        "type": "tripleConstraint"
                     }
                 ]
             },
-            "type": "shape",
-            "extra": [
-                "http://a.example/p1",
-                "http://a.example/p2",
-                "http://a.example/p3"
-            ]
+            "type": "shape"
         }
-    }
+    },
+    "prefixes": {
+        "ex": "http://a.example/"
+    },
+    "type": "schema"
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-prefixes="xsi shex" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd">
+<Schema xmlns="http://www.w3.org/shex/" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" exclude-prefixes="xsi shex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <shape label="http://a.example/IssueShape">
         <tripleConstraint objectType="IRI" predicate="http://a.example/p1">
             <objectConstraint>

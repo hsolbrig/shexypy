@@ -1,9 +1,9 @@
 {
-    "prefixes": {},
-    "type": "schema",
     "shapes": {
         "http://a.example/IssueShape": {
             "type": "shape"
         }
-    }
+    },
+    "prefixes": {},
+    "type": "schema"
 }

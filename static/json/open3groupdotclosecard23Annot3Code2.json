@@ -1,10 +1,41 @@
 {
-    "type": "schema",
-    "prefixes": {},
     "shapes": {
         "http://a.example/IssueShape": {
-            "type": "shape",
             "expression": {
+                "min": 2,
+                "max": 3,
+                "type": "group",
+                "expressions": [
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p3",
+                        "type": "tripleConstraint"
+                    }
+                ],
+                "semAct": [
+                    {
+                        "http://a.example/semAct1": " code1 "
+                    },
+                    {
+                        "http://a.example/semAct2": " code2 "
+                    }
+                ],
                 "annotations": [
                     [
                         "http://a.example/annot1",
@@ -18,42 +49,11 @@
                         "http://a.example/annot3",
                         "\"3\""
                     ]
-                ],
-                "max": 3,
-                "min": 2,
-                "semAct": [
-                    {
-                        "http://a.example/semAct1": " code1 "
-                    },
-                    {
-                        "http://a.example/semAct2": " code2 "
-                    }
-                ],
-                "expressions": [
-                    {
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p1",
-                        "value": {
-                            "type": "valueClass"
-                        }
-                    },
-                    {
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p2",
-                        "value": {
-                            "type": "valueClass"
-                        }
-                    },
-                    {
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p3",
-                        "value": {
-                            "type": "valueClass"
-                        }
-                    }
-                ],
-                "type": "group"
-            }
+                ]
+            },
+            "type": "shape"
         }
-    }
+    },
+    "prefixes": {},
+    "type": "schema"
 }

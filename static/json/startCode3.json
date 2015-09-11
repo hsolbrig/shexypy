@@ -1,18 +1,4 @@
 {
-    "type": "schema",
-    "prefixes": {},
-    "shapes": {
-        "http://a.example/IssueShape": {
-            "type": "shape",
-            "expression": {
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1",
-                "value": {
-                    "type": "valueClass"
-                }
-            }
-        }
-    },
     "startAct": [
         {
             "http://a.example/semAct1": " code1 "
@@ -23,5 +9,19 @@
         {
             "http://a.example/semAct3": " code3 "
         }
-    ]
+    ],
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
+        }
+    },
+    "prefixes": {},
+    "type": "schema"
 }

@@ -1,9 +1,6 @@
 {
-    "type": "schema",
-    "prefixes": {},
     "shapes": {
         "http://a.example/IssueShape": {
-            "type": "shape",
             "expression": {
                 "annotations": [
                     [
@@ -19,31 +16,34 @@
                         "\"3\""
                     ]
                 ],
+                "type": "group",
                 "expressions": [
                     {
-                        "type": "tripleConstraint",
+                        "value": {
+                            "type": "valueClass"
+                        },
                         "predicate": "http://a.example/p1",
-                        "value": {
-                            "type": "valueClass"
-                        }
+                        "type": "tripleConstraint"
                     },
                     {
-                        "type": "tripleConstraint",
+                        "value": {
+                            "type": "valueClass"
+                        },
                         "predicate": "http://a.example/p2",
-                        "value": {
-                            "type": "valueClass"
-                        }
+                        "type": "tripleConstraint"
                     },
                     {
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p3",
                         "value": {
                             "type": "valueClass"
-                        }
+                        },
+                        "predicate": "http://a.example/p3",
+                        "type": "tripleConstraint"
                     }
-                ],
-                "type": "group"
-            }
+                ]
+            },
+            "type": "shape"
         }
-    }
+    },
+    "prefixes": {},
+    "type": "schema"
 }

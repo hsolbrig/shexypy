@@ -1,8 +1,4 @@
 {
-    "prefixes": {
-        "ex": "http://a.example/"
-    },
-    "type": "schema",
     "shapes": {
         "http://a.example/IssueShape": {
             "expression": {
@@ -12,10 +8,14 @@
                     ],
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1"
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
             },
             "type": "shape"
         }
-    }
+    },
+    "prefixes": {
+        "ex": "http://a.example/"
+    },
+    "type": "schema"
 }

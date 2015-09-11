@@ -1,18 +1,18 @@
 {
-    "type": "schema",
-    "prefixes": {},
     "shapes": {
         "http://a.example/IssueShape": {
-            "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1",
                 "value": {
                     "type": "valueClass"
                 },
+                "predicate": "http://a.example/p1",
+                "min": 0,
                 "max": 1,
-                "min": 0
-            }
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
         }
-    }
+    },
+    "prefixes": {},
+    "type": "schema"
 }

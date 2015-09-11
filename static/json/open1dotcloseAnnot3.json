@@ -1,15 +1,11 @@
 {
-    "type": "schema",
-    "prefixes": {},
     "shapes": {
         "http://a.example/IssueShape": {
-            "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1",
                 "value": {
                     "type": "valueClass"
                 },
+                "predicate": "http://a.example/p1",
                 "annotations": [
                     [
                         "http://a.example/annot1",
@@ -23,8 +19,12 @@
                         "http://a.example/annot3",
                         "\"3\""
                     ]
-                ]
-            }
+                ],
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
         }
-    }
+    },
+    "prefixes": {},
+    "type": "schema"
 }

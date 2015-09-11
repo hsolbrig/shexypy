@@ -1,12 +1,11 @@
 {
-    "prefixes": {},
-    "type": "schema",
     "shapes": {
         "http://a.example/IssueShape": {
             "expression": {
                 "value": {
                     "values": [
                         {
+                            "stem": "http://a.example/v",
                             "exclusions": [
                                 {
                                     "stem": "http://a.example/v1",
@@ -21,16 +20,17 @@
                                     "type": "stem"
                                 }
                             ],
-                            "stem": "http://a.example/v",
                             "type": "stemRange"
                         }
                     ],
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1"
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
             },
             "type": "shape"
         }
-    }
+    },
+    "prefixes": {},
+    "type": "schema"
 }

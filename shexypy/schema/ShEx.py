@@ -1,7 +1,7 @@
 # ../shexypy/schema/ShEx.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:e868452c6455e6b80cb8bd5f90c308bc5a49c9be
-# Generated 2015-09-04 15:29:15.780757 by PyXB version 1.2.4 using Python 3.4.3.final.0
+# Generated 2015-09-11 16:37:32.809273 by PyXB version 1.2.4 using Python 3.4.3.final.0
 # Namespace http://www.w3.org/shex/
 
 from __future__ import unicode_literals
@@ -15,7 +15,7 @@ import sys
 import pyxb.utils.six as _six
 
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:9c61f994-5343-11e5-bf08-6c40088fdb3a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:4f494c02-58cd-11e5-91b8-6c40088fdb3a')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
@@ -81,7 +81,7 @@ class NodeType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mi
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NodeType')
     _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 230, 4)
     _Documentation = None
-NodeType._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=NodeType)
+NodeType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=NodeType, enum_prefix=None)
 NodeType.IRI = NodeType._CF_enumeration.addEnumeration(unicode_value='IRI', tag='IRI')
 NodeType.BNODE = NodeType._CF_enumeration.addEnumeration(unicode_value='BNODE', tag='BNODE')
 NodeType.LITERAL = NodeType._CF_enumeration.addEnumeration(unicode_value='LITERAL', tag='LITERAL')
@@ -142,7 +142,7 @@ class STD_ANON_ (pyxb.binding.datatypes.NMTOKEN, pyxb.binding.basis.enumeration_
     _ExpandedName = None
     _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 572, 20)
     _Documentation = None
-STD_ANON_._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_)
+STD_ANON_._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=STD_ANON_, enum_prefix=None)
 STD_ANON_.unbounded = STD_ANON_._CF_enumeration.addEnumeration(unicode_value='unbounded', tag='unbounded')
 STD_ANON_._InitializeFacetMap(STD_ANON_._CF_enumeration)
 

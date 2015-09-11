@@ -1,17 +1,17 @@
 {
-    "type": "schema",
-    "start": "_:N26706442ff444488bc3d875912ffeb85",
-    "prefixes": {},
     "shapes": {
-        "_:N26706442ff444488bc3d875912ffeb85": {
-            "type": "shape",
+        "_:N2326e5ce0f75421785eb5abad94740a6": {
             "expression": {
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1",
                 "value": {
                     "type": "valueClass"
-                }
-            }
+                },
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
         }
-    }
+    },
+    "prefixes": {},
+    "type": "schema",
+    "start": "_:N2326e5ce0f75421785eb5abad94740a6"
 }

@@ -1,19 +1,19 @@
 {
-    "type": "schema",
     "shapes": {
         "http://a.example/IssueShape": {
-            "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
-                    "type": "valueClass",
                     "values": [
                         "\"STRING_LITERAL2\""
-                    ]
+                    ],
+                    "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1"
-            }
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "type": "shape"
         }
     },
-    "prefixes": {}
+    "prefixes": {},
+    "type": "schema"
 }
