@@ -1,5 +1,5 @@
 BASE <http://a.example/>
-PREFIX : <http://a.example/>
+PREFIX : <http://ex.example/foo/#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 <x> :a <x1> .

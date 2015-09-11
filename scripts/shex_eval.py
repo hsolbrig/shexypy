@@ -26,14 +26,25 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
+from _collections_abc import Iterable
 import sys
+import os
 import argparse
 
 from rdflib import URIRef, Graph
 
-from shexypy.schema.ShEx import CreateFromDocument, ShapeLabel
-from shexypy.shexyinterpreter.interpretations import ShapeEvaluator
+from antlr4.InputStream import InputStream
+
+from pyxb.utils.domutils import StringToDOM
+
+_curdir = os.path.abspath(os.path.dirname(__file__))
+sys.path.append(os.path.join(_curdir, '..'))
+
+from shexypy.schema.ShEx import CreateFromDOM, ShapeLabel
+from shexypy.shexyinterpreter.ShapeInterpreter import ShapeInterpreter
 from shexypy.utils.xmlutils import prettyxml
+from shexypy.utils.manifest import ShExManifest, ShExManifestEntry
+from scripts.shex_parser import do_parse
 
 
 def build_argparser() -> argparse.ArgumentParser:
@@ -42,10 +53,14 @@ def build_argparser() -> argparse.ArgumentParser:
     :return: argument parser
     """
     parser = argparse.ArgumentParser(description="Run ShExDoc parser")
-    parser.add_argument("infile", help="Interpretation file.")
-    parser.add_argument("graph", help="Name of file containing the graph")
+    parser.add_argument("-i", "--infile", help="Interpretation file.")
+    parser.add_argument("-g", "--graph", help="Name of file containing the graph")
     parser.add_argument("-f", "--format", help="Graph file format", default="turtle")
     parser.add_argument("-p", "--print", help="Print parsed XML", action="store_true")
+    parser.add_argument("-s", "--start", help="Staring shape label")
+    parser.add_argument("-n", "--node", help="Focus node in graph")
+    parser.add_argument("-m", "--manifest", help="Name of manifest file")
+    parser.add_argument("-t", "--test", help="Entry in the manifest file")
     return parser
 
 
@@ -53,22 +68,78 @@ def parse_args(argparser: argparse.ArgumentParser, args: list) -> argparse.Names
     """ Parse the input arguments
     :return: Parsed input arguments
     """
-    parsed_args = argparser.parse_args(args)
-    return parsed_args
+    opts = argparser.parse_args(args)
+    if opts.manifest:
+        if opts.infile or opts.graph or opts.start or opts.node:
+            print("Cannot specify individual files and a manifest", file=sys.stderr)
+            return None
+    elif not (opts.infile and opts.graph and opts.node):
+        print("Input schema, graph and start node must be specified")
+        return None
+    elif opts.test:
+        print("Cannot supply a manifest entry without a manifest file")
+        return None
+    return opts
+
+
+class memory_file:
+    def __init__(self):
+        self._buffer = ""
+
+    def write(self, val):
+        self._buffer += val
+
+    def read(self):
+        return self._buffer
+
+
+def eval_entry(shex: str, start_shape: str, start_node: str, g: Graph, opts: argparse.Namespace):
+    schema = do_parse(InputStream(shex))
+    schema_xml = prettyxml(schema.to_dom())
+    if opts.print:
+        print(schema_xml)
+    schema_dom = StringToDOM(schema_xml)
+    schema = CreateFromDOM(schema_dom)
+    si = ShapeInterpreter(schema, schema_dom, g)
+    return si.i_shape(URIRef(start_node) if start_node else None, ShapeLabel(start_shape))
+
+
+def eval_manifest_entry(e: (str, Iterable), opts: argparse.Namespace):
+    print("Evaluating: %s" % e[0])
+    mes = e[1]
+    for me in mes:
+        print("   Entry: %s - " % me.entryuri, end='')
+        rslt = eval_entry(me.schema, me.start_shape, me.subject_iri, me.instances(fmt=opts.format), opts)
+        print("PASS" if rslt == me.should_pass else "FAIL")
 
 
 def main(argv: list):
+    sys.path.append(os.path.join(_curdir, '../shexypy/shexyparser/parser'))
+    sys.path.append(os.path.join(_curdir, '../shexypy/shexyparser/parser_impl'))
     parser_args = build_argparser()
     opts = parse_args(parser_args, argv)
-
-    schema = CreateFromDocument(open(opts.infile).read())
-    if opts.print:
-        print(prettyxml(schema))
-    g = Graph()
-    g.parse(opts.graph, format=opts.format)
-    seval = ShapeEvaluator(schema)
-    ls = seval.compile(ShapeLabel("S"))
-    ls.test(URIRef("http://a.example/x"), g)
+    if not opts:
+        sys.exit(0)
+    if opts.manifest:
+        mf = ShExManifest(opts.manifest, fmt=opts.format)
+        if not opts.test:
+            for e in sorted(mf.entries.items(), key=lambda x: x[0]):
+                eval_manifest_entry(e, opts)
+        else:
+            if opts.test in mf.entries:
+                eval_manifest_entry((opts.test, mf.entries[opts.test]), opts)
+            else:
+                print("%s not found in manifest" % opts.test)
+    else:
+        indoc = open(opts.infile).read()
+        schema_dom = StringToDOM(indoc)
+        schema = CreateFromDOM(schema_dom)
+        if opts.print:
+            print(prettyxml(schema))
+        g = Graph()
+        g.parse(opts.graph, format=opts.format)
+        if ShapeInterpreter(schema, schema_dom, g).i_shape(URIRef(opts.node), ShapeLabel(opts.start)):
+            print("*** Success ****")
 
 if __name__ == '__main__':
     main(sys.argv[1:])

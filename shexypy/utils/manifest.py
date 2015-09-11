@@ -29,12 +29,16 @@
 from rdflib import Graph, RDF, RDFS, BNode, URIRef, Namespace
 from urllib.request import urlopen
 
-shext = Namespace("http://www.w3.org/ns/shextest#")
+shext = Namespace("http://www.w3.org/ns/sht#")
 mf = Namespace("http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#")
 
 
 class ShExManifestEntry:
     def __init__(self, entryuri: URIRef, g: Graph):
+        """ An individual manifest entry
+        :param entryuri: URI of the entry
+        :param g: graph containing the entry
+        """
         self.g = g
         self.entryuri = entryuri
 
@@ -59,20 +63,22 @@ class ShExManifestEntry:
 
     @property
     def should_parse(self):
+        # May not be used
         return self._single_obj(RDF.type) != shext.NegativeSyntax
 
     @property
     def should_pass(self):
-        return self._single_obj(RDF.type) == shext.Valid
+        # May not be used
+        return self._single_obj(RDF.type) == shext.ValidationTest
 
     @property
     def schema(self):
         schema_uri = str(self._single_obj(shext.schema))
         return urlopen(schema_uri).read().decode() if schema_uri else None
 
-    @property
-    def instances(self, fmt='n3'):
-        return [self._instance(e, fmt) for e in self._objs(shext.instance)]
+    def instances(self, fmt='turtle'):
+        return self._instance(self._single_obj(shext.data), fmt)
+        # return [self._instance(e, fmt) for e in self._objs(shext.instance)]
 
     @staticmethod
     def _instance(uri, fmt):
@@ -82,7 +88,7 @@ class ShExManifestEntry:
 
     @property
     def subject_iri(self):
-        return self._single_obj(shext.iri)
+        return self._single_obj(shext.focus)
 
     @property
     def start_shape(self):
@@ -92,15 +98,18 @@ class ShExManifestEntry:
         return str(self.name)
 
 
-
 class ShExManifest:
     def __init__(self, file_loc, fmt='n3'):
         self.g = Graph()
         self.g.parse(file_loc, format=fmt)
+        self.entries = {}
+
         entries = []
         for s in self.g.subjects(RDF.type, mf.Manifest):
             entries += [ShExManifestEntry(e, self.g) for e in self.listify(self.g.objects(s, mf.entries))]
-            self.entries = {str(e): e for e in entries}
+        for e in entries:
+            self.entries.setdefault(str(e), [])
+            self.entries[str(e)].append(e)
 
     def listify(self, nodes: list) -> list:
         """ Flatten an RDF List structure

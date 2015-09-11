@@ -27,7 +27,29 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
 import re
-from pyxb import binding
+from pyxb import binding, SimpleFacetValueError
+import pyxb.binding.facets as facets
+import pyxb.binding.datatypes as datatypes
+
+
+def test_numeric_facet(v, total_digits=None, fraction_digits=None):
+    class Decimal (datatypes.decimal):
+        pass
+    init_list = []
+    rval = None
+    if total_digits is not None:
+        Decimal._CF_totalDigits = facets.CF_totalDigits(super_facet=datatypes.decimal._CF_totalDigits, value=facets.CF_totalDigits._ValueDatatype(total_digits))
+        init_list.append(Decimal._CF_totalDigits)
+    if fraction_digits is not None:
+        Decimal._CF_fractionDigits = facets.CF_fractionDigits(super_facet=datatypes.decimal._CF_maxExclusive, value=facets.CF_fractionDigits._ValueDatatype(fraction_digits))
+        init_list.append(Decimal._CF_fractionDigits)
+    if init_list:
+        Decimal._InitializeFacetMap(*init_list)
+    try:
+        rval = Decimal(v)
+    except SimpleFacetValueError:
+        pass
+    return float(rval) if rval else None
 
 
 class PyxbWrapper:
@@ -87,3 +109,4 @@ class PyxbWrapper:
             rval += utxt[pos:e.start()] + map_unicode(e.group(1))
             pos = e.end()
         return rval + utxt[pos:]
+

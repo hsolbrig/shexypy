@@ -27,44 +27,11 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from urllib.parse import urljoin
-
-from rdflib import URIRef, XSD
+from rdflib import XSD
 
 from shexypy.schema.ShEx import *
+from shexypy.utils.PrefixMap import PrefixMap
 from shexypy.utils.pyxb_utils import PyxbWrapper
-
-
-class PrefixMap:
-
-    """ Prefix to URI mapping.  This performs both PNAME_NS / PNAME_LN and ATPNAME_NS / ATPNAME_LN mapping.
-    """
-    def __init__(self, dom_schema, schema: Schema):
-        """ Create a prefix to URI mapping.  We take advantage of the rdflib tools to manage this
-        :param dom_schema: DOM representation of the Schema document
-        :param schema: ShEx Schema instance to derive mapping from
-        """
-        self._nsc = pyxb.namespace.NamespaceContext.GetNodeContext(dom_schema.documentElement)
-        self._map = {prefix: str(url) for prefix, url in self._nsc.inScopeNamespaces().items()}
-        if schema.default_namespace:
-            self._map[''] = schema.default_namespace
-
-    def uri_for(self, iri: str) -> str:
-        """ Return the URI form of the supplied IRI.  We use the presence of "://" in the incoming string to deterime
-        whether it is in QName or IRI format
-        :param iri: IRI to be mapped
-        :return: mapped IRI
-        """
-        if iri and ':' in iri and '://' not in iri:
-            ns, local = iri.split(':', 1)
-            if ':' not in local and ns in self._map:
-                return urljoin(self._map[ns], local, allow_fragments=False)
-        elif ':' not in iri and iri in self._map:
-            return self._map[iri]
-        return str(URIRef(iri)) if iri is not None else ""
-
-    def namespaces(self):
-        return self._map
 
 
 class ShExSchema:
@@ -78,7 +45,7 @@ class ShExSchema:
         self.schema = CreateFromDOM(dom_schema)
         self.json = dict(type="schema")
 
-        self._prefixmap = PrefixMap(dom_schema, self.schema)
+        self._prefixmap = PrefixMap(self.schema, dom_schema)
         self._exclude_prefixes = self.schema.exclude_prefixes.split(' ') + ['xml', 'xmlns']
         self.shex_schema()
 
