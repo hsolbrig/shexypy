@@ -30,7 +30,7 @@
 import unittest
 import os
 
-from rdflib import Literal
+from rdflib import Literal, RDFS
 
 from shexypy.utils.manifest import *
 
@@ -51,6 +51,8 @@ class ManifestTestCase(unittest.TestCase):
     def test_attributes(self):
         mfst = ShExManifest(os.path.abspath(os.path.join('testdata', 'manifest.ttl')), 'n3')
         me = mfst.entries['disjunction2']
+        self.assertEqual(1, len(me))
+        me = me[0]
         self.assertEqual(me.comments, 'disjunction 2 ')
         self.assertEqual(me.status, mf.proposed)
         self.assertEqual(me.subject_iri, ex.x)
@@ -59,17 +61,21 @@ class ManifestTestCase(unittest.TestCase):
         self.assertTrue(me.should_pass)
 
         me = mfst.entries['disjunction4']
+        self.assertEqual(1, len(me))
+        me = me[0]
         self.assertTrue(me.should_parse)
         self.assertFalse(me.should_pass)
 
         me = mfst.entries['simple-star']
+        self.assertEqual(1, len(me))
+        me = me[0]
         self.assertTrue(me.should_parse)
         self.assertFalse(me.should_pass)
 
     def test_shex(self):
         mfst = ShExManifest(os.path.abspath(os.path.join('testdata', 'manifest.ttl')), 'n3')
         schema = open(os.path.join('testdata', 'country-observations.shex')).read()
-        self.assertEqual(schema, mfst.entries['country-observations-valid'].schema)
+        self.assertEqual(schema, mfst.entries['country-observations-valid'][0].schema)
 
     def test_instances(self):
         mfst = ShExManifest(os.path.abspath(os.path.join('testdata', 'manifest.ttl')), 'n3')
@@ -83,8 +89,7 @@ class ManifestTestCase(unittest.TestCase):
              (URIRef('http://example.org/c1'), URIRef('http://www.w3.org/2000/01/rdf-schema#label'), Literal('Spain')),
              (URIRef('http://example.org/o1'), URIRef('http://example.org/value'),
               Literal('23', datatype=URIRef('http://www.w3.org/2001/XMLSchema#integer')))},
-            set(mfst.entries['country-observations-valid'].instances[0].triples((None, None, None))))
-
+            set(mfst.entries['country-observations-valid'][0].instance().triples((None, None, None))))
 
 
 if __name__ == '__main__':

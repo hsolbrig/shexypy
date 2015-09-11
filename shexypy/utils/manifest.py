@@ -64,11 +64,10 @@ class ShExManifestEntry:
     @property
     def should_parse(self):
         # May not be used
-        return self._single_obj(RDF.type) != shext.NegativeSyntax
+        return True
 
     @property
     def should_pass(self):
-        # May not be used
         return self._single_obj(RDF.type) == shext.ValidationTest
 
     @property
@@ -76,9 +75,8 @@ class ShExManifestEntry:
         schema_uri = str(self._single_obj(shext.schema))
         return urlopen(schema_uri).read().decode() if schema_uri else None
 
-    def instances(self, fmt='turtle'):
+    def instance(self, fmt='turtle'):
         return self._instance(self._single_obj(shext.data), fmt)
-        # return [self._instance(e, fmt) for e in self._objs(shext.instance)]
 
     @staticmethod
     def _instance(uri, fmt):
