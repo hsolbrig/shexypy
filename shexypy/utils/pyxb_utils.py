@@ -110,3 +110,18 @@ class PyxbWrapper:
             pos = e.end()
         return rval + utxt[pos:]
 
+
+class PyxbChoice:
+
+    def __init__(self, node):
+        self._node = node
+
+    def __getattr__(self, item):
+        if item.startswith('_'):
+            return self.__dict__[item]
+        elif item == 'elements':
+            return [PyxbChoice(n) for n in self._node._validatedChildren()]
+        elif item == 'type':
+            return self._node.elementDeclaration._ElementDeclaration__id
+        else:
+            return self._node.value if self._node.elementDeclaration._ElementDeclaration__id == item else None
