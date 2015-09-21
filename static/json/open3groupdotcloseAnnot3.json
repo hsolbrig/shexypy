@@ -1,6 +1,7 @@
 {
     "shapes": {
         "http://a.example/IssueShape": {
+            "type": "shape",
             "expression": {
                 "annotations": [
                     [
@@ -19,31 +20,30 @@
                 "type": "group",
                 "expressions": [
                     {
+                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
-                        "predicate": "http://a.example/p1",
-                        "type": "tripleConstraint"
+                        "predicate": "http://a.example/p1"
                     },
                     {
+                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
-                        "predicate": "http://a.example/p2",
-                        "type": "tripleConstraint"
+                        "predicate": "http://a.example/p2"
                     },
                     {
+                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
-                        "predicate": "http://a.example/p3",
-                        "type": "tripleConstraint"
+                        "predicate": "http://a.example/p3"
                     }
                 ]
-            },
-            "type": "shape"
+            }
         }
     },
-    "prefixes": {},
-    "type": "schema"
+    "type": "schema",
+    "prefixes": {}
 }

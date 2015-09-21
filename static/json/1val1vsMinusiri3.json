@@ -1,32 +1,32 @@
 {
     "shapes": {
         "http://a.example/IssueShape": {
+            "type": "shape",
             "expression": {
-                "predicate": "http://a.example/p1",
                 "valueClassRef": "http://a.example/vs1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
+            }
         }
     },
-    "prefixes": {},
-    "type": "schema",
     "valueClasses": {
         "http://a.example/vs1": {
             "values": [
                 {
-                    "stem": {
-                        "type": "wildcard"
-                    },
                     "exclusions": [
                         "http://a.example/v1",
                         "http://a.example/v2",
                         "http://a.example/v3"
                     ],
-                    "type": "stemRange"
+                    "type": "stemRange",
+                    "stem": {
+                        "type": "wildcard"
+                    }
                 }
             ],
             "type": "valueClass"
         }
-    }
+    },
+    "type": "schema",
+    "prefixes": {}
 }

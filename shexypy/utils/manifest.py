@@ -29,7 +29,7 @@
 from rdflib import Graph, RDF, RDFS, BNode, URIRef, Namespace
 from urllib.request import urlopen
 
-shext = Namespace("http://www.w3.org/ns/sht#")
+sht = Namespace("http://www.w3.org/ns/shacl/test-suite#")
 mf = Namespace("http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#")
 
 
@@ -41,6 +41,10 @@ class ShExManifestEntry:
         """
         self.g = g
         self.entryuri = entryuri
+        action = self._single_obj(mf.action)
+        assert action, "Invalid action list in entry"
+        self.action_ = {p: o for p, o in g.predicate_objects(action)}
+        assert self.action_, "No actions"
 
     def _objs(self, p):
         return self.g.objects(self.entryuri, p)
@@ -48,6 +52,9 @@ class ShExManifestEntry:
     def _single_obj(self, p):
         rval = list(self._objs(p))
         return rval[0] if rval else None
+
+    def _action_obj(self, p):
+        return self.action_[p]
 
     @property
     def name(self):
@@ -59,7 +66,7 @@ class ShExManifestEntry:
 
     @property
     def status(self):
-        return self._single_obj(shext.status)
+        return self._single_obj(mf.status)
 
     @property
     def should_parse(self):
@@ -68,15 +75,15 @@ class ShExManifestEntry:
 
     @property
     def should_pass(self):
-        return self._single_obj(RDF.type) == shext.ValidationTest
+        return self._single_obj(RDF.type) == sht.ValidationTest
 
     @property
     def schema(self):
-        schema_uri = str(self._single_obj(shext.schema))
+        schema_uri = str(self._action_obj(sht.schema))
         return urlopen(schema_uri).read().decode() if schema_uri else None
 
     def instance(self, fmt='turtle'):
-        return self._instance(self._single_obj(shext.data), fmt)
+        return self._instance(self._action_obj(sht.data), fmt)
 
     @staticmethod
     def _instance(uri, fmt):
@@ -86,11 +93,11 @@ class ShExManifestEntry:
 
     @property
     def subject_iri(self):
-        return self._single_obj(shext.focus)
+        return self._action_obj(sht.focus)
 
     @property
     def start_shape(self):
-        return self._single_obj(shext.shape)
+        return self._action_obj(sht.shape)
 
     def __str__(self):
         return str(self.name)

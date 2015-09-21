@@ -101,6 +101,9 @@ def eval_entry(shex: str, start_shape: str, start_node: str, g: Graph, opts: arg
     schema_dom = StringToDOM(schema_xml)
     schema = CreateFromDOM(schema_dom)
     si = ShapeInterpreter(schema, schema_dom, g)
+    # TODO: Kludge to fix a bug in the manifest itself
+    if str(start_shape) not in si._shapes:
+        start_shape = str(start_shape).split('/')[-1]
     return si.i_shape(URIRef(start_node) if start_node else None, ShapeLabel(start_shape))
 
 

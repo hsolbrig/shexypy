@@ -1,29 +1,29 @@
 {
     "shapes": {
         "http://a.example/PersonShape": {
+            "type": "shape",
             "expression": {
+                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
+                "predicate": "http://a.example/p1"
+            }
         },
         "http://a.example/EmployeeShape": {
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "predicate": "http://a.example/p2",
-                "type": "tripleConstraint"
-            },
+            "type": "shape",
             "inherit": [
                 "http://a.example/PersonShape"
             ],
-            "type": "shape"
+            "expression": {
+                "type": "tripleConstraint",
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p2"
+            }
         }
     },
-    "prefixes": {},
-    "type": "schema"
+    "type": "schema",
+    "prefixes": {}
 }

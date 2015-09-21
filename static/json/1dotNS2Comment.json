@@ -1,19 +1,19 @@
 {
     "shapes": {
         "http://a.example/IssueShape": {
+            "type": "shape",
             "expression": {
+                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
+                "predicate": "http://a.example/p1"
+            }
         }
     },
+    "type": "schema",
     "prefixes": {
         "IssueShape": "http://a.example/IssueShape",
         "p1": "http://a.example/p1"
-    },
-    "type": "schema"
+    }
 }

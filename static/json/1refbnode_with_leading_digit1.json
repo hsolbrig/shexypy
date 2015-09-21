@@ -1,27 +1,27 @@
 {
     "shapes": {
-        "_:0": {
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
-        },
         "http://a.example/EmployeeShape": {
+            "type": "shape",
             "expression": {
+                "type": "tripleConstraint",
                 "value": {
                     "reference": "_:0",
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p2",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
+                "predicate": "http://a.example/p2"
+            }
+        },
+        "_:0": {
+            "type": "shape",
+            "expression": {
+                "type": "tripleConstraint",
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1"
+            }
         }
     },
-    "prefixes": {},
-    "type": "schema"
+    "type": "schema",
+    "prefixes": {}
 }

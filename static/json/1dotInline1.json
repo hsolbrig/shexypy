@@ -1,27 +1,27 @@
 {
     "shapes": {
-        "_:N3948264f0a934bfc8622eb6f0be75e1e": {
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
-        },
         "http://a.example/EmployeeShape": {
+            "type": "shape",
             "expression": {
+                "type": "tripleConstraint",
                 "value": {
-                    "reference": "_:N3948264f0a934bfc8622eb6f0be75e1e",
+                    "reference": "_:N95e5833241c54e87a36f09cda515cc9b",
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p2",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
+                "predicate": "http://a.example/p2"
+            }
+        },
+        "_:N95e5833241c54e87a36f09cda515cc9b": {
+            "type": "shape",
+            "expression": {
+                "type": "tripleConstraint",
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1"
+            }
         }
     },
-    "prefixes": {},
-    "type": "schema"
+    "type": "schema",
+    "prefixes": {}
 }

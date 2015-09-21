@@ -4,6 +4,6 @@
             "type": "shape"
         }
     },
-    "prefixes": {},
-    "type": "schema"
+    "type": "schema",
+    "prefixes": {}
 }

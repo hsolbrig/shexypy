@@ -1,16 +1,16 @@
 {
     "shapes": {
         "http://a.example/IssueShape": {
+            "type": "shape",
             "expression": {
+                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
+                "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+            }
         }
     },
-    "prefixes": {},
-    "type": "schema"
+    "type": "schema",
+    "prefixes": {}
 }

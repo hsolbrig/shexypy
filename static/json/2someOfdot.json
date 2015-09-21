@@ -1,28 +1,28 @@
 {
     "shapes": {
         "http://a.example/IssueShape": {
+            "type": "shape",
             "expression": {
                 "type": "someOf",
                 "expressions": [
                     {
+                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
-                        "predicate": "http://a.example/p1",
-                        "type": "tripleConstraint"
+                        "predicate": "http://a.example/p1"
                     },
                     {
+                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
-                        "predicate": "http://a.example/p2",
-                        "type": "tripleConstraint"
+                        "predicate": "http://a.example/p2"
                     }
                 ]
-            },
-            "type": "shape"
+            }
         }
     },
-    "prefixes": {},
-    "type": "schema"
+    "type": "schema",
+    "prefixes": {}
 }

@@ -1,17 +1,17 @@
 {
     "shapes": {
         "http://a.example/IssueShape": {
+            "type": "shape",
             "expression": {
                 "negated": 1,
-                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
+                "predicate": "http://a.example/p1"
+            }
         }
     },
-    "prefixes": {},
-    "type": "schema"
+    "type": "schema",
+    "prefixes": {}
 }

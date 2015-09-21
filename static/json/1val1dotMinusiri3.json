@@ -1,29 +1,29 @@
 {
     "shapes": {
         "http://a.example/IssueShape": {
+            "type": "shape",
             "expression": {
+                "type": "tripleConstraint",
                 "value": {
                     "values": [
                         {
-                            "stem": {
-                                "type": "wildcard"
-                            },
                             "exclusions": [
                                 "http://a.example/v1",
                                 "http://a.example/v2",
                                 "http://a.example/v3"
                             ],
-                            "type": "stemRange"
+                            "type": "stemRange",
+                            "stem": {
+                                "type": "wildcard"
+                            }
                         }
                     ],
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1",
-                "type": "tripleConstraint"
-            },
-            "type": "shape"
+                "predicate": "http://a.example/p1"
+            }
         }
     },
-    "prefixes": {},
-    "type": "schema"
+    "type": "schema",
+    "prefixes": {}
 }
