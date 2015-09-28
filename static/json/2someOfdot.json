@@ -6,17 +6,17 @@
                 "type": "someOf",
                 "expressions": [
                     {
-                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p1"
                     },
                     {
-                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p2"
                     }
                 ]

@@ -9,10 +9,10 @@
                         "http://a.example/IRIREF"
                     ]
                 ],
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

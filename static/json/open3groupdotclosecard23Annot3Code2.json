@@ -3,28 +3,26 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "max": 3,
-                "min": 2,
                 "expressions": [
                     {
-                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p1"
                     },
                     {
-                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p2"
                     },
                     {
-                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p3"
                     }
                 ],
@@ -42,15 +40,19 @@
                         "\"3\""
                     ]
                 ],
+                "max": 3,
                 "type": "group",
-                "semAct": [
+                "semActs": [
                     {
-                        "http://a.example/semAct1": " code1 "
+                        "name": "http://a.example/semAct1",
+                        "contents": " code1 "
                     },
                     {
-                        "http://a.example/semAct2": " code2 "
+                        "name": "http://a.example/semAct2",
+                        "contents": " code2 "
                     }
-                ]
+                ],
+                "min": 2
             }
         }
     },

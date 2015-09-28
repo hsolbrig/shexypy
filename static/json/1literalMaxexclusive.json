@@ -3,12 +3,12 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
+                    "maxexclusive": 5,
                     "nodeKind": "literal",
-                    "type": "valueClass",
-                    "maxexclusive": 5
+                    "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

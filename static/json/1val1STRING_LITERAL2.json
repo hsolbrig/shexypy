@@ -3,13 +3,13 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
+                    "type": "valueClass",
                     "values": [
                         "\"STRING_LITERAL2\""
-                    ],
-                    "type": "valueClass"
+                    ]
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

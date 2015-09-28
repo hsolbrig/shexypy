@@ -17,12 +17,12 @@
                         "\"3\""
                     ]
                 ],
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
-                "inverse": true,
-                "predicate": "http://a.example/p1"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1",
+                "inverse": true
             }
         }
     },

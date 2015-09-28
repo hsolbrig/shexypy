@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema default-namespace="http://all.example/" xmlns:or="http://all.example/" xmlns:prefix1="http://all.example/" start="prefix1:3" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:PREFIX="http://all.example/" xmlns:base="http://all.example/" xmlns:iri="http://all.example/" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" xmlns:nonliteral="http://all.example/" xmlns:a="http://all.example/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pattern="http://all.example/" xmlns:S5="http://all.example/S5" xmlns:closed="http://all.example/" xmlns:prefix="http://all.example/" xmlns:BaSe="http://all.example/" xmlns="http://www.w3.org/shex/" xmlns:virtual="http://all.example/" xmlns:literal="http://all.example/" xmlns:bnode="http://all.example/" exclude-prefixes="xsi shex" xmlns:extra="http://all.example/">
+    <startActions>
+        <action>
+            <codeDecl iri="prefix1:act1"> START1 </codeDecl>
+        </action>
+        <action>
+            <codeDecl iri="prefix1:act2"> START2 </codeDecl>
+        </action>
+    </startActions>
+    <shape label="http://all.example/S1">
+        <group>
+            <tripleConstraint predicate="http://all.example/p1"/>
+            <tripleConstraint predicate="http://all.example/p2"/>
+            <tripleConstraint predicate="http://all.example/p3"/>
+        </group>
+            <extra ref="http://all.example/p1"/>
+            <extra ref="http://all.example/p2"/>
+            <extra ref="http://all.example/p3"/>
+        </shape>
+        <shape label="prefix1:S2">
+            <group>
+                <tripleConstraint predicate="prefix1:p1-"/>
+                <tripleConstraint predicate="prefix1:p2"/>
+                <tripleConstraint predicate="prefix1:p3"/>
+            </group>
+                <extra ref="prefix1:p1"/>
+                <extra ref="prefix1:p2"/>
+                <extra ref="prefix1:p3"/>
+            </shape>
+        </Schema>

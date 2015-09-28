@@ -1,0 +1,18 @@
+{
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "type": "shape",
+            "expression": {
+                "value": {
+                    "mininclusive": 5.5,
+                    "type": "valueClass",
+                    "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+                },
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
+            }
+        }
+    },
+    "type": "schema",
+    "prefixes": {}
+}

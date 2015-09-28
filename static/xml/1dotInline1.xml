@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xmlns="http://www.w3.org/shex/" exclude-prefixes="xsi shex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd">
-    <shape label="_:N95e5833241c54e87a36f09cda515cc9b">
+<Schema xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" exclude-prefixes="xsi shex">
+    <shape label="_:N75292bfbf2874579a794c0a8118d1cc7">
         <tripleConstraint predicate="http://a.example/p1"/>
     </shape>
     <shape label="http://a.example/EmployeeShape">
-        <tripleConstraint predicate="http://a.example/p2" objectShape="_:N95e5833241c54e87a36f09cda515cc9b"/>
+        <tripleConstraint objectShape="_:N75292bfbf2874579a794c0a8118d1cc7" predicate="http://a.example/p2"/>
     </shape>
 </Schema>

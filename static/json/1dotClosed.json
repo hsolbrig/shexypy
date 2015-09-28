@@ -1,13 +1,13 @@
 {
     "shapes": {
         "http://a.example/IssueShape": {
-            "type": "shape",
             "closed": 1,
+            "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

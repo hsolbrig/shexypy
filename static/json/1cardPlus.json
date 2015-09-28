@@ -3,13 +3,13 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "min": 1,
-                "max": "*",
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p1"
+                "max": "*",
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1",
+                "min": 1
             }
         }
     },

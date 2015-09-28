@@ -3,21 +3,21 @@
         "http://a.example/EmployeeShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "reference": "_:0",
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p2"
             }
         },
         "_:0": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

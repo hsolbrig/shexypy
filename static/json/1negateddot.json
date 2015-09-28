@@ -3,11 +3,11 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "negated": 1,
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "negated": 1,
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

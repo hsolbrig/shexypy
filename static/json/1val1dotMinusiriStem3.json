@@ -3,32 +3,32 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
+                    "type": "valueClass",
                     "values": [
                         {
-                            "exclusions": [
-                                {
-                                    "type": "stem",
-                                    "stem": "http://a.example/v1"
-                                },
-                                {
-                                    "type": "stem",
-                                    "stem": "http://a.example/v2"
-                                },
-                                {
-                                    "type": "stem",
-                                    "stem": "http://a.example/v3"
-                                }
-                            ],
-                            "type": "stemRange",
                             "stem": {
                                 "type": "wildcard"
-                            }
+                            },
+                            "type": "stemRange",
+                            "exclusions": [
+                                {
+                                    "stem": "http://a.example/v1",
+                                    "type": "stem"
+                                },
+                                {
+                                    "stem": "http://a.example/v2",
+                                    "type": "stem"
+                                },
+                                {
+                                    "stem": "http://a.example/v3",
+                                    "type": "stem"
+                                }
+                            ]
                         }
-                    ],
-                    "type": "valueClass"
+                    ]
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

@@ -7,13 +7,14 @@
                     "type": "valueClass"
                 },
                 "type": "tripleConstraint",
-                "semAct": [
-                    {
-                        "http://a.example/semAct1": " code1 "
-                    }
-                ],
+                "predicate": "http://a.example/p1",
                 "inverse": true,
-                "predicate": "http://a.example/p1"
+                "semActs": [
+                    {
+                        "name": "http://a.example/semAct1",
+                        "contents": " code1 "
+                    }
+                ]
             }
         }
     },

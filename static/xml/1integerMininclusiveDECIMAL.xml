@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" exclude-prefixes="xsi shex">
+    <shape label="http://a.example/IssueShape">
+        <tripleConstraint datatype="http://www.w3.org/2001/XMLSchema#integer" predicate="http://a.example/p1">
+            <objectConstraint>
+                <facet>
+                    <minValue>
+                        <decimal>5.5</decimal>
+                    </minValue>
+                </facet>
+            </objectConstraint>
+        </tripleConstraint>
+    </shape>
+</Schema>

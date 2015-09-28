@@ -1,22 +1,23 @@
 {
-    "startAct": [
+    "startActs": [
         {
-            "http://a.example/semAct1": " code1 "
+            "name": "http://a.example/semAct1",
+            "contents": " code1 "
         }
     ],
+    "type": "schema",
+    "prefixes": {},
+    "start": "http://a.example/IssueShape",
     "shapes": {
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }
-    },
-    "start": "http://a.example/IssueShape",
-    "type": "schema",
-    "prefixes": {}
+    }
 }

@@ -1,17 +1,17 @@
 {
     "shapes": {
-        "_:Nf2c6e0ebe96c4d3b89311324afc634eb": {
+        "_:N297130b2e0fd4c2793160d6116060a9c": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }
     },
-    "start": "_:Nf2c6e0ebe96c4d3b89311324afc634eb",
     "type": "schema",
-    "prefixes": {}
+    "prefixes": {},
+    "start": "_:N297130b2e0fd4c2793160d6116060a9c"
 }

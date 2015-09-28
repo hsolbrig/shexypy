@@ -3,30 +3,30 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
+                    "type": "valueClass",
                     "values": [
                         {
+                            "stem": "http://a.example/v",
+                            "type": "stemRange",
                             "exclusions": [
                                 {
-                                    "type": "stem",
-                                    "stem": "http://a.example/v1"
+                                    "stem": "http://a.example/v1",
+                                    "type": "stem"
                                 },
                                 {
-                                    "type": "stem",
-                                    "stem": "http://a.example/v2"
+                                    "stem": "http://a.example/v2",
+                                    "type": "stem"
                                 },
                                 {
-                                    "type": "stem",
-                                    "stem": "http://a.example/v3"
+                                    "stem": "http://a.example/v3",
+                                    "type": "stem"
                                 }
-                            ],
-                            "type": "stemRange",
-                            "stem": "http://a.example/v"
+                            ]
                         }
-                    ],
-                    "type": "valueClass"
+                    ]
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

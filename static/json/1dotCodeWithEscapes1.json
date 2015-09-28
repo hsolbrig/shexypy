@@ -3,16 +3,17 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
-                "semAct": [
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1",
+                "semActs": [
                     {
-                        "http://a.example/semAct1": "%{\\%};"
+                        "name": "http://a.example/semAct1",
+                        "contents": "%{\\%};"
                     }
-                ],
-                "predicate": "http://a.example/p1"
+                ]
             }
         }
     },

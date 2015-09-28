@@ -1,48 +1,48 @@
 {
     "shapes": {
-        "http://a.example/PersonShape": {
-            "type": "shape",
-            "expression": {
-                "type": "tripleConstraint",
-                "value": {
-                    "type": "valueClass"
-                },
-                "predicate": "http://a.example/p1"
-            }
-        },
-        "http://a.example/MemberShape": {
-            "type": "shape",
-            "expression": {
-                "type": "tripleConstraint",
-                "value": {
-                    "type": "valueClass"
-                },
-                "predicate": "http://a.example/p2"
-            }
-        },
         "http://a.example/ManagedShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p3"
+            }
+        },
+        "http://a.example/PersonShape": {
+            "type": "shape",
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1"
             }
         },
         "http://a.example/EmployeeShape": {
             "type": "shape",
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p4"
+            },
             "inherit": [
                 "http://a.example/PersonShape",
                 "http://a.example/MemberShape",
                 "http://a.example/ManagedShape"
-            ],
+            ]
+        },
+        "http://a.example/MemberShape": {
+            "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
-                "predicate": "http://a.example/p4"
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p2"
             }
         }
     },

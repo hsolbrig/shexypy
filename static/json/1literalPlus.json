@@ -1,0 +1,19 @@
+{
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "type": "shape",
+            "expression": {
+                "value": {
+                    "nodeKind": "literal",
+                    "type": "valueClass"
+                },
+                "max": "*",
+                "type": "tripleConstraint",
+                "predicate": "http://a.example/p1",
+                "min": 1
+            }
+        }
+    },
+    "type": "schema",
+    "prefixes": {}
+}

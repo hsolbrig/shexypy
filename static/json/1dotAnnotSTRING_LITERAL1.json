@@ -9,10 +9,10 @@
                         "\"STRING_LITERAL1\""
                     ]
                 ],
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

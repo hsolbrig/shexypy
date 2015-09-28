@@ -3,21 +3,21 @@
         "http://a.example/EmployeeShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
-                    "reference": "_:N95e5833241c54e87a36f09cda515cc9b",
+                    "reference": "_:N75292bfbf2874579a794c0a8118d1cc7",
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p2"
             }
         },
-        "_:N95e5833241c54e87a36f09cda515cc9b": {
+        "_:N75292bfbf2874579a794c0a8118d1cc7": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

@@ -1,101 +1,104 @@
 {
-    "start": "http://all.example/3",
-    "startAct": [
+    "startActs": [
         {
-            "http://all.example/act1": " START1 "
+            "contents": " START1 ",
+            "name": "http://all.example/act1"
         },
         {
-            "http://all.example/act2": " START2 "
+            "contents": " START2 ",
+            "name": "http://all.example/act2"
         }
     ],
+    "start": "http://all.example/3",
+    "shapes": {
+        "http://all.example/S2": {
+            "extra": [
+                "http://all.example/p1",
+                "http://all.example/p2",
+                "http://all.example/p3"
+            ],
+            "expression": {
+                "expressions": [
+                    {
+                        "predicate": "http://all.example/p1-",
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "predicate": "http://all.example/p2",
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "predicate": "http://all.example/p3",
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "type": "tripleConstraint"
+                    }
+                ],
+                "type": "group"
+            },
+            "type": "shape"
+        },
+        "http://all.example/S1": {
+            "extra": [
+                "http://all.example/p1",
+                "http://all.example/p2",
+                "http://all.example/p3"
+            ],
+            "expression": {
+                "expressions": [
+                    {
+                        "predicate": "http://all.example/p1",
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "predicate": "http://all.example/p2",
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "predicate": "http://all.example/p3",
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "type": "tripleConstraint"
+                    }
+                ],
+                "type": "group"
+            },
+            "type": "shape"
+        }
+    },
     "prefixes": {
         "": "http://all.example/",
-        "a": "http://all.example/",
-        "closed": "http://all.example/",
-        "PREFIX": "http://all.example/",
-        "literal": "http://all.example/",
-        "BaSe": "http://all.example/",
-        "virtual": "http://all.example/",
-        "iri": "http://all.example/",
-        "prefix": "http://all.example/",
         "base": "http://all.example/",
-        "nonliteral": "http://all.example/",
+        "prefix1": "http://all.example/",
+        "closed": "http://all.example/",
+        "iri": "http://all.example/",
+        "PREFIX": "http://all.example/",
         "bnode": "http://all.example/",
         "S5": "http://all.example/S5",
-        "or": "http://all.example/",
         "pattern": "http://all.example/",
-        "prefix1": "http://all.example/",
+        "virtual": "http://all.example/",
+        "prefix": "http://all.example/",
+        "literal": "http://all.example/",
+        "a": "http://all.example/",
+        "or": "http://all.example/",
+        "BaSe": "http://all.example/",
+        "nonliteral": "http://all.example/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
         "extra": "http://all.example/"
     },
-    "type": "schema",
-    "shapes": {
-        "http://all.example/S1": {
-            "expression": {
-                "expressions": [
-                    {
-                        "value": {
-                            "type": "valueClass"
-                        },
-                        "predicate": "http://all.example/p1",
-                        "type": "tripleConstraint"
-                    },
-                    {
-                        "value": {
-                            "type": "valueClass"
-                        },
-                        "predicate": "http://all.example/p2",
-                        "type": "tripleConstraint"
-                    },
-                    {
-                        "value": {
-                            "type": "valueClass"
-                        },
-                        "predicate": "http://all.example/p3",
-                        "type": "tripleConstraint"
-                    }
-                ],
-                "type": "group"
-            },
-            "type": "shape",
-            "extra": [
-                "http://all.example/p1",
-                "http://all.example/p2",
-                "http://all.example/p3"
-            ]
-        },
-        "http://all.example/S2": {
-            "expression": {
-                "expressions": [
-                    {
-                        "value": {
-                            "type": "valueClass"
-                        },
-                        "predicate": "http://all.example/p1-",
-                        "type": "tripleConstraint"
-                    },
-                    {
-                        "value": {
-                            "type": "valueClass"
-                        },
-                        "predicate": "http://all.example/p2",
-                        "type": "tripleConstraint"
-                    },
-                    {
-                        "value": {
-                            "type": "valueClass"
-                        },
-                        "predicate": "http://all.example/p3",
-                        "type": "tripleConstraint"
-                    }
-                ],
-                "type": "group"
-            },
-            "type": "shape",
-            "extra": [
-                "http://all.example/p1",
-                "http://all.example/p2",
-                "http://all.example/p3"
-            ]
-        }
-    }
+    "type": "schema"
 }

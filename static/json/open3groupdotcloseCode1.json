@@ -6,30 +6,31 @@
                 "type": "group",
                 "expressions": [
                     {
-                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p1"
                     },
                     {
-                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p2"
                     },
                     {
-                        "type": "tripleConstraint",
                         "value": {
                             "type": "valueClass"
                         },
+                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p3"
                     }
                 ],
-                "semAct": [
+                "semActs": [
                     {
-                        "http://a.example/semAct1": " code1 "
+                        "name": "http://a.example/semAct1",
+                        "contents": " code1 "
                     }
                 ]
             }

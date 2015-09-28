@@ -3,15 +3,15 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
                     "type": "valueClass"
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }
     },
-    "start": "http://a.example/IssueShape",
     "type": "schema",
-    "prefixes": {}
+    "prefixes": {},
+    "start": "http://a.example/IssueShape"
 }

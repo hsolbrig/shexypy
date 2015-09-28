@@ -3,23 +3,23 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
+                    "type": "valueClass",
                     "values": [
                         {
+                            "stem": {
+                                "type": "wildcard"
+                            },
+                            "type": "stemRange",
                             "exclusions": [
                                 "http://a.example/v1",
                                 "http://a.example/v2",
                                 "http://a.example/v3"
-                            ],
-                            "type": "stemRange",
-                            "stem": {
-                                "type": "wildcard"
-                            }
+                            ]
                         }
-                    ],
-                    "type": "valueClass"
+                    ]
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }

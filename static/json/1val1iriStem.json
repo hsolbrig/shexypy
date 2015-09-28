@@ -3,16 +3,16 @@
         "http://a.example/IssueShape": {
             "type": "shape",
             "expression": {
-                "type": "tripleConstraint",
                 "value": {
+                    "type": "valueClass",
                     "values": [
                         {
-                            "type": "stemRange",
-                            "stem": "http://a.example/v"
+                            "stem": "http://a.example/v",
+                            "type": "stemRange"
                         }
-                    ],
-                    "type": "valueClass"
+                    ]
                 },
+                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1"
             }
         }
