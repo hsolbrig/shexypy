@@ -29,7 +29,7 @@
 from rdflib import Graph, RDF, RDFS, BNode, URIRef, Namespace
 from urllib.request import urlopen
 
-shext = Namespace("http://www.w3.org/ns/shextest#")
+shext = Namespace("http://www.w3.org/ns/shacl/test-suite#")
 mf = Namespace("http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#")
 
 
@@ -54,7 +54,7 @@ class ShExManifestEntry:
         return rval[0] if rval else None
 
     def _action_obj(self, p):
-        return self.action_[p]
+        return self.action_.get(p)
 
     @property
     def name(self):
@@ -74,7 +74,7 @@ class ShExManifestEntry:
 
     @property
     def should_pass(self):
-        return self._single_obj(RDF.type) == shext.Valid
+        return self._single_obj(RDF.type) in (shext.Valid, shext.ValidationTest)
 
     @property
     def schema(self):

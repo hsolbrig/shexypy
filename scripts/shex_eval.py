@@ -62,6 +62,7 @@ def build_argparser() -> argparse.ArgumentParser:
     parser.add_argument("-ss", "--start_shape", help="Staring shape label")
     parser.add_argument("-fn", "--focus_node", help="Focus node in graph")
     parser.add_argument("-m", "--manifest", help="Name of manifest file")
+    parser.add_argument("-mf", "--manifest_format", help="Manifest file format", default="n3")
     parser.add_argument("-me", "--manifest_entry", help="Name of entry to test in the manifest file")
     return parser
 
@@ -72,7 +73,7 @@ def parse_args(argparser: argparse.ArgumentParser, args: list) -> argparse.Names
     """
     opts = argparser.parse_args(args)
     if opts.manifest:
-        if opts.infile or opts.infile_format or opts.graph or opts.graph_format or opts.start_shape or opts.focus_node:
+        if opts.infile or opts.graph or opts.start_shape or opts.focus_node:
             print("Cannot specify input file, graph, shape or focus node if using a manifest", file=sys.stderr)
             return None
     elif not (opts.infile and opts.graph and opts.focus_node):
@@ -94,7 +95,7 @@ def eval_shexml(shex_xml: str, start_shape: str, focus_node: str, g: Graph, opts
     :return:
     """
     if opts.print:
-        print(prettyxml(shex_xml))
+        print(prettyxml(shex_xml, toxml=False))
     schema_dom = StringToDOM(shex_xml)
     schema = CreateFromDOM(schema_dom)
     si = ShapeInterpreter(schema, schema_dom, g)
@@ -116,7 +117,7 @@ def eval_manifest_entry(name: str, entries: Iterable, opts: argparse.Namespace) 
         parsed_shex = do_parse(InputStream(entry.schema))
         parsed_xml = prettyxml(parsed_shex.to_dom())
         rslt = eval_shexml(parsed_xml, entry.start_shape, entry.subject_iri,
-                           entry.instance(fmt=opts.input_format), opts)
+                               entry.instance(fmt=opts.graph_format), opts)
         print("PASS" if rslt == entry.should_pass else "FAIL")
 
 
@@ -125,7 +126,7 @@ def eval_manifest(manifest_file: str, opts: argparse.Namespace) -> None:
     :param manifest_file: name of the manifest file
     :param opts: function arguments
     """
-    mf = ShExManifest(manifest_file, fmt=opts.input_format)
+    mf = ShExManifest(manifest_file, fmt=opts.manifest_format)
     if not opts.manifest_entry:     # All entries
         for k, v in sorted(mf.entries.items(), key=lambda x: x[0]):
             eval_manifest_entry(k, v, opts)
@@ -146,10 +147,10 @@ def eval_input_file(opts: argparse.Namespace) -> None:
             parsed_xml = prettyxml(parsed_shex.to_dom())
         else:
             parsed_xml = inp_file.read()
-        g = Graph()
-        g.parse(opts.graph, format=opts.graph_format)
-        if eval_shexml(parsed_xml, opts.start_shape, opts.focus_node, g, opts):
-            print("*** Success ****")
+    g = Graph()
+    g.parse(opts.graph, format=opts.graph_format)
+    print("*** " +
+          ("Success" if eval_shexml(parsed_xml, opts.start_shape, opts.focus_node, g, opts) else "NOMATCH") + "***")
 
 
 def main(argv: list):

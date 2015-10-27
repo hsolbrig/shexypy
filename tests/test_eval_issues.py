@@ -36,12 +36,12 @@ class EvalIssuesTestCase(unittest.TestCase):
         # Issue:  python shex_eval.py -i ../tests/testdata/simple.shex -g ../tests/testdata/test1.ttl
         #            -f turtle -s my:UserShape -n inst:User1 fails
         shex_eval.main('-i ../tests/testdata/simple.shex -g ../tests/testdata/test1.ttl '
-                       '-gf turtle -ss my:UserShape -fn inst:User1 -p'.split())
+                       '-gf turtle -ss http://my.example/ns#UserShape -fn http://example.org/User1'.split())
 
     def test_simple_shex_data(self):
         shex_parser.main("-i ../tests/testdata/simple.shex -o ../tests/testdata/simple.xml".split())
         shex_eval.main('-i ../tests/testdata/simple.xml -if xml -g ../tests/testdata/test1.ttl '
-                       '-gf turtle -ss my:UserShape -fn inst:User1 -p'.split())
+                       '-gf turtle -ss http://my.example/ns#UserShape -fn http://example.org/User1'.split())
 
 
 if __name__ == '__main__':

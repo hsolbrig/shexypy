@@ -213,7 +213,10 @@ class ShapeInterpreter:
                (c == NodeType.BNODE and o.is_bnode) or (c == NodeType.NONLITERAL and not o.is_literal)
 
     def i_datatype(self, c: IRI, o: RDFTerm) -> bool:
-        return o.is_literal and str(o.literal.datatype) == self._nsmap.uri_for(c)
+        # TODO: Flesh this out
+        return o.is_literal and \
+               ((str(o.literal.datatype) == self._nsmap.uri_for(c)) or
+                (not(o.literal.datatype) and self._nsmap.uri_for(c) == 'xsd:string'))
 
     def i_value_class(self, c: ValueClassLabel, o) -> bool:
         return True

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:my="http://my.example/ns#" xmlns="http://www.w3.org/shex/" exclude-prefixes="xsi shex">
+    <shape label="my:UserShape">
+        <tripleConstraint datatype="xsd:string" predicate="foaf:name"/>
+    </shape>
+</Schema>
