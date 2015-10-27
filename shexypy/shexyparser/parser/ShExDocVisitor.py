@@ -1,4 +1,4 @@
-# Generated from /Users/mrf7578/Development/git/shexSpec/grammar/ShExDoc.g4 by ANTLR 4.5.1
+# Generated from ShExDoc.g4 by ANTLR 4.5.1
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .ShExDocParser import ShExDocParser
@@ -84,13 +84,38 @@ class ShExDocVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ShExDocParser#multiElementSomeOf.
+    def visitMultiElementSomeOf(self, ctx:ShExDocParser.MultiElementSomeOfContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ShExDocParser#innerShape.
+    def visitInnerShape(self, ctx:ShExDocParser.InnerShapeContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ShExDocParser#groupShape.
     def visitGroupShape(self, ctx:ShExDocParser.GroupShapeContext):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ShExDocParser#singleElementGroup.
+    def visitSingleElementGroup(self, ctx:ShExDocParser.SingleElementGroupContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ShExDocParser#multiElementGroup.
+    def visitMultiElementGroup(self, ctx:ShExDocParser.MultiElementGroupContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ShExDocParser#unaryShape.
     def visitUnaryShape(self, ctx:ShExDocParser.UnaryShapeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ShExDocParser#encapsulatedShape.
+    def visitEncapsulatedShape(self, ctx:ShExDocParser.EncapsulatedShapeContext):
         return self.visitChildren(ctx)
 
 
@@ -289,8 +314,8 @@ class ShExDocVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ShExDocParser#codeLabel.
-    def visitCodeLabel(self, ctx:ShExDocParser.CodeLabelContext):
+    # Visit a parse tree produced by ShExDocParser#productionName.
+    def visitProductionName(self, ctx:ShExDocParser.ProductionNameContext):
         return self.visitChildren(ctx)
 
 
@@ -301,6 +326,11 @@ class ShExDocVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ShExDocParser#semanticActions.
     def visitSemanticActions(self, ctx:ShExDocParser.SemanticActionsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ShExDocParser#rdfType.
+    def visitRdfType(self, ctx:ShExDocParser.RdfTypeContext):
         return self.visitChildren(ctx)
 
 

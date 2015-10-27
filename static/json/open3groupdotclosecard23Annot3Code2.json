@@ -1,31 +1,10 @@
 {
+    "type": "schema",
     "shapes": {
-        "http://a.example/IssueShape": {
+        "http://a.example/S1": {
             "type": "shape",
             "expression": {
-                "expressions": [
-                    {
-                        "value": {
-                            "type": "valueClass"
-                        },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p1"
-                    },
-                    {
-                        "value": {
-                            "type": "valueClass"
-                        },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p2"
-                    },
-                    {
-                        "value": {
-                            "type": "valueClass"
-                        },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p3"
-                    }
-                ],
+                "type": "group",
                 "annotations": [
                     [
                         "http://a.example/annot1",
@@ -40,22 +19,41 @@
                         "\"3\""
                     ]
                 ],
+                "expressions": [
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint"
+                    },
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p3",
+                        "type": "tripleConstraint"
+                    }
+                ],
+                "min": 2,
                 "max": 3,
-                "type": "group",
                 "semActs": [
                     {
-                        "name": "http://a.example/semAct1",
                         "contents": " code1 "
                     },
                     {
-                        "name": "http://a.example/semAct2",
                         "contents": " code2 "
                     }
-                ],
-                "min": 2
+                ]
             }
         }
     },
-    "type": "schema",
     "prefixes": {}
 }

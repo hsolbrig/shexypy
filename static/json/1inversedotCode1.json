@@ -1,23 +1,22 @@
 {
+    "type": "schema",
     "shapes": {
-        "http://a.example/IssueShape": {
+        "http://a.example/S1": {
             "type": "shape",
             "expression": {
+                "inverse": true,
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
                 "predicate": "http://a.example/p1",
-                "inverse": true,
+                "type": "tripleConstraint",
                 "semActs": [
                     {
-                        "name": "http://a.example/semAct1",
                         "contents": " code1 "
                     }
                 ]
             }
         }
     },
-    "type": "schema",
     "prefixes": {}
 }

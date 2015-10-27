@@ -1,14 +1,15 @@
 {
+    "type": "schema",
     "shapes": {
         "http://a.example/EmployeeShape": {
             "type": "shape",
             "expression": {
                 "value": {
-                    "reference": "_:a\u00b7\u0300\u036f\u203f.\u2040",
-                    "type": "valueClass"
+                    "type": "valueClass",
+                    "reference": "_:a\u00b7\u0300\u036f\u203f.\u2040"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p2"
+                "predicate": "http://a.example/p2",
+                "type": "tripleConstraint"
             }
         },
         "_:a\u00b7\u0300\u036f\u203f.\u2040": {
@@ -17,11 +18,10 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1"
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
             }
         }
     },
-    "type": "schema",
     "prefixes": {}
 }

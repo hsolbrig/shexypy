@@ -30,7 +30,7 @@
 import unittest
 import os
 
-from rdflib import Literal, RDFS
+from rdflib import Literal
 
 from shexypy.utils.manifest import *
 
@@ -50,10 +50,10 @@ class ManifestTestCase(unittest.TestCase):
 
     def test_attributes(self):
         mfst = ShExManifest(os.path.abspath(os.path.join('testdata', 'manifest.ttl')), 'n3')
-        me = mfst.entries['disjunction2']
+        me = mfst.entries['a-string-valid']
         self.assertEqual(1, len(me))
         me = me[0]
-        self.assertEqual(me.comments, 'disjunction 2 ')
+        self.assertEqual(me.comments, 'label a with property p and a string')
         self.assertEqual(me.status, mf.proposed)
         self.assertEqual(me.subject_iri, ex.x)
         self.assertEqual(me.start_shape, ex.a)
@@ -83,7 +83,8 @@ class ManifestTestCase(unittest.TestCase):
             {(URIRef('http://example.org/c1'), URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
               URIRef('http://example.org/Country')), (URIRef('http://example.org/c1'),
               URIRef('http://example.org/observation'), URIRef('http://example.org/o1')),
-             (URIRef('http://example.org/c1'), URIRef('http://example.org/observation'), URIRef('http://example.org/o2')),
+             (URIRef('http://example.org/c1'), URIRef('http://example.org/observation'),
+              URIRef('http://example.org/o2')),
              (URIRef('http://example.org/o2'), URIRef('http://example.org/value'),
               Literal('34', datatype=URIRef('http://www.w3.org/2001/XMLSchema#integer'))),
              (URIRef('http://example.org/c1'), URIRef('http://www.w3.org/2000/01/rdf-schema#label'), Literal('Spain')),

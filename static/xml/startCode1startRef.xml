@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" start="http://a.example/IssueShape" exclude-prefixes="xsi shex">
+<Schema start="http://a.example/S1" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <startActions>
         <action>
             <codeDecl iri="http://a.example/semAct1"> code1 </codeDecl>
         </action>
     </startActions>
-    <shape label="http://a.example/IssueShape">
+    <shape label="http://a.example/S1">
         <tripleConstraint predicate="http://a.example/p1"/>
     </shape>
 </Schema>

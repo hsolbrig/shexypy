@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema default-namespace="http://a.example/" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <shape label=":S1">
+        <group>
+            <someOf>
+                <tripleConstraint predicate=":p1"/>
+                <tripleConstraint predicate=":p2"/>
+            </someOf>
+                <tripleConstraint predicate=":p3"/>
+            </group>
+        </shape>
+    </Schema>

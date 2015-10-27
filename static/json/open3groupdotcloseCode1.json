@@ -1,41 +1,40 @@
 {
+    "type": "schema",
     "shapes": {
-        "http://a.example/IssueShape": {
+        "http://a.example/S1": {
             "type": "shape",
             "expression": {
-                "type": "group",
+                "semActs": [
+                    {
+                        "contents": " code1 "
+                    }
+                ],
                 "expressions": [
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p1"
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p2"
+                        "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p3"
+                        "predicate": "http://a.example/p3",
+                        "type": "tripleConstraint"
                     }
                 ],
-                "semActs": [
-                    {
-                        "name": "http://a.example/semAct1",
-                        "contents": " code1 "
-                    }
-                ]
+                "type": "group"
             }
         }
     },
-    "type": "schema",
     "prefixes": {}
 }

@@ -42,24 +42,7 @@ from shexypy.shexyconverter.json_converter import ShExSchema
 from shexypy.utils.dict_compare import dict_compare
 
 
-# failing_tests = {'1IRI_with_UCHAR.1dot.xml': "Should encode \\u0031 to '1'",
-#                  '1inversedot.xml': "Doesn't record inverse",
-#                  '1inversedotCode1.xml': "Doesn't record inverse",
-#                  '1inversenegateddot.xml': "Doesn't record inverse",
-#                  '1negatedinversedot.xml': "Doesn't record inverse",
-#                  '1inversedotAnnot3.xml': "Doesn't record inverse",
-#                  '1refbnode_with_spanning_PN_CHARS_BASE1.xml': "PN_CHARS failure",
-#                  '1val1DECIMAL.xml': "Decimal number representation different",
-#                  '1val1DOUBLE.xml': "Double number representation different",
-#                  '1val1DOUBLElowercase.xml': "Double number representation different",
-#                  '1val1STRING_LITERAL2_with_subtag.xml': "en-UK vs. en-uk",
-#                  '1val1STRING_LITERAL_LONG2_with_subtag.xml': "en-UK vs. en-uk",
-#                  'kitchenSink.xml': "Waiting until everything else parses",
-#                  'open1dotcloseAnnot3.xml': "Disagree with the need for a group",
-#                  'open1dotclosecardOpt.xml': "Disagree with the need for a group",
-#                  'openopen1dotcloseCode1closeCode2.xml': "Folded the actions into a single list",
-#                 }
-failing_tests = {}
+failing_tests = {'_all_header.xml': "Not actually part of the test suite"}
 
 
 def to_json(infile: str, outfile: str, opts) -> bool:
@@ -101,6 +84,8 @@ def compare_output(opts: argparse.Namespace, dict_schema: dict, outfile: str) ->
     return dc_result
 
 ignore_order = False
+
+
 def compare_filter(kv1: (str, object), kv2: (str, object)) -> bool:
 
     def ks(de):
@@ -161,7 +146,6 @@ def main(argv: list):
     def get_order(opts: argparse.Namespace):
         global ignore_order
         ignore_order = opts.ignoreorder
-
 
     dlp = DirectoryListProcessor(argv, "ShEx to XML Parser", '.xml', '.json', addargs=add_args, postparse=get_order)
     nfiles, npassed = dlp.run(to_json, file_filter=lambda fn: fn not in failing_tests)

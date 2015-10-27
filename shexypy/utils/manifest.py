@@ -29,7 +29,7 @@
 from rdflib import Graph, RDF, RDFS, BNode, URIRef, Namespace
 from urllib.request import urlopen
 
-sht = Namespace("http://www.w3.org/ns/shacl/test-suite#")
+shext = Namespace("http://www.w3.org/ns/shextest#")
 mf = Namespace("http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#")
 
 
@@ -66,24 +66,23 @@ class ShExManifestEntry:
 
     @property
     def status(self):
-        return self._single_obj(mf.status)
+        return self._single_obj(shext.status)
 
     @property
     def should_parse(self):
-        # May not be used
-        return True
+        return self._single_obj(RDF.type) != shext.NegativeSyntax
 
     @property
     def should_pass(self):
-        return self._single_obj(RDF.type) == sht.ValidationTest
+        return self._single_obj(RDF.type) == shext.Valid
 
     @property
     def schema(self):
-        schema_uri = str(self._action_obj(sht.schema))
+        schema_uri = str(self._action_obj(shext.schema))
         return urlopen(schema_uri).read().decode() if schema_uri else None
 
     def instance(self, fmt='turtle'):
-        return self._instance(self._action_obj(sht.data), fmt)
+        return self._instance(self._action_obj(shext.data), fmt)
 
     @staticmethod
     def _instance(uri, fmt):
@@ -93,11 +92,11 @@ class ShExManifestEntry:
 
     @property
     def subject_iri(self):
-        return self._action_obj(sht.focus)
+        return self._action_obj(shext.focus)
 
     @property
     def start_shape(self):
-        return self._action_obj(sht.shape)
+        return self._action_obj(shext.shape)
 
     def __str__(self):
         return str(self.name)

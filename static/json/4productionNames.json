@@ -1,0 +1,55 @@
+{
+    "type": "schema",
+    "shapes": {
+        "http://a.example/IssueShape": {
+            "type": "shape",
+            "expression": {
+                "semActs": [
+                    {
+                        "name": "G1"
+                    }
+                ],
+                "expressions": [
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint",
+                        "semActs": [
+                            {
+                                "name": "T1"
+                            }
+                        ]
+                    },
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint",
+                        "semActs": [
+                            {
+                                "name": "T2"
+                            }
+                        ]
+                    },
+                    {
+                        "value": {
+                            "type": "valueClass"
+                        },
+                        "predicate": "http://a.example/p3",
+                        "type": "tripleConstraint",
+                        "semActs": [
+                            {
+                                "name": "T3"
+                            }
+                        ]
+                    }
+                ],
+                "type": "group"
+            }
+        }
+    },
+    "prefixes": {}
+}

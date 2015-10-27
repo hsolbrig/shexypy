@@ -1,35 +1,25 @@
 {
+    "type": "schema",
     "shapes": {
-        "http://a.example/EmployeeShape": {
-            "type": "shape",
-            "expression": {
-                "value": {
-                    "reference": "http://a.example/PersonShape",
-                    "type": "valueClass"
-                },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p5"
-            }
-        },
-        "http://a.example/PersonShape": {
-            "type": "shape",
-            "expression": {
-                "value": {
-                    "reference": "http://a.example/EntityShape",
-                    "type": "valueClass"
-                },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p3"
-            }
-        },
         "http://a.example/OtherShape": {
             "type": "shape",
             "expression": {
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p4"
+                "predicate": "http://a.example/p4",
+                "type": "tripleConstraint"
+            }
+        },
+        "http://a.example/PersonShape": {
+            "type": "shape",
+            "expression": {
+                "value": {
+                    "type": "valueClass",
+                    "reference": "http://a.example/EntityShape"
+                },
+                "predicate": "http://a.example/p3",
+                "type": "tripleConstraint"
             }
         },
         "http://a.example/EntityShape": {
@@ -41,23 +31,33 @@
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p1"
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint"
                     },
                     {
-                        "value": {
-                            "reference": "http://a.example/EmployeeShape",
-                            "type": "valueClass"
-                        },
                         "max": 1,
-                        "type": "tripleConstraint",
                         "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint",
+                        "value": {
+                            "type": "valueClass",
+                            "reference": "http://a.example/EmployeeShape"
+                        },
                         "min": 0
                     }
                 ]
             }
+        },
+        "http://a.example/EmployeeShape": {
+            "type": "shape",
+            "expression": {
+                "value": {
+                    "type": "valueClass",
+                    "reference": "http://a.example/PersonShape"
+                },
+                "predicate": "http://a.example/p5",
+                "type": "tripleConstraint"
+            }
         }
     },
-    "type": "schema",
     "prefixes": {}
 }

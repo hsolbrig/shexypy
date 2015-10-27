@@ -1,21 +1,14 @@
 {
+    "type": "schema",
     "shapes": {
-        "http://a.example/EmployeeShape": {
+        "http://a.example/ThingShape": {
             "type": "shape",
             "expression": {
                 "value": {
-                    "reference": {
-                        "disjuncts": [
-                            "http://a.example/PersonShape",
-                            "http://a.example/PlaceShape",
-                            "http://a.example/ThingShape"
-                        ],
-                        "type": "or"
-                    },
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p4"
+                "predicate": "http://a.example/p3",
+                "type": "tripleConstraint"
             }
         },
         "http://a.example/PersonShape": {
@@ -24,8 +17,26 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1"
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            }
+        },
+        "http://a.example/EmployeeShape": {
+            "type": "shape",
+            "expression": {
+                "value": {
+                    "type": "valueClass",
+                    "reference": {
+                        "disjuncts": [
+                            "http://a.example/PersonShape",
+                            "http://a.example/PlaceShape",
+                            "http://a.example/ThingShape"
+                        ],
+                        "type": "or"
+                    }
+                },
+                "predicate": "http://a.example/p4",
+                "type": "tripleConstraint"
             }
         },
         "http://a.example/PlaceShape": {
@@ -34,21 +45,10 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p2"
-            }
-        },
-        "http://a.example/ThingShape": {
-            "type": "shape",
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p3"
+                "predicate": "http://a.example/p2",
+                "type": "tripleConstraint"
             }
         }
     },
-    "type": "schema",
     "prefixes": {}
 }

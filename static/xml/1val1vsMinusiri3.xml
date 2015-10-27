@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" exclude-prefixes="xsi shex">
-    <shape label="http://a.example/IssueShape">
-        <tripleConstraint predicate="http://a.example/p1" valueClass="http://a.example/vs1"/>
+<Schema xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <shape label="http://a.example/S1">
+        <tripleConstraint valueClass="http://a.example/vs1" predicate="http://a.example/p1"/>
     </shape>
     <valueClass>
         <definition valueClassLabel="http://a.example/vs1">

@@ -1,39 +1,15 @@
 {
+    "type": "schema",
     "shapes": {
-        "http://a.example/ManagedShape": {
-            "type": "shape",
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p3"
-            }
-        },
         "http://a.example/PersonShape": {
             "type": "shape",
             "expression": {
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1"
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
             }
-        },
-        "http://a.example/EmployeeShape": {
-            "type": "shape",
-            "expression": {
-                "value": {
-                    "type": "valueClass"
-                },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p4"
-            },
-            "inherit": [
-                "http://a.example/PersonShape",
-                "http://a.example/MemberShape",
-                "http://a.example/ManagedShape"
-            ]
         },
         "http://a.example/MemberShape": {
             "type": "shape",
@@ -41,12 +17,36 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p2"
+                "predicate": "http://a.example/p2",
+                "type": "tripleConstraint"
+            }
+        },
+        "http://a.example/ManagedShape": {
+            "type": "shape",
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p3",
+                "type": "tripleConstraint"
+            }
+        },
+        "http://a.example/EmployeeShape": {
+            "type": "shape",
+            "inherit": [
+                "http://a.example/PersonShape",
+                "http://a.example/MemberShape",
+                "http://a.example/ManagedShape"
+            ],
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p4",
+                "type": "tripleConstraint"
             }
         }
     },
-    "type": "schema",
     "prefixes": {
         "ex": "http://a.example/"
     }

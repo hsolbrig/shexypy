@@ -1,23 +1,22 @@
 {
+    "type": "schema",
     "shapes": {
-        "http://a.example/IssueShape": {
-            "virtual": 1,
+        "http://a.example/S1": {
             "type": "shape",
-            "semActs": [
-                {
-                    "name": "http://a.example/semAct1",
-                    "contents": " code1 "
-                }
-            ],
             "expression": {
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1"
-            }
+                "predicate": "http://a.example/p1",
+                "type": "tripleConstraint"
+            },
+            "semActs": [
+                {
+                    "contents": " code1 "
+                }
+            ],
+            "virtual": 1
         }
     },
-    "type": "schema",
     "prefixes": {}
 }

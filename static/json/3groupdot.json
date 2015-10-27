@@ -1,6 +1,7 @@
 {
+    "type": "schema",
     "shapes": {
-        "http://a.example/IssueShape": {
+        "http://a.example/S1": {
             "type": "shape",
             "expression": {
                 "type": "group",
@@ -9,27 +10,26 @@
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p1"
+                        "predicate": "http://a.example/p1",
+                        "type": "tripleConstraint"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p2"
+                        "predicate": "http://a.example/p2",
+                        "type": "tripleConstraint"
                     },
                     {
                         "value": {
                             "type": "valueClass"
                         },
-                        "type": "tripleConstraint",
-                        "predicate": "http://a.example/p3"
+                        "predicate": "http://a.example/p3",
+                        "type": "tripleConstraint"
                     }
                 ]
             }
         }
     },
-    "type": "schema",
     "prefixes": {}
 }

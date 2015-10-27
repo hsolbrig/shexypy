@@ -1,0 +1,22 @@
+{
+    "type": "schema",
+    "shapes": {
+        "http://a.example/S1": {
+            "type": "shape",
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "annotations": [
+                    [
+                        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                        "http://a.example/IRIREF"
+                    ]
+                ],
+                "type": "tripleConstraint"
+            }
+        }
+    },
+    "prefixes": {}
+}

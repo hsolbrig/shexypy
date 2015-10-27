@@ -1,4 +1,5 @@
 {
+    "type": "schema",
     "shapes": {
         "http://a.example/": {
             "type": "shape",
@@ -6,12 +7,11 @@
                 "value": {
                     "type": "valueClass"
                 },
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/"
+                "predicate": "http://a.example/",
+                "type": "tripleConstraint"
             }
         }
     },
-    "type": "schema",
     "prefixes": {
         "": "http://a.example/"
     }

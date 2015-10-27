@@ -34,15 +34,12 @@ from collections import Iterable
 from rdflib import RDF, BNode
 from pyxb.xmlschema.structures import datatypes
 from pyxb.utils import domutils
-from pyxb.namespace import XMLSchema_instance as xsi, NamespaceContext
-from pyxb.namespace import XMLNamespaces as xmlns
+from pyxb.namespace import XMLSchema_instance as Xsi, NamespaceContext
+from pyxb.namespace import XMLNamespaces as Xmlns
 
-if not globals().get("__package__", None):
-    from ShExDocParser import ShExDocParser
-    from ShExDocVisitor import ShExDocVisitor
-else:
-    from shexypy.shexyparser.parser.ShExDocVisitor import ShExDocVisitor
-    from shexypy.shexyparser.parser.ShExDocParser import ShExDocParser
+
+from shexypy.shexyparser.parser.ShExDocVisitor import ShExDocVisitor
+from shexypy.shexyparser.parser.ShExDocParser import ShExDocParser
 
 from shexypy.schema.ShEx import *
 exclude_namespaces = ['xsi', 'shex']
@@ -81,7 +78,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         schema_dom.documentElement.setAttributeNS(Namespace.uri(),
                                     'xsi:schemaLocation',
                                     'http://www.w3.org/shex/ ../xsd/ShEx.xsd')
-        schema_dom.documentElement.setAttributeNS(xmlns.uri, 'xmlns:xsi', xsi.uri())
+        schema_dom.documentElement.setAttributeNS(Xmlns.uri, 'xmlns:xsi', Xsi.uri())
         return schema_dom
 
     @property
@@ -92,6 +89,9 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         # shExDoc : directive* ((notStartAction | startActions) statement*)? EOF;  // leading CODE
         self._schema = Schema()
         self.visitChildren(ctx)
+
+    def visitStatement(self, ctx: ShExDocParser.StatementContext):
+        return self.visitChildren(ctx)
 
     def visitNotStartAction(self, ctx: ShExDocParser.NotStartActionContext):
         # notStartAction : start | shape | valueClassDefinition ;
@@ -221,30 +221,41 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         self.cur_shape.extra += [IRIRef(ref=self.visit(p)) for p in ctx.predicate()]
 
     def visitSomeOfShape(self, ctx: ShExDocParser.SomeOfShapeContext):
-        # someOfShape : groupShape ( '|' groupShape) *
-        if len(ctx.groupShape()) > 1:
-            self._push_shape(ShapeConstraint())
-            [self.visit(c) for c in ctx.groupShape()]
-            self._set_someof(self._pop_shape())
-        else:
-            self.visitChildren(ctx)         # If there is only one group, don't wrap it in a someOf
+        # someOfShape : groupShape | multiElementSomeOf
+        self.visitChildren(ctx)
 
+    # Visit a parse tree produced by ShExDocParser#multiElementSomeOf.
+    def visitMultiElementSomeOf(self, ctx: ShExDocParser.MultiElementSomeOfContext) -> ShapeConstraint:
+        # multiElementSomeOf : groupShape ( '|' groupShape)+ ;
+        self._push_shape(ShapeConstraint())
+        [self.visit(c) for c in ctx.groupShape()]
+        rval = self._pop_shape()
+        self._set_someof(rval)
+        return rval
+
+    # Visit a parse tree produced by ShExDocParser#innerShape.
+    def visitInnerShape(self, ctx: ShExDocParser.InnerShapeContext):
+        # innerShape : multiElementGroup | multiElementSomeOf ;
+        return self.visitChildren(ctx)
+
+    # Visit a parse tree produced by ShExDocParser#groupShape.
     def visitGroupShape(self, ctx: ShExDocParser.GroupShapeContext):
-        # groupShape : unaryShape ( ',' unaryShape )* ','? ;
-        if len(ctx.unaryShape()) > 1:
-            self._push_shape(ShapeConstraint())
-            [self.visit(c) for c in ctx.unaryShape()]
-            self._set_group(self._pop_shape())
-        else:
-            self.visitChildren(ctx)
+        # groupShape : singleElementGroup | multiElementGroup ;
+        return self.visitChildren(ctx)
 
-    @staticmethod
-    def _has_card_annot_semacts(element):
-        """ Return true if element has cardinality, annotations or semantic actions
-        :param element:
-        :return:
-        """
-        return element.min != 1 or element.max != 1 or element.actions or element.annotation
+    # Visit a parse tree produced by ShExDocParser#singleElementGroup.
+    def visitSingleElementGroup(self, ctx: ShExDocParser.SingleElementGroupContext):
+        # singleElementGroup : unaryShape ','? ;
+        return self.visitChildren(ctx)
+
+    # Visit a parse tree produced by ShExDocParser#multiElementGroup.
+    def visitMultiElementGroup(self, ctx: ShExDocParser.MultiElementGroupContext) -> ShapeConstraint:
+        # multiElementGroup : unaryShape (',' unaryShape)+ ','? ;
+        self._push_shape(ShapeConstraint())
+        [self.visit(c) for c in ctx.unaryShape()]
+        rval = self._pop_shape()
+        self._set_group(rval)
+        return rval
 
     def _proc_card_annot_semacts(self, target, ctx):
         """ Process cardinality, annotations and semantic actions for target
@@ -259,34 +270,13 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         [target.annotation.append(self.visit(a)) for a in ctx.annotation()]
 
     def visitUnaryShape(self, ctx: ShExDocParser.UnaryShapeContext):
-        # unaryShape : tripleConstraint | include | '(' someOfShape ')' cardinality? annotation* semanticActions ;
-        if ctx.tripleConstraint() or ctx.include():
-            return self.visitChildren(ctx)
-        else:
-            self._push_shape(Wrapper())
-            self.visit(ctx.someOfShape())
-            wrapper = self._pop_shape()
-            wrapped_element = wrapper.someOf if wrapper.someOf else \
-                wrapper.group if wrapper.group else \
-                wrapper.tripleConstraint if wrapper.tripleConstraint else \
-                wrapper.wrapper if wrapper.wrapper else None
-            if wrapped_element:
-                if not self._has_card_annot_semacts(wrapped_element):
-                    self._proc_card_annot_semacts(wrapped_element, ctx)
-                    if wrapper.someOf:
-                        self._set_someof(wrapped_element)
-                    elif wrapper.group:
-                        self._set_group(wrapped_element)
-                    elif wrapper.tripleConstraint:
-                        self._set_tc(wrapped_element)
-                    else:
-                        self._set_wrapper(wrapped_element)
-                else:
-                    self._proc_card_annot_semacts(wrapper, ctx)
-                    if self._has_card_annot_semacts(wrapper):
-                        self._set_wrapper(wrapper)
-            else:
-                self._set_wrapper(wrapper)
+        # unaryShape : tripleConstraint | include | encapsulatedShape ;
+        return self.visitChildren(ctx)
+
+    # Visit a parse tree produced by ShExDocParser#encapsulatedShape.
+    def visitEncapsulatedShape(self, ctx: ShExDocParser.EncapsulatedShapeContext):
+        # encapsulatedShape : '(' innerShape ')' cardinality? annotation* semanticActions ;
+        self._proc_card_annot_semacts(self.visit(ctx.innerShape()), ctx)
 
     def visitInclude(self, ctx: ShExDocParser.IncludeContext):
         # include : '&' shapeLabel
@@ -305,7 +295,6 @@ class ShExDocVisitor_impl(ShExDocVisitor):
             tc.negated = True
         tc.predicate = self.visit(ctx.predicate())
         tc.reversed = '^' in sf
-        parent_tc = self.cur_tc
         if ctx.valueClassOrRef().valueClassLabel():
             tc.valueClass = self.visit(ctx.valueClassOrRef().valueClassLabel())
         else:
@@ -322,8 +311,8 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         return ctx.getText()
 
     def visitPredicate(self, ctx: ShExDocParser.PredicateContext):
-        # predicate : iri | RDF_TYPE ;
-        if ctx.RDF_TYPE():
+        # predicate : iri | rdfType ;
+        if ctx.rdfType():
             return str(RDF.type)
         else:
             return self.visit(ctx.iri())
@@ -468,16 +457,16 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         return self.visitChildren(ctx)
 
     def visitAnnotation(self, ctx: ShExDocParser.AnnotationContext) -> Annotation:
-        # annotation : ';' iri (iri | literal) ;
+        # annotation : ';' predicate (iri | literal) ;
         rval = Annotation()
-        rval.iri = self.visit(ctx.iri(0))
+        rval.iri = self.visit(ctx.predicate())
         if ctx.literal():
             lit = self.visit(ctx.literal())
             if not ctx.literal().rdfLiteral():
                 lit = RDFLiteral(lit)
             rval.literal = lit
         else:
-            rval.iriref = IRIRef(ref=self.visit(ctx.iri(1)))
+            rval.iriref = IRIRef(ref=self.visit(ctx.iri()))
         return rval
 
     def visitCardinality(self, ctx: ShExDocParser.CardinalityContext) -> list:
@@ -521,11 +510,11 @@ class ShExDocVisitor_impl(ShExDocVisitor):
                 vs.rdfLiteral.append(val)
             elif v.literal().numericLiteral():
                 if v.literal().numericLiteral().DECIMAL():
-                    vs.decimal.append(val)
+                    vs.decimal.append(val.decimal)
                 elif v.literal().numericLiteral().INTEGER():
-                    vs.integer.append(val)
+                    vs.integer.append(val.integer)
                 else:
-                    vs.double.append(val)
+                    vs.double.append(val.double)
             else:
                 vs.boolean.append(val)
         return vs
@@ -559,9 +548,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
 
     def visitNumericLiteral(self, ctx: ShExDocParser.NumericLiteralContext):
         # numericLiteral  : INTEGER | DECIMAL | DOUBLE ;
-        return datatypes.int(ctx.INTEGER().getText()) if ctx.INTEGER() else \
-            datatypes.decimal(ctx.DECIMAL().getText()) if ctx.DECIMAL() else \
-            datatypes.double(ctx.DOUBLE().getText())
+        return self._proc_numeric_literal(NumericLiteral(), ctx)
 
     def visitRdfLiteral(self, ctx: ShExDocParser.RdfLiteralContext) -> RDFLiteral:
         # rdfLiteral : string (LANGTAG | '^^' datatype)? ;
@@ -605,11 +592,11 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         return ctx.getText()
 
     def visitCodeDecl(self, ctx: ShExDocParser.CodeDeclContext) -> SemanticAction:
-        # codeDecl : '%' (codeLabel | iri? CODE?) ;
+        # codeDecl : '%' (productionName | iri? CODE?) ;
         # CODE : '{' (~[%\\] | '\\%')* '%' '}' ;
         action = SemanticAction()
-        if ctx.codeLabel():
-            action.codeLabel = self.visit(ctx.codeLabel())
+        if ctx.productionName():
+            action.productionName = self.visit(ctx.productionName())
         else:
             action.codeDecl = CodeDecl(ctx.CODE().getText()[1:-2])
             if ctx.iri():
@@ -623,9 +610,9 @@ class ShExDocVisitor_impl(ShExDocVisitor):
             rval.action.append(self.visit(dcl))
         return rval
 
-    def visitCodeLabel(self, ctx: ShExDocParser.CodeLabelContext) -> str:
-        # codeLabel : UCASE_LABEL ;
-        return CodeLabel(ref=ctx.UCASE_LABEL().getText())
+    def visitProductionName(self, ctx: ShExDocParser.ProductionNameContext) -> str:
+        # productionName : UCASE_LABEL ;
+        return ProductionName(ref=ctx.UCASE_LABEL().getText())
 
     def visitStartActions(self, ctx: ShExDocParser.StartActionsContext) -> SemanticActions:
         # startActions : codeDecl+
@@ -637,6 +624,9 @@ class ShExDocVisitor_impl(ShExDocVisitor):
             return self._proc_actions(ctx)
         else:
             return None
+
+    def visitRdfType(self, ctx:ShExDocParser.RdfTypeContext):
+        return str(RDF.type)
 
     # ---------------------------------------
     # Support methods
@@ -658,7 +648,7 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         :param ctx: container with an IRIREF inside
         :return: absolute URI
         """
-        return urljoin(self.base, ctx.IRIREF().getText()[1:-1], allow_fragments=False)
+        return urljoin(self.base, escape(ctx.IRIREF().getText()[1:-1]), allow_fragments=False)
 
     def _cardinality(self, container, ctx):
         minr, maxr = self.visitCardinality(ctx.cardinality())
@@ -679,23 +669,35 @@ class ShExDocVisitor_impl(ShExDocVisitor):
         else:
             self.cur_tc.objectConstraint = vc
 
-    @staticmethod
-    def _proc_numeric_facet(target, ctx: ShExDocParser.NumericFacetContext) -> NumericFacet:
-        val = ctx.INTEGER().getText()
+    def _proc_numeric_facet(self, target, ctx: ShExDocParser.NumericFacetContext) -> NumericFacet:
         if ctx.numericLength():
+            val = ctx.INTEGER().getText()
             if ctx.numericLength().KW_TOTALDIGITS():
                 target.totalDigits = val
             else:
                 target.fractionDigits = val
         else:
+            val = self._proc_numeric_literal(EndPoint(), ctx.numericLiteral())
             if ctx.numericRange().KW_MININCLUSIVE():
-                target.minValue = EndPoint(val)
+                target.minValue = val
             elif ctx.numericRange().KW_MINEXCLUSIVE():
-                target.minValue = EndPoint(val, open=True)
+                val.open = True
+                target.minValue = val
             elif ctx.numericRange().KW_MAXINCLUSIVE():
-                target.maxValue = EndPoint(val)
+                target.maxValue = val
             else:
-                target.maxValue = EndPoint(val, open=True)
+                val.open = True
+                target.maxValue = val
+        return target
+
+    @staticmethod
+    def _proc_numeric_literal(target: NumericLiteral, ctx: ShExDocParser.NumericLiteralContext) -> NumericLiteral:
+        if ctx.INTEGER():
+            target.integer = datatypes.int(ctx.INTEGER().getText())
+        elif ctx.DECIMAL():
+            target.decimal = datatypes.decimal(ctx.DECIMAL().getText())
+        else:
+            target.double = datatypes.double(ctx.DOUBLE().getText())
         return target
 
     def _proc_string_facet(self, target, ctx: ShExDocParser.StringFacetContext) -> NumericFacet:
@@ -733,9 +735,3 @@ class ShExDocVisitor_impl(ShExDocVisitor):
             self.cur_shape.tripleConstraint.append(v)
         else:
             self.cur_shape.tripleConstraint = v
-
-    def _set_wrapper(self, v):
-        if isinstance(self.cur_shape.wrapper, Iterable):
-            self.cur_shape.wrapper.append(v)
-        else:
-            self.cur_shape.wrapper = v

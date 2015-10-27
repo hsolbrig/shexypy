@@ -55,7 +55,7 @@ class ShExSchema:
         self.json["prefixes"] = {prefix: url for prefix, url in self._prefixmap.namespaces().items()
                                  if prefix is not None and url and prefix not in self._exclude_prefixes}
         if self.schema.startActions:
-            self.json["startAct"] = self.shex_semantic_actions(self.schema.startActions)
+            self.json["startActs"] = self.shex_semantic_actions(self.schema.startActions)
         if self.schema.shape:
             self.json["shapes"] = {self._uri(s.label): self.shex_shape(s) for s in self.schema.shape}
         if self.schema.valueClass:
@@ -104,21 +104,11 @@ class ShExSchema:
             expr = self.shex_triple_constraint(e.value.node)
         elif e.type == "include":
             expr = dict(include=self._uri(e.value.node.ref))
-        elif e.type == "wrapper":
-            expr = self.shex_wrapper(e.value.node)
         else:
             expr = None
         if expr:
             target["expression"] = self._typed_expression(e.type, expr)
         return target
-
-    def shex_wrapper(self, w: Wrapper) -> dict:
-        rval = dict(type="wrapper")
-        w_wrapper = PyxbWrapper(w)
-        [self.shex_expression_choice(rval, e) for e in w_wrapper.elements]
-        self.shex_annotations_and_actions(rval, w_wrapper)
-        self.shex_cardinality(rval, w_wrapper)
-        return rval
 
     def shex_annotations_and_actions(self, target: dict, ew: PyxbWrapper):
         """ <code>xs:group name="AnnotationsAndActions</code>
@@ -127,7 +117,7 @@ class ShExSchema:
         """
         for e in ew.elements:
             if e.type == "actions":
-                target["semAct"] = self.shex_semantic_actions(e.value.node)
+                target["semActs"] = self.shex_semantic_actions(e.value.node)
             elif e.type == "annotation":
                 target.setdefault("annotations", []).append(self.shex_annotation(e.value.node))
 
@@ -145,7 +135,6 @@ class ShExSchema:
         self.shex_annotations_and_actions(rval, sc_wrapper)
         self.shex_cardinality(rval, sc_wrapper)
         return rval
-
 
     def shex_triple_constraint(self, tc: TripleConstraint) -> dict:
         """ <code>xs:complexType name="TripleConstraint"</code>
@@ -220,7 +209,12 @@ class ShExSchema:
         :return: S-JSON representation
         """
         # TODO: validating
-        return {self._uri(act.codeDecl.iri): "%s" % self.shex_code_decl(act.codeDecl)}
+        rval = {}
+        if act.productionName:
+            rval['name'] = self._uri(act.productionName.ref)
+        if act.codeDecl:
+            rval['contents'] = self.shex_code_decl(act.codeDecl)
+        return rval
 
     @staticmethod
     def shex_code_decl(cd: CodeDecl):
@@ -239,10 +233,9 @@ class ShExSchema:
         if vcd.external:
             rval["external"] = self.shex_value_class_ref(vcd.external)
         else:
-            innerdef = {}
             self.shex_inline_value_class_definition(rval, vcd.definition)
             if vcd.definition.actions:
-                rval["semAct"] = self.shex_semantic_actions(vcd.definition.actions)
+                rval["semActs"] = self.shex_semantic_actions(vcd.definition.actions)
         return rval
 
     def shex_inline_value_class_definition(self, vc: dict, ivcd: InlineValueClassDefinition) -> list:
@@ -310,12 +303,17 @@ class ShExSchema:
         return self.shex_shape_label(sr.ref)
 
     @staticmethod
-    def shex_code_label(cl: CodeLabel) -> str:
+    def shex_code_label(cl: ProductionName) -> str:
         """ <code>xs:complexType name="CodeLabel"</code>
         :param cl:
         :return:
         """
         return cl.ref.value()
+
+    @staticmethod
+    def _normalize_value(v):
+        return int(v.integer) if v.integer is not None else \
+            float(v.double) if v.double is not None else float(v.decimal)
 
     @staticmethod
     def shex_xs_facet(target: dict, f: XSFacet):
@@ -335,14 +333,14 @@ class ShExSchema:
             target["length"] = f.length
         elif f.minValue:
             if f.minValue.open:
-                target["minexclusive"] = f.minValue.value()
+                target["minexclusive"] = ShExSchema._normalize_value(f.minValue)
             else:
-                target["mininclusive"] = f.minValue.value()
+                target["mininclusive"] = ShExSchema._normalize_value(f.minValue)
         elif f.maxValue:
             if f.maxValue.open:
-                target["maxexclusive"] = f.maxValue.value()
+                target["maxexclusive"] = ShExSchema._normalize_value(f.maxValue)
             else:
-                target["maxinclusive"] = f.maxValue.value()
+                target["maxinclusive"] = ShExSchema._normalize_value(f.maxValue)
         elif f.totalDigits:
             target["totaldigits"] = f.totalDigits
         elif f.fractionDigits:
@@ -426,7 +424,10 @@ class ShExSchema:
         maxv = card.node.max if card.node.max is not None else 1
         if minv == maxv:
             if minv != 1:
-                target["length"] = minv
+                # TODO: Fix comparison tests so we can substitute length here
+                # target["length"] = minv
+                target["min"] = minv
+                target["max"] = maxv
         else:
             target["min"] = minv
             target["max"] = '*' if maxv == "unbounded" else maxv
@@ -437,4 +438,3 @@ class ShExSchema:
         :return: URI
         """
         return self._prefixmap.uri_for(PyxbWrapper.proc_unicode(element))
-

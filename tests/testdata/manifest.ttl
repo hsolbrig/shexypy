@@ -2,8 +2,7 @@
 @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix mf:     <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
 @prefix qt:     <http://www.w3.org/2001/sw/DataAccess/tests/test-query#> .
-@prefix shext:   <http://www.w3.org/ns/sht#> .
-@prefix ex:     <http://example.org/> .
+@prefix shext:   <http://www.w3.org/ns/shextest#> .
 
 
 <>  rdf:type mf:Manifest ;
@@ -13,2475 +12,2827 @@
     <#a-string-syntax>
     <#simple-star>
     <#a-string-valid>
-	<#conjunction1>
-	<#a-string-no-valid>
-	<#conjunction1> <#conjunction2> <#conjunction3> <#conjunction4>
-	<#disjunction1> <#disjunction2> <#disjunction3> <#disjunction4>
-	<#star0> <#star1> <#star2> <#star3>
-	<#plus0no> <#plus1> <#plus2> <#plus3>
-	<#country-observations-valid>
-	<#user1> <#user2>
-	<#nonIRI1> <#nonIRI2>
-	<#iri> <#bNode>
-	<#nonLiteral1> <#nonLiteral2>
-	<#nonBNode1> <#nonBNode2> <#nonBNode3>
-	<#ab-ab> <#ab-a>
-	<#xsd_double_simplified>
-	<#regex_aa>
+        <#conjunction1>
+        <#a-string-no-valid>
+        <#conjunction1> <#conjunction2> <#conjunction3> <#conjunction4>
+        <#disjunction1> <#disjunction2> <#disjunction3> <#disjunction4>
+        <#star0> <#star1> <#star2> <#star3>
+        <#plus0no> <#plus1> <#plus2> <#plus3>
+        <#country-observations-valid>
+        <#user1> <#user2>
+        <#nonIRI1> <#nonIRI2>
+        <#iri> <#bNode>
+        <#nonLiteral1> <#nonLiteral2>
+        <#nonBNode1> <#nonBNode2> <#nonBNode3>
+        <#ab-ab> <#ab-a>
+        <#xsd_double_simplified>
+        <#regex_aa>
     ) .
 
 <#a-string-syntax> rdf:type shext:PositiveSyntax ;
    mf:name      "a-string-syntax" ;
    rdfs:comment "Shex Expression with an single arc rule" ;
    shext:status mf:proposed ;
-   shext:schema <a-string.shex> ;
-   .
+   mf:action [
+      shext:schema <a-string.shex>
+   ] .
 
 <#simple-star> rdf:type shext:PositiveSyntax ;
    mf:name      "simple-star" ;
    rdfs:comment "Shex Expression with an single arc rule and a star" ;
    shext:status mf:proposed ;
-   shext:schema <simple-star.shex> ;
-   .
+   mf:action [
+   shext:schema <simple-star.shex>
+   ] .
 
-<#a-string-valid> rdf:type shext:ValidationTest ;
+<#a-string-valid> rdf:type shext:Valid ;
    mf:name      "a-string-valid" ;
    rdfs:comment "label a with property p and a string" ;
    shext:status mf:proposed ;
+   mf:action [
    shext:schema   <a-string.shex> ;
-   shext:data <a-string.ttl> ;
-   shext:focus      ex:x ;
-   shext:shape 	  ex:a
-   .
+   shext:data     <a-string.ttl> ;
+   shext:focus    <http://example.org/x> ;
+   shext:shape    <http://example.org/a>
+   ] .
 
-<#conjunction1> rdf:type shext:ValidationTest ;
+<#conjunction1> rdf:type shext:Valid ;
    mf:name      "conjunction1" ;
    rdfs:comment "conjunction 1" ;
    shext:status mf:proposed ;
-   shext:schema   <conjunction.shex> ;
-   shext:data <conjunction1.ttl> ;
-   shext:focus      ex:x ;
-   shext:shape 	  ex:a
-   .
+   mf:action [
+      shext:schema   <conjunction.shex> ;
+      shext:data     <conjunction1.ttl> ;
+      shext:focus    <http://example.org/x> ;
+      shext:shape    <http://example.org/a>
+   ] .
 
-<#conjunction2> rdf:type shext:ValidationFailure ;
+<#conjunction2> rdf:type shext:NotValid ;
    mf:name      "conjunction2" ;
    rdfs:comment "conjunction 2 (should fail)" ;
    shext:status mf:proposed ;
-   shext:schema   <conjunction.shex> ;
-   shext:data <conjunction2.ttl> ;
-   shext:focus      ex:x
-   # No shape assigned
-   .
+   mf:action [
+      shext:schema   <conjunction.shex> ;
+      shext:data     <conjunction2.ttl> ;
+      shext:focus    <http://example.org/x>
+      # No shape assigned
+   ] .
 
-<#conjunction3> rdf:type shext:ValidationFailure ;
+<#conjunction3> rdf:type shext:NotValid ;
    mf:name      "conjunction3" ;
    rdfs:comment "conjunction 3 (should fail)" ;
    shext:status mf:proposed ;
-   shext:schema   <conjunction.shex> ;
-   shext:data <conjunction3.ttl> ;
-   shext:focus      ex:x
-   # No shape assigned
-   .
+   mf:action [
+      shext:schema   <conjunction.shex> ;
+      shext:data     <conjunction3.ttl> ;
+      shext:focus    <http://example.org/x>
+      # No shape assigned
+   ] .
 
-<#conjunction4> rdf:type shext:ValidationFailure ;
+<#conjunction4> rdf:type shext:NotValid ;
    mf:name      "conjunction4" ;
    rdfs:comment "conjunction 4 (should fail)" ;
    shext:status mf:proposed ;
-   shext:schema   <conjunction.shex> ;
-   shext:data <conjunction4.ttl> ;
-   shext:focus      ex:x
-   # No shape assigned
-   .
+   mf:action [
+      shext:schema   <conjunction.shex> ;
+      shext:data     <conjunction4.ttl> ;
+      shext:focus    <http://example.org/x>
+      # No shape assigned
+   ] .
 
-<#disjunction1> rdf:type shext:ValidationFailure ;
+<#disjunction1> rdf:type shext:Valid ;
    mf:name      "disjunction1" ;
-   rdfs:comment "disjunction 1 (should fail)" ;
+   rdfs:comment "disjunction 1 (should pass for remainder)" ;
    shext:status mf:proposed ;
-   shext:schema   <disjunction.shex> ;
-   shext:data <disjunction1.ttl> ;
-   shext:focus      ex:x
-   # No shape assigned
-   .
+   mf:action [
+      shext:schema   <disjunctionOpen.shex> ;
+      shext:data     <disjunction1.ttl> ;
+      shext:focus    <http://example.org/x> ;
+      shext:shape    <http://example.org/a>
+   ] .
 
-<#disjunction2> rdf:type shext:ValidationTest ;
+<#disjunction1Closed> rdf:type shext:NotValid ;
+   mf:name      "disjunction1" ;
+   rdfs:comment "disjunction 1 (should not pass )" ;
+   shext:status mf:proposed ;
+   mf:action [
+      shext:schema   <disjunction.shex> ;
+      shext:data     <disjunction1.ttl> ;
+      shext:focus    <http://example.org/x> ;
+      shext:shape    <http://example.org/a>
+   ] .
+
+<#disjunction2> rdf:type shext:Valid ;
    mf:name      "disjunction2" ;
    rdfs:comment "disjunction 2 " ;
    shext:status mf:proposed ;
-   shext:schema   <disjunction.shex> ;
-   shext:data <disjunction2.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
-<#disjunction3> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <disjunction.shex> ;
+      shext:data     <disjunction2.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
+<#disjunction3> rdf:type shext:Valid ;
    mf:name      "disjunction3" ;
    rdfs:comment "disjunction 3 " ;
    shext:status mf:proposed ;
-   shext:schema   <disjunction.shex> ;
-   shext:data <disjunction3.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <disjunction.shex> ;
+      shext:data     <disjunction3.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#disjunction4> rdf:type shext:ValidationFailure ;
+<#disjunction4> rdf:type shext:NotValid ;
    mf:name      "disjunction4" ;
    rdfs:comment "disjunction 4 (should fail)" ;
    shext:status mf:proposed ;
-   shext:schema   <disjunction.shex> ;
-   shext:data <disjunction4.ttl> ;
-   shext:focus      ex:x
-   # No shape assigned
-   .
+   mf:action [
+      shext:schema   <disjunction.shex> ;
+      shext:data     <disjunction4.ttl> ;
+      shext:focus    <http://example.org/x>
+      # No shape assigned
+   ] .
 
-<#star0> rdf:type shext:ValidationTest ;
+<#star0> rdf:type shext:Valid ;
    mf:name      "star0" ;
    rdfs:comment "star 0" ;
    shext:status mf:proposed ;
-   shext:schema   <star.shex> ;
-   shext:data <star0.ttl> ;
-   shext:focus      ex:x ;
-   shext:shape    ex:a ;
-   .
+   mf:action [
+      shext:schema   <star.shex> ;
+      shext:data     <star0.ttl> ;
+      shext:focus    <http://example.org/x> ;
+      shext:shape    <http://example.org/a> ;
+   ] .
 
-<#star1> rdf:type shext:ValidationTest ;
+<#star1> rdf:type shext:Valid ;
    mf:name      "star1" ;
    rdfs:comment "star 1" ;
    shext:status mf:proposed ;
-   shext:schema   <star.shex> ;
-   shext:data <star1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <star.shex> ;
+      shext:data     <star1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#star2> rdf:type shext:ValidationTest ;
+<#star2> rdf:type shext:Valid ;
    mf:name      "star2" ;
    rdfs:comment "star 2" ;
    shext:status mf:proposed ;
-   shext:schema   <star.shex> ;
-   shext:data <star2.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <star.shex> ;
+      shext:data     <star2.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#star3> rdf:type shext:ValidationTest ;
+<#star3> rdf:type shext:Valid ;
    mf:name      "star3" ;
    rdfs:comment "star 3" ;
    shext:status mf:proposed ;
-   shext:schema   <star.shex> ;
-   shext:data <star3.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <star.shex> ;
+      shext:data     <star3.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#no-star1> rdf:type shext:ValidationFailure ;
+<#no-star1> rdf:type shext:Valid ;
    mf:name      "no-star1" ;
    rdfs:comment "star 3" ;
    shext:status mf:proposed ;
-   shext:schema   <star.shex> ;
-   shext:data <no-star1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <star.shex> ;
+      shext:data     <no-star1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#plus0no> rdf:type shext:ValidationFailure ;
+<#plus0no> rdf:type shext:NotValid ;
    mf:name      "plus0no" ;
    rdfs:comment "plus 0 no" ;
    shext:status mf:proposed ;
-   shext:schema   <plus.shex> ;
-   shext:data <plus0-no.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <plus.shex> ;
+      shext:data     <plus0-no.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#plus1> rdf:type shext:ValidationTest ;
+<#plus1> rdf:type shext:Valid ;
    mf:name      "plus1" ;
    rdfs:comment "plus 1" ;
    shext:status mf:proposed ;
-   shext:schema   <plus.shex> ;
-   shext:data <plus1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <plus.shex> ;
+      shext:data     <plus1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#plus2> rdf:type shext:ValidationTest ;
+<#plus2> rdf:type shext:Valid ;
    mf:name      "plus2" ;
    rdfs:comment "plus 2" ;
    shext:status mf:proposed ;
-   shext:schema   <plus.shex> ;
-   shext:data <plus2.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <plus.shex> ;
+      shext:data     <plus2.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#plus3> rdf:type shext:ValidationTest ;
+<#plus3> rdf:type shext:Valid ;
    mf:name      "plus3" ;
    rdfs:comment "plus 3" ;
    shext:status mf:proposed ;
-   shext:schema   <plus.shex> ;
-   shext:data <plus3.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <plus.shex> ;
+      shext:data     <plus3.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#opt0> rdf:type shext:ValidationTest ;
+<#opt0> rdf:type shext:Valid ;
    mf:name      "opt0" ;
    rdfs:comment "opt 0" ;
    shext:status mf:proposed ;
-   shext:schema   <opt.shex> ;
-   shext:data <opt0.ttl> ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <opt.shex> ;
+      shext:data     <opt0.ttl> ;
+      shext:focus  <http://example.org/y> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#opt1> rdf:type shext:ValidationTest ;
+<#opt1> rdf:type shext:Valid ;
    mf:name      "opt1" ;
    rdfs:comment "opt 1" ;
    shext:status mf:proposed ;
-   shext:schema   <opt.shex> ;
-   shext:data <opt1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <opt.shex> ;
+      shext:data     <opt1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#opt2> rdf:type shext:ValidationFailure ;
+<#opt2> rdf:type shext:Valid ;
    mf:name      "opt2" ;
    rdfs:comment "opt 2" ;
    shext:status mf:proposed ;
-   shext:schema   <opt.shex> ;
-   shext:data <opt2-no.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <opt.shex> ;
+      shext:data     <opt2-no.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#optOr1> rdf:type shext:ValidationTest ;
+<#optOr1> rdf:type shext:Valid ;
    mf:name      "optOr1" ;
    rdfs:comment "optOr 1" ;
    shext:status mf:proposed ;
-   shext:schema   <optOr.shex> ;
-   shext:data <optOr1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <optOr.shex> ;
+      shext:data     <optOr1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#optOr2> rdf:type shext:ValidationFailure ;
+<#optOr2> rdf:type shext:Valid ;
    mf:name      "optOr2" ;
    rdfs:comment "optOr 2" ;
    shext:status mf:proposed ;
-   shext:schema   <optOr.shex> ;
-   shext:data <optOr2.ttl> ;
-   shext:focus    ex:x
-   .
+   mf:action [
+      shext:schema   <optOr.shex> ;
+      shext:data     <optOr2.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#optOr3> rdf:type shext:ValidationTest ;
+
+<#optOr3> rdf:type shext:Valid ;
    mf:name      "optOr3" ;
    rdfs:comment "optOr 3" ;
    shext:status mf:proposed ;
-   shext:schema   <optOr.shex> ;
-   shext:data <optOr3.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <optOr.shex> ;
+      shext:data     <optOr3.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#optAnd1> rdf:type shext:ValidationFailure ;
+<#optAnd1> rdf:type shext:NotValid ;
    mf:name      "optAnd1" ;
    rdfs:comment "optAnd 1" ;
    shext:status mf:proposed ;
-   shext:schema   <optAnd.shex> ;
-   shext:data <optAnd1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <optAnd.shex> ;
+      shext:data     <optAnd1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#optAnd2> rdf:type shext:ValidationTest ;
+<#optAnd2> rdf:type shext:Valid ;
    mf:name      "optAnd2" ;
    rdfs:comment "optAnd 2" ;
    shext:status mf:proposed ;
-   shext:schema   <optAnd.shex> ;
-   shext:data <optAnd2.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <optAnd.shex> ;
+      shext:data     <optAnd2.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#optAnd3> rdf:type shext:ValidationTest ;
+<#optAnd3> rdf:type shext:Valid ;
    mf:name      "optAnd3" ;
    rdfs:comment "optAnd 3" ;
    shext:status mf:proposed ;
-   shext:schema   <optAnd.shex> ;
-   shext:data <optAnd3.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <optAnd.shex> ;
+      shext:data     <optAnd3.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#groupOptAnd1> rdf:type shext:ValidationTest ;
+<#groupOptAnd1> rdf:type shext:Valid ;
    mf:name      "groupOptAnd1" ;
    rdfs:comment "groupOptAnd 1" ;
    shext:status mf:proposed ;
-   shext:schema   <groupOptAnd.shex> ;
-   shext:data <groupOptAnd1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <groupOptAnd.shex> ;
+      shext:data     <groupOptAnd1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#groupOptAnd2> rdf:type shext:ValidationTest ;
+<#groupOptAnd2> rdf:type shext:Valid ;
    mf:name      "groupOptAnd2" ;
    rdfs:comment "groupOptAnd 2" ;
    shext:status mf:proposed ;
-   shext:schema   <groupOptAnd.shex> ;
-   shext:data <groupOptAnd2.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <groupOptAnd.shex> ;
+      shext:data     <groupOptAnd2.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#groupOptAnd3> rdf:type shext:ValidationFailure ;
+<#groupOptAnd3> rdf:type shext:NotValid ;
    mf:name      "groupOptAnd3" ;
    rdfs:comment "groupOptAnd 3" ;
    shext:status mf:proposed ;
-   shext:schema   <groupOptAnd.shex> ;
-   shext:data <groupOptAnd3.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <groupOptAnd.shex> ;
+      shext:data     <groupOptAnd3.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#groupOptOr1> rdf:type shext:ValidationTest ;
+<#groupOptOr1> rdf:type shext:Valid ;
    mf:name      "groupOptOr1" ;
    rdfs:comment "groupOptOr 1" ;
    shext:status mf:proposed ;
-   shext:schema   <groupOptOr.shex> ;
-   shext:data <groupOptOr1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <groupOptOr.shex> ;
+      shext:data     <groupOptOr1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#groupOptOr2> rdf:type shext:ValidationFailure ;
+<#groupOptOr2> rdf:type shext:Valid ;
    mf:name      "groupOptOr2" ;
    rdfs:comment "groupOptOr 2" ;
    shext:status mf:proposed ;
-   shext:schema   <groupOptOr.shex> ;
-   shext:data <groupOptOr2.ttl> ;
-   shext:focus    ex:x
-   .
+   mf:action [
+      shext:schema   <groupOptOr.shex> ;
+      shext:data     <groupOptOr2.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#groupOptOr3> rdf:type shext:ValidationTest ;
+<#groupOptOr3> rdf:type shext:Valid ;
    mf:name      "groupOptOr3" ;
    rdfs:comment "groupOptOr 3" ;
    shext:status mf:proposed ;
-   shext:schema   <groupOptOr.shex> ;
-   shext:data <groupOptOr3.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <groupOptOr.shex> ;
+      shext:data     <groupOptOr3.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#a-2string-no-valid> rdf:type shext:NonValid ;
+<#a-2string-no-valid> rdf:type shext:NonValid ; # @@ NotValid ?
    mf:name      "a-2string-no-valid" ;
    rdfs:comment "a-2string 2 strings for p" ;
    shext:status mf:proposed ;
-   shext:schema   <a-string.shex> ;
-   shext:data <a-2string.ttl> ;
-   .
+   mf:action [
+      shext:schema   <a-string.shex> ;
+      shext:data     <a-2string.ttl> ;
+      shext:focus    <http://example.org/x> ;
+      shext:shape    <http://example.org/a>
+   ] .
 
-<#a-string-no-valid> rdf:type shext:NonValid ;
+<#a-string-no-valid> rdf:type shext:NonValid ; # @@ NotValid ?
    mf:name      "a-string-no-valid" ;
    rdfs:comment "a-string with no value for p" ;
    shext:status mf:proposed ;
-   shext:schema   <a-string.shex> ;
-   shext:data <a-string-no-p.ttl> ;
-   .
+   mf:action [
+      shext:schema   <a-string.shex> ;
+      shext:data     <a-string-no-p.ttl> ;
+      shext:focus    <http://example.org/x> ;
+      shext:shape    <http://example.org/a>
+   ] .
 
-<#country-observations-valid> rdf:type shext:ValidationTest ;
+<#country-observations-valid> rdf:type shext:Valid ;
    mf:name      "country-observations-valid" ;
    rdfs:comment "a country with several observations" ;
    shext:status mf:proposed ;
-   shext:schema   <country-observations.shex> ;
-   shext:data <country-observations.ttl> ;
-   shext:focus    ex:c1 ;
-   shext:shape  ex:country
-   .
+   mf:action [
+      shext:schema   <country-observations.shex> ;
+      shext:data     <country-observations.ttl> ;
+      shext:focus  <http://example.org/c1> ;
+      shext:shape  <http://example.org/country>
+   ] .
 
-<#user1> rdf:type shext:ValidationTest ;
+<#user1> rdf:type shext:Valid ;
    mf:name      "user1" ;
    rdfs:comment "User and issue shape simple" ;
    shext:status mf:proposed ;
-   shext:schema   <user1.shex> ;
-   shext:data <user1.ttl> ;
-   shext:focus    ex:issue1 ;
-   shext:shape  ex:IssueShape
-   .
+   mf:action [
+      shext:schema   <user1.shex> ;
+      shext:data     <user1.ttl> ;
+      shext:focus  <http://example.org/issue1> ;
+      shext:shape  <http://example.org/IssueShape>
+   ] .
 
-<#user2> rdf:type shext:ValidationTest ;
+<#user2> rdf:type shext:Valid ;
    mf:name      "user2" ;
    rdfs:comment "User and issue shape simple" ;
    shext:status mf:proposed ;
-   shext:schema   <user2.shex> ;
-   shext:data <user2.ttl> ;
-   shext:focus    ex:issue1 ;
-   shext:shape  ex:IssueShape
-   .
+   mf:action [
+      shext:schema   <user2.shex> ;
+      shext:data     <user2.ttl> ;
+      shext:focus  <http://example.org/issue1> ;
+      shext:shape  <http://example.org/IssueShape>
+   ] .
 
-<#u> rdf:type shext:ValidationTest ;
+<#u> rdf:type shext:Valid ;
    mf:name      "u" ;
    rdfs:comment "Simplified User and issue shape" ;
    shext:status mf:proposed ;
-   shext:schema   <u.shex> ;
-   shext:data <u.ttl> ;
-   shext:focus    ex:y1 ;
-   shext:shape  ex:Y
-   .
+   mf:action [
+      shext:schema   <u.shex> ;
+      shext:data     <u.ttl> ;
+      shext:focus  <http://example.org/y1> ;
+      shext:shape  <http://example.org/Y>
+   ] .
 
-<#iri> rdf:type shext:ValidationTest ;
+<#iri> rdf:type shext:Valid ;
    mf:name      "iri1" ;
    rdfs:comment "A simple IRI" ;
    shext:status mf:proposed ;
-   shext:schema   <iri.shex> ;
-   shext:data <iri.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <iri.shex> ;
+      shext:data     <iri.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#nonIRI1> rdf:type shext:ValidationTest ;
+<#nonIRI1> rdf:type shext:Valid ;
    mf:name      "nonIRI1" ;
    rdfs:comment "A literal is non IRI" ;
    shext:status mf:proposed ;
-   shext:schema   <nonIRI.shex> ;
-   shext:data <nonIRI.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <nonIRI.shex> ;
+      shext:data     <nonIRI.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#nonIRI2> rdf:type shext:ValidationTest ;
+<#nonIRI2> rdf:type shext:Valid ;
    mf:name      "nonIRI2" ;
    rdfs:comment "A bnode is not an IRI" ;
    shext:status mf:proposed ;
-   shext:schema   <nonIRI.shex> ;
-   shext:data <nonIRI.ttl> ;
-   shext:focus    ex:y ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <nonIRI.shex> ;
+      shext:data     <nonIRI.ttl> ;
+      shext:focus  <http://example.org/y> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#nonLiteral1> rdf:type shext:ValidationTest ;
+<#nonLiteral1> rdf:type shext:Valid ;
    mf:name      "nonLiteral1" ;
    rdfs:comment "A iri is nonLiteral" ;
    shext:status mf:proposed ;
-   shext:schema   <nonLiteral.shex> ;
-   shext:data <nonLiteral.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <nonLiteral.shex> ;
+      shext:data     <nonLiteral.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#nonLiteral2> rdf:type shext:ValidationTest ;
+<#nonLiteral2> rdf:type shext:Valid ;
    mf:name      "nonIRI2" ;
    rdfs:comment "A bnode is nonLiteral" ;
    shext:status mf:proposed ;
-   shext:schema   <nonLiteral.shex> ;
-   shext:data <nonLiteral.ttl> ;
-   shext:focus    ex:y ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <nonLiteral.shex> ;
+      shext:data     <nonLiteral.ttl> ;
+      shext:focus  <http://example.org/y> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#bNode> rdf:type shext:ValidationTest ;
+<#bNode> rdf:type shext:Valid ;
    mf:name      "bNode" ;
    rdfs:comment "A bnode is a BNode" ;
    shext:status mf:proposed ;
-   shext:schema   <bNode.shex> ;
-   shext:data <bNode.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <bNode.shex> ;
+      shext:data     <bNode.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#nonBNode1> rdf:type shext:ValidationTest ;
+<#nonBNode1> rdf:type shext:Valid ;
    mf:name      "nonBNode1" ;
    rdfs:comment "A iri is nonLiteral" ;
    shext:status mf:proposed ;
-   shext:schema   <nonLiteral.shex> ;
-   shext:data <nonLiteral.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <nonLiteral.shex> ;
+      shext:data     <nonLiteral.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#nonBNode2> rdf:type shext:ValidationTest ;
+<#nonBNode2> rdf:type shext:ObsoleteValid ;
    mf:name      "nonBNode2" ;
    rdfs:comment "A literal is nonBNode" ;
    shext:status mf:proposed ;
-   shext:schema   <nonBNode.shex> ;
-   shext:data <nonBNode.ttl> ;
-   shext:focus    ex:y ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <nonBNode.shex> ;
+      shext:data     <nonBNode.ttl> ;
+      shext:focus  <http://example.org/y> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#nonBNode3> rdf:type shext:ValidationFailure ;
+<#nonBNode3> rdf:type shext:ObsoleteNotValid ;
    mf:name      "nonBNode3" ;
    rdfs:comment "A bNode is not a nonBNode" ;
    shext:status mf:proposed ;
-   shext:schema   <nonBNode.shex> ;
-   shext:data <nonBNode.ttl> ;
-   shext:focus    ex:z ;
-   .
+   mf:action [
+      shext:schema   <nonBNode.shex> ;
+      shext:data     <nonBNode.ttl> ;
+      shext:focus  <http://example.org/z> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#ab-ab> rdf:type shext:ValidationTest ;
+<#ab-ab> rdf:type shext:Valid ;
    mf:name      "ab-ab" ;
    rdfs:comment "ab->ab=ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-0> rdf:type shext:ValidationFailure ;
+<#ab-0> rdf:type shext:NotValid ;
    mf:name      "ab-0" ;
    rdfs:comment "ab -> 0 = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <0.ttl> ;
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-a> rdf:type shext:ValidationFailure ;
+<#ab-a> rdf:type shext:NotValid ;
    mf:name      "ab-a" ;
    rdfs:comment "ab -> a = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-b> rdf:type shext:ValidationFailure ;
+<#ab-b> rdf:type shext:NotValid ;
    mf:name      "ab-b" ;
    rdfs:comment "ab -> b = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-B> rdf:type shext:ValidationFailure ;
+<#ab-B> rdf:type shext:NotValid ;
    mf:name      "ab-B" ;
    rdfs:comment "ab -> B = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <notB.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <notB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqbq-a> rdf:type shext:ValidationTest ;
+<#aqbq-a> rdf:type shext:Valid ;
    mf:name      "aqbq-a" ;
    rdfs:comment "a?b?->a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqbq.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqbq.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqbq-b> rdf:type shext:ValidationTest ;
+<#aqbq-b> rdf:type shext:Valid ;
    mf:name      "aqbq-b" ;
    rdfs:comment "a?b?->b = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqbq.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqbq.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqbq-B> rdf:type shext:ValidationFailure ;
+# with open shapes B is a remaining triple
+<#aqbq-B> rdf:type shext:Valid ;
    mf:name      "aqbq-B" ;
-   rdfs:comment "a?b?->B = Fail" ;
+   rdfs:comment "a?b?->B = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aqbq.shex> ;
-   shext:data <notB.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <aqbq.shex> ;
+      shext:data     <notB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqbq-aB> rdf:type shext:ValidationFailure ;
+# with open shapes aB is a remaining triple
+<#aqbq-aB> rdf:type shext:Valid ;
    mf:name      "aqbq-aB" ;
-   rdfs:comment "a?b?->aB = Fail" ;
+   rdfs:comment "a?b?->aB = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aqbq.shex> ;
-   shext:data <anotB.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <aqbq.shex> ;
+      shext:data     <anotB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqb-0> rdf:type shext:ValidationFailure ;
+<#aqb-0> rdf:type shext:NotValid ;
    mf:name      "aqb-0" ;
    rdfs:comment "a?b -> 0 = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <aqb.shex> ;
-   shext:data <0.ttl> ;
-   .
+   mf:action [
+      shext:schema   <aqb.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqb-B> rdf:type shext:ValidationFailure ;
+<#aqb-B> rdf:type shext:NotValid ;
    mf:name      "aqb-B" ;
    rdfs:comment "a?b -> B = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <aqb.shex> ;
-   shext:data <notB.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <aqb.shex> ;
+      shext:data     <notB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq-0> rdf:type shext:ValidationFailure ;
+<#abq-0> rdf:type shext:NotValid ;
    mf:name      "abq-0" ;
    rdfs:comment "ab? -> 0 = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <abq.shex> ;
-   shext:data <0.ttl> ;
-   .
+   mf:action [
+      shext:schema   <abq.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-AB> rdf:type shext:ValidationFailure ;
+<#ab-AB> rdf:type shext:NotValid ;
    mf:name      "ab-AB" ;
    rdfs:comment "ab -> AB = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <notAnotB.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <notAnotB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-Ab> rdf:type shext:ValidationFailure ;
+<#ab-Ab> rdf:type shext:NotValid ;
    mf:name      "ab-Ab" ;
    rdfs:comment "ab -> Ab = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <notAb.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <notAb.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-A> rdf:type shext:ValidationFailure ;
+<#ab-A> rdf:type shext:NotValid ;
    mf:name      "ab-A" ;
    rdfs:comment "ab -> A = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <notA.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <notA.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq-a> rdf:type shext:ValidationTest ;
+<#abq-a> rdf:type shext:Valid ;
    mf:name      "abq-a" ;
    rdfs:comment "ab? -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abq.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abq.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq-A> rdf:type shext:ValidationFailure ;
+<#abq-A> rdf:type shext:NotValid ;
    mf:name      "abq-A" ;
    rdfs:comment "ab? -> A = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <abq.shex> ;
-   shext:data <notA.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <abq.shex> ;
+      shext:data     <notA.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb-a> rdf:type shext:ValidationTest ;
+<#aOrb-a> rdf:type shext:Valid ;
    mf:name      "aOrb-a" ;
    rdfs:comment "a|b -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-# This test depends on the Open/Closed shapes semantics
-<#aOrb-Ab> rdf:type shext:ValidationFailure ;
+
+<#aOrb-Ab> rdf:type shext:Valid ;
    mf:name      "aOrb-Ab" ;
-   rdfs:comment "a|b -> Ab = FAIL" ;
+   rdfs:comment "a|b -> Ab = PASS (remaining)" ;
    shext:status shext:discussion ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <notAb.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <notAb.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-# This test depends on the Open/Closed shapes semantics
-<#aOrb-aB> rdf:type shext:ValidationFailure ;
+<#aOrb-aB> rdf:type shext:Valid ;
    mf:name      "aOrb-aB" ;
-   rdfs:comment "a|b -> aB = FAIL" ;
+   rdfs:comment "a|b -> aB = PASS (remaining)" ;
    shext:status shext:discussion ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <anotB.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <anotB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb-0> rdf:type shext:ValidationFailure ;
+<#aOrb-0> rdf:type shext:NotValid ;
    mf:name      "aOrb-0" ;
    rdfs:comment "a|b -> 0 = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <0.ttl> ;
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb-ab> rdf:type shext:ValidationFailure ;
-   mf:name      "aOrb-ab" ;
-   rdfs:comment "a|b -> ab = FAIL" ;
-   shext:status mf:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   .
-
-<#aOrb-A> rdf:type shext:ValidationFailure ;
+<#aOrb-A> rdf:type shext:NotValid ;
    mf:name      "aOrb-A" ;
    rdfs:comment "aOrb -> A = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <notA.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <notA.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb-B> rdf:type shext:ValidationFailure ;
+<#aOrb-B> rdf:type shext:NotValid ;
    mf:name      "aOrb-B" ;
    rdfs:comment "a|b -> B = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <notB.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <notB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb-AB> rdf:type shext:ValidationFailure ;
+<#aOrb-AB> rdf:type shext:NotValid ;
    mf:name      "aOrb-AB" ;
    rdfs:comment "a|b -> AB = FAIL" ;
    shext:status shext:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <notAnotB.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <notAnotB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
 # Different semantics in Jesse's tests
-<#aqOrbq-0> rdf:type shext:ValidationTest ;
+<#aqOrbq-0> rdf:type shext:Valid ;
    mf:name      "aqOrbq-0" ;
    rdfs:comment "(a?|b)? -> 0 = ALL" ;
    shext:status shext:discussion ;
-   shext:schema   <aqOrbq.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqOrbq.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqOrbq-a> rdf:type shext:ValidationTest ;
+<#aqOrbq-a> rdf:type shext:Valid ;
    mf:name      "aqOrbq-a" ;
    rdfs:comment "(a?|b)? -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqOrbq.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item ;
-   .
+   mf:action [
+      shext:schema   <aqOrbq.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item> ;
+   ] .
 
-<#aqOrbq-b> rdf:type shext:ValidationTest ;
+<#aqOrbq-b> rdf:type shext:Valid ;
    mf:name      "aqOrbq-b" ;
    rdfs:comment "a?|b? -> b = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqOrbq.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item ;
-   .
+   mf:action [
+      shext:schema   <aqOrbq.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item> ;
+   ] .
 
-<#aqOrbq-ab> rdf:type shext:ValidationFailure ;
+# with open shapes it passes
+<#aqOrbq-ab> rdf:type shext:Valid ;
    mf:name      "aqOrbq-ab" ;
-   rdfs:comment "a?|b? -> ab = FAIL" ;
+   rdfs:comment "a?|b? -> ab = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aqOrbq.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item ;
-   .
+   mf:action [
+      shext:schema   <aqOrbq.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item> ;
+   ] .
 
-# Different semantics in Jesse's tests
-<#_aOrb_q-0> rdf:type shext:ValidationTest ;
+<#_aOrb_q-0> rdf:type shext:Valid ;
    mf:name      "_aOrb_q-0" ;
    rdfs:comment "(a|b)? -> 0 = ALL" ;
    shext:status shext:discussion ;
-   shext:schema   <_aOrb_q.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <_aOrb_q.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-# Different semantics in Jesse's tests
 # Depends on Open/Close semantics
-<#_aOrb_q-A> rdf:type shext:ValidationFailure ;
+<#_aOrb_q-A> rdf:type shext:Valid ;
    mf:name      "_aOrb_q-A" ;
-   rdfs:comment "(a|b)? -> A = Fail" ;
+   rdfs:comment "(a|b)? -> A = PASS" ;
    shext:status shext:discussion ;
-   shext:schema   <_aOrb_q.shex> ;
-   shext:data <notA.ttl> ;
-   shext:focus    ex:item ;
-   .
+   mf:action [
+      shext:schema   <_aOrb_q.shex> ;
+      shext:data     <notA.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-# Different semantics in Jesse's tests
-# Depends on Open/Close semantics
-<#aqOrb-0> rdf:type shext:ValidationTest ;
+<#aqOrb-0> rdf:type shext:Valid ;
    mf:name      "aqOrb-0" ;
    rdfs:comment "a?|b -> 0 = ALL" ;
    shext:status shext:discussion ;
-   shext:schema   <aqOrb.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ; # We declare an IRI so the system infers empty typing
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqOrb.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ; # We declare an IRI so the system infers empty typing
+      shext:shape  <http://example.org/Item>
+   ] .
 
-# Different semantics in Jesse's tests
-# Depends on Open/Close semantics
-<#aqOrb-B> rdf:type shext:ValidationFailure ;
+# Depends on Open/Closed shapes
+<#aqOrb-B> rdf:type shext:Valid ;
    mf:name      "aqOrb-B" ;
-   rdfs:comment "a?|b -> B = Fail" ;
+   rdfs:comment "a?|b -> B = Pass" ;
    shext:status shext:discussion ;
-   shext:schema   <aqOrb.shex> ;
-   shext:data <notB.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqOrb.shex> ;
+      shext:data     <notB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb_c-ab> rdf:type shext:ValidationFailure ;
+<#aOrb_c-ab> rdf:type shext:NotValid ;
    mf:name      "aOrb_c-ab" ;
    rdfs:comment "(a|b)c -> ab = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_c.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb_c.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb_cq-ab> rdf:type shext:ValidationFailure ;
+<#aOrb_cq-ab> rdf:type shext:Valid ;
    mf:name      "aOrb_cq-ab" ;
-   rdfs:comment "(a|b)c? -> ab = Fail" ;
+   rdfs:comment "(a|b)c? -> ab = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_cq.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb_cq.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb_cq-abc> rdf:type shext:ValidationFailure ;
+
+<#aOrb_cq-abc> rdf:type shext:Valid ;
    mf:name      "aOrb_cq-abc" ;
-   rdfs:comment "(a|b)c? -> abc = Fail" ;
+   rdfs:comment "(a|b)c? -> abc = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_cq.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb_cq.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb_cq-abC> rdf:type shext:ValidationFailure ;
+<#aOrb_cq-abC> rdf:type shext:Valid ;
    mf:name      "aOrb_cq-abC" ;
-   rdfs:comment "(a|b)c? -> abC = Fail" ;
+   rdfs:comment "(a|b)c? -> abC = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_cq.shex> ;
-   shext:data <abnotC.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb_cq.shex> ;
+      shext:data     <abnotC.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb_cq-ac> rdf:type shext:ValidationTest ;
+<#aOrb_cq-ac> rdf:type shext:Valid ;
    mf:name      "aOrb_cq-ac" ;
    rdfs:comment "(a|b)c? -> ac = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_cq.shex> ;
-   shext:data <ac.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb_cq.shex> ;
+      shext:data     <ac.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb_cq-bc> rdf:type shext:ValidationTest ;
+<#aOrb_cq-bc> rdf:type shext:Valid ;
    mf:name      "aOrb_cq-bc" ;
    rdfs:comment "(a|b)c? -> bc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_cq.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb_cq.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb_cq-a> rdf:type shext:ValidationTest ;
+<#aOrb_cq-a> rdf:type shext:Valid ;
    mf:name      "aOrb_cq-a" ;
    rdfs:comment "(a|b)c? -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_cq.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb_cq.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb_cq-b> rdf:type shext:ValidationTest ;
+<#aOrb_cq-b> rdf:type shext:Valid ;
    mf:name      "aOrb_cq-b" ;
    rdfs:comment "(a|b)c? -> b = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_cq.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb_cq.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#a_bOrc-bc> rdf:type shext:ValidationFailure ;
+<#a_bOrc-bc> rdf:type shext:NotValid ;
    mf:name      "a_bOrc-bc" ;
    rdfs:comment "a(b|c) -> bc = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <a_bOrc.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <a_bOrc.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aq_bOrc-abc> rdf:type shext:ValidationFailure ;
+<#aq_bOrc-abc> rdf:type shext:Valid ;
    mf:name      "aq_bOrc-abc" ;
-   rdfs:comment "a?(b|c) -> abc = FAIL" ;
+   rdfs:comment "a?(b|c) -> abc = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aq_bOrc.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aq_bOrc-Abc> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aq_bOrc.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aq_bOrc-Abc> rdf:type shext:Valid ;
    mf:name      "aq_bOrc-Abc" ;
-   rdfs:comment "a?(b|c) -> Abc = FAIL" ;
+   rdfs:comment "a?(b|c) -> Abc = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aq_bOrc.shex> ;
-   shext:data <notAbc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aq_bOrc-bc> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aq_bOrc.shex> ;
+      shext:data     <notAbc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aq_bOrc-bc> rdf:type shext:Valid ;
    mf:name      "aq_bOrc-bc" ;
-   rdfs:comment "a?(b|c) -> bc = FAIL" ;
+   rdfs:comment "a?(b|c) -> bc = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aq_bOrc.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aOrb_cOrb-abcd> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aq_bOrc.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aOrb_cOrb-abcd> rdf:type shext:Valid ;
    mf:name      "aOrb_cOrd-abcd" ;
-   rdfs:comment "(a|b)(c|d) -> abcd = FAIL" ;
+   rdfs:comment "(a|b)(c|d) -> abcd = PASS (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_cOrd.shex> ;
-   shext:data <abcd.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aOrb_Orc-ab> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aOrb_cOrd.shex> ;
+      shext:data     <abcd.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aOrb_Orc-ab> rdf:type shext:Valid ;
    mf:name      "aOrb_Orc-ab" ;
-   rdfs:comment "(a|b)|c -> ab = FAIL" ;
+   rdfs:comment "(a|b)|c -> ab = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_Orc.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aOrb_Orcq-ab> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aOrb_Orc.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aOrb_Orcq-ab> rdf:type shext:Valid ;
    mf:name      "aOrb_Orcq-ab" ;
    rdfs:comment "(a|b)|c? -> ab = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_Orcq.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aOrb_Orcq-abc> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aOrb_Orcq.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aOrb_Orcq-abc> rdf:type shext:Valid ;
    mf:name      "aOrb_Orcq-abc" ;
-   rdfs:comment "(a|b)|c? -> abc = FAIL" ;
+   rdfs:comment "(a|b)|c? -> abc = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_Orcq.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aOrb_Orcq-abC> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aOrb_Orcq.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aOrb_Orcq-abC> rdf:type shext:Valid ;
    mf:name      "aOrb_Orcq-abC" ;
-   rdfs:comment "(a|b)|c? -> abC = FAIL" ;
+   rdfs:comment "(a|b)|c? -> abC = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_Orcq.shex> ;
-   shext:data <abnotC.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb_Orcq.shex> ;
+      shext:data     <abnotC.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOr_bOrc-bc> rdf:type shext:ValidationFailure ;
+<#aOr_bOrc-bc> rdf:type shext:Valid ;
    mf:name      "aOr_bOrc-bc" ;
-   rdfs:comment "a|(b|c) -> bc = FAIL" ;
+   rdfs:comment "a|(b|c) -> bc = PASS (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOr_bOrc.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOr_bOrc.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqOr_bOrc-abc> rdf:type shext:ValidationFailure ;
+<#aqOr_bOrc-abc> rdf:type shext:Valid ;
    mf:name      "aqOr_bOrc-abc" ;
-   rdfs:comment "a?|(b|c) -> abc = FAIL" ;
+   rdfs:comment "a?|(b|c) -> abc = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aqOr_bOrc.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aqOr_bOrc-Abc> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aqOr_bOrc.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aqOr_bOrc-Abc> rdf:type shext:Valid ;
    mf:name      "aqOr_bOrc-Abc" ;
-   rdfs:comment "a?|(b|c) -> Abc = FAIL" ;
+   rdfs:comment "a?|(b|c) -> Abc = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aqOr_bOrc.shex> ;
-   shext:data <notAbc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aqOr_bOrc-bc> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aqOr_bOrc.shex> ;
+      shext:data     <notAbc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+# with open shapes it passes
+<#aqOr_bOrc-bc> rdf:type shext:Valid ;
    mf:name      "aqOr_bOrc-bc" ;
-   rdfs:comment "a?|(b|c) -> bc = FAIL" ;
+   rdfs:comment "a?|(b|c) -> bc = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aqOr_bOrc.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aOrb_or_cOrd-abcd> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aqOr_bOrc.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aOrb_or_cOrd-abcd> rdf:type shext:Valid ;
    mf:name      "aOrb_or_cOrd-abcd" ;
-   rdfs:comment "(a|b)(c|d) -> abcd = FAIL" ;
+   rdfs:comment "(a|b)(c|d) -> abcd = PASS (remaining triples)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_or_cOrd.shex> ;
-   shext:data <abcd.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aOrb_q-ab> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aOrb_or_cOrd.shex> ;
+      shext:data     <abcd.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+# with open shapes it passes
+<#aOrb_q-ab> rdf:type shext:Valid ;
    mf:name      "aOrb_q-ab" ;
-   rdfs:comment "(a|b)? -> ab = FAIL" ;
+   rdfs:comment "(a|b)? -> ab = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb_q.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aq-0> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <aOrb_q.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aq-0> rdf:type shext:Valid ;
    mf:name      "aq-0" ;
    rdfs:comment "a? -> 0 = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aq.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aq-a> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <aq.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aq-a> rdf:type shext:Valid ;
    mf:name      "aq-a" ;
    rdfs:comment "a? -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aq.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#a-a> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <aq.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#a-a> rdf:type shext:Valid ;
    mf:name      "a-a" ;
    rdfs:comment "a -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <a.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#a-b> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <a.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#a-b> rdf:type shext:NotValid ;
    mf:name      "a-b" ;
    rdfs:comment "a -> b = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <a.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aq-a> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <a.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#aq-a> rdf:type shext:Valid ;
    mf:name      "aq-a" ;
    rdfs:comment "a? -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aq.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aq-aa> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <aq.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+# Passes with open shapes
+<#aq-aa> rdf:type shext:Valid ;
    mf:name      "aq-aa" ;
-   rdfs:comment "a? -> aa = FAIL" ;
+   rdfs:comment "a? -> aa = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aq.shex> ;
-   shext:data <aa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aq.shex> ;
+      shext:data     <aa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ap-0> rdf:type shext:ValidationFailure ;
+<#ap-0> rdf:type shext:NotValid ;
    mf:name      "ap-0" ;
    rdfs:comment "a+ -> 0 = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ap.shex> ;
-   shext:data <0.ttl> ;
-   .
+   mf:action [
+      shext:schema   <ap.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ap-a> rdf:type shext:ValidationTest ;
+<#ap-a> rdf:type shext:Valid ;
    mf:name      "ap-a" ;
    rdfs:comment "a+ -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ap.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#ap-aa> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <ap.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#ap-aa> rdf:type shext:Valid ;
    mf:name      "ap-aa" ;
    rdfs:comment "a+ -> aa = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ap.shex> ;
-   shext:data <aa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#ap-aaa> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <ap.shex> ;
+      shext:data     <aa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#ap-aaa> rdf:type shext:Valid ;
    mf:name      "ap-aaa" ;
    rdfs:comment "a+ -> aaa = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ap.shex> ;
-   shext:data <aaa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#as-0> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <ap.shex> ;
+      shext:data     <aaa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#as-0> rdf:type shext:Valid ;
    mf:name      "as-0" ;
    rdfs:comment "a* -> 0 = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <as.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#as-a> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <as.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#as-a> rdf:type shext:Valid ;
    mf:name      "as-a" ;
    rdfs:comment "a* -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <as.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#as-aa> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <as.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#as-aa> rdf:type shext:Valid ;
    mf:name      "as-aa" ;
    rdfs:comment "a* -> aa = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <as.shex> ;
-   shext:data <aa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#as-aaa> rdf:type shext:ValidationTest ;
+   mf:action [
+      shext:schema   <as.shex> ;
+      shext:data     <aa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#as-aaa> rdf:type shext:Valid ;
    mf:name      "as-aaa" ;
    rdfs:comment "a* -> aaa = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <as.shex> ;
-   shext:data <aaa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#as-ab> rdf:type shext:ValidationFailure ;
+   mf:action [
+      shext:schema   <as.shex> ;
+      shext:data     <aaa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+        
+<#as-ab> rdf:type shext:Valid ;
    mf:name      "as-ab" ;
-   rdfs:comment "a* -> ab = FAIL" ;
+   rdfs:comment "a* -> ab = PASS with Open shapes" ;
    shext:status mf:proposed ;
-   shext:schema   <as.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <as.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ap_q-0> rdf:type shext:ValidationTest ;
+<#ap_q-0> rdf:type shext:Valid ;
    mf:name      "ap_q-0" ;
    rdfs:comment "(a+)? -> 0 = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ap_q.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ap_q.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ap_q-aa> rdf:type shext:ValidationTest ;
+<#ap_q-aa> rdf:type shext:Valid ;
    mf:name      "ap_q-aa" ;
    rdfs:comment "(a+)? -> aa = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ap_q.shex> ;
-   shext:data <aa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ap_q.shex> ;
+      shext:data     <aa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-ba> rdf:type shext:ValidationTest ;
+<#ab-ba> rdf:type shext:Valid ;
    mf:name      "ab-ba" ;
    rdfs:comment "ab -> ba = NotValid" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <ba.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <ba.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-bc> rdf:type shext:ValidationFailure ;
+<#ab-bc> rdf:type shext:NotValid ;
    mf:name      "ab-bc" ;
    rdfs:comment "ab -> bc = NotValid" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-ac> rdf:type shext:ValidationFailure ;
+<#ab-ac> rdf:type shext:NotValid ;
    mf:name      "ab-ac" ;
    rdfs:comment "ab -> ac = NotValid" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <ac.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <ac.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
 
-<#ab-aB> rdf:type shext:ValidationFailure ;
+<#ab-aB> rdf:type shext:NotValid ;
    mf:name      "ab-aB" ;
    rdfs:comment "ab -> aB = NotValid" ;
    shext:status mf:proposed ;
-   shext:schema   <ab.shex> ;
-   shext:data <anotB.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab.shex> ;
+      shext:data     <anotB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abc-abc> rdf:type shext:ValidationTest ;
+<#abc-abc> rdf:type shext:Valid ;
    mf:name      "abc-abc" ;
    rdfs:comment "abc -> abc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abc.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abc.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abc-a> rdf:type shext:ValidationFailure ;
+<#abc-a> rdf:type shext:NotValid ;
    mf:name      "abc-a" ;
    rdfs:comment "abc -> a = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <abc.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abc.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abc-b> rdf:type shext:ValidationFailure ;
+<#abc-b> rdf:type shext:NotValid ;
    mf:name      "abc-b" ;
    rdfs:comment "abc -> b = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <abc.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abc.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abc-c> rdf:type shext:ValidationFailure ;
+<#abc-c> rdf:type shext:NotValid ;
    mf:name      "abc-c" ;
    rdfs:comment "abc -> c = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <abc.shex> ;
-   shext:data <c.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abc.shex> ;
+      shext:data     <c.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abc-ab> rdf:type shext:ValidationFailure ;
+<#abc-ab> rdf:type shext:NotValid ;
    mf:name      "abc-ab" ;
    rdfs:comment "abc -> ab = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <abc.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abc.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abc-ac> rdf:type shext:ValidationFailure ;
+<#abc-ac> rdf:type shext:NotValid ;
    mf:name      "abc-ac" ;
    rdfs:comment "abc -> ac = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <abc.shex> ;
-   shext:data <ac.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abc.shex> ;
+      shext:data     <ac.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abc-bc> rdf:type shext:ValidationFailure ;
+<#abc-bc> rdf:type shext:NotValid ;
    mf:name      "abc-bc" ;
    rdfs:comment "abc -> bc = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <abc.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abc.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab_c-abc> rdf:type shext:ValidationTest ;
+<#ab_c-abc> rdf:type shext:Valid ;
    mf:name      "ab_c-abc" ;
    rdfs:comment "(ab)c -> abc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_c.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_c.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
 
-<#ab_c-a> rdf:type shext:ValidationFailure ;
+<#ab_c-a> rdf:type shext:NotValid ;
    mf:name      "ab_c-a" ;
    rdfs:comment "(ab)c -> a = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_c.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_c.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
 
-<#ab_c-b> rdf:type shext:ValidationFailure ;
+<#ab_c-b> rdf:type shext:NotValid ;
    mf:name      "ab_c-b" ;
    rdfs:comment "(ab)c -> b = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_c.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_c.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab_c-c> rdf:type shext:ValidationFailure ;
+<#ab_c-c> rdf:type shext:NotValid ;
    mf:name      "ab_c-c" ;
    rdfs:comment "(ab)c -> c = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_c.shex> ;
-   shext:data <c.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_c.shex> ;
+      shext:data     <c.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab_c-ab> rdf:type shext:ValidationFailure ;
+<#ab_c-ab> rdf:type shext:NotValid ;
    mf:name      "ab_c-ab" ;
    rdfs:comment "(ab)c -> ab = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_c.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_c.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab_c-ac> rdf:type shext:ValidationFailure ;
+<#ab_c-ac> rdf:type shext:NotValid ;
    mf:name      "ab_c-ac" ;
    rdfs:comment "(ab)c -> ac = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_c.shex> ;
-   shext:data <ac.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_c.shex> ;
+      shext:data     <ac.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab_c-bc> rdf:type shext:ValidationFailure ;
+<#ab_c-bc> rdf:type shext:NotValid ;
    mf:name      "ab_c-bc" ;
    rdfs:comment "(ab)c -> bc = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_c.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_c.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#apbc-abc> rdf:type shext:ValidationTest ;
+<#apbc-abc> rdf:type shext:Valid ;
    mf:name      "apbc-abc" ;
    rdfs:comment "a+bc -> abc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <apbc.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <apbc.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#apbc-aabc> rdf:type shext:ValidationTest ;
+<#apbc-aabc> rdf:type shext:Valid ;
    mf:name      "apbc-aabc" ;
    rdfs:comment "a+bc -> aabc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <apbc.shex> ;
-   shext:data <aabc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <apbc.shex> ;
+      shext:data     <aabc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#apbc-bc> rdf:type shext:ValidationFailure ;
+<#apbc-bc> rdf:type shext:NotValid ;
    mf:name      "apbc-bc" ;
    rdfs:comment "a+bc -> bc = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <apbc.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <apbc.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqbq-Ab> rdf:type shext:ValidationFailure ;
+<#aqbq-Ab> rdf:type shext:Valid ;
    mf:name      "aqbq-Ab" ;
-   rdfs:comment "a?b? -> Ab = FAIL" ;
+   rdfs:comment "a?b? -> Ab = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aqbq.shex> ;
-   shext:data <notAb.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqbq.shex> ;
+      shext:data     <notAb.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrbOrc-a> rdf:type shext:ValidationTest ;
+<#aOrbOrc-a> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-a" ;
    rdfs:comment "a|b|c -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrbOrc-b> rdf:type shext:ValidationTest ;
+<#aOrbOrc-b> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-b" ;
    rdfs:comment "a|b|c -> b = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrbOrc-c> rdf:type shext:ValidationTest ;
+<#aOrbOrc-c> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-c" ;
    rdfs:comment "a|b|c -> c = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <c.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <c.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
 
-# Different semantics in Jesse's tests
-<#aOrbOrc-ABc> rdf:type shext:ValidationFailure ;
+<#aOrbOrc-ABc> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-ABc" ;
-   rdfs:comment "a|b|c -> ABc = Fail" ;
+   rdfs:comment "a|b|c -> ABc = PASS (remaining)" ;
    shext:status shext:discussion ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <notAnotBc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <notAnotBc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-# Different semantics in Jesse's tests
-<#aOrbOrc-aBC> rdf:type shext:ValidationFailure ;
+<#aOrbOrc-aBC> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-aBC" ;
-   rdfs:comment "a|b|c -> aBC = Fail" ;
+   rdfs:comment "a|b|c -> aBC = PASS (remaining)" ;
    shext:status shext:discussion ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <anotBnotC.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <anotBnotC.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrbOrc-0> rdf:type shext:ValidationFailure ;
+<#aOrbOrc-0> rdf:type shext:NotValid ;
    mf:name      "aOrbOrc-0" ;
    rdfs:comment "a|b|c -> 0 = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <0.ttl> ;
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrbOrc-ab> rdf:type shext:ValidationFailure ;
+<#aOrbOrc-ab> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-ab" ;
-   rdfs:comment "a|b|c -> ab = Fail" ;
+   rdfs:comment "a|b|c -> ab = PASS (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrbOrc-ac> rdf:type shext:ValidationFailure ;
+<#aOrbOrc-ac> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-ac" ;
-   rdfs:comment "a|b|c -> ac = Fail" ;
+   rdfs:comment "a|b|c -> ac = PASS (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <ac.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <ac.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrbOrc-bc> rdf:type shext:ValidationFailure ;
-   mf:name      "aOrbOrc-bc" ;
-   rdfs:comment "a|b|c -> bc = Fail" ;
-   shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
 
-<#aOrbOrc-abc> rdf:type shext:ValidationFailure ;
+<#aOrbOrc-abc> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-abc" ;
-   rdfs:comment "a|b|c -> abc = Fail" ;
+   rdfs:comment "a|b|c -> abc = PASS (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrbOrc-abC> rdf:type shext:ValidationFailure ;
+
+<#aOrbOrc-abC> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-abC" ;
-   rdfs:comment "a|b|c -> abC = Fail" ;
+   rdfs:comment "a|b|c -> abC = PASS (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <abnotC.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <abnotC.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqb-b> rdf:type shext:ValidationTest ;
+<#aqb-b> rdf:type shext:Valid ;
    mf:name      "aqb-b" ;
    rdfs:comment "a?b -> b = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqb.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqb.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqb-ab> rdf:type shext:ValidationTest ;
+<#aqb-ab> rdf:type shext:Valid ;
    mf:name      "aqb-ab" ;
    rdfs:comment "a?b -> ab = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqb.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqb.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqb-a> rdf:type shext:ValidationFailure ;
+<#aqb-a> rdf:type shext:NotValid ;
    mf:name      "aqb-a" ;
    rdfs:comment "a?b -> a = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqb.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqb.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq-a> rdf:type shext:ValidationTest ;
+<#abq-a> rdf:type shext:Valid ;
    mf:name      "abq-a" ;
    rdfs:comment "ab? -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abq.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abq.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq-ab> rdf:type shext:ValidationTest ;
+<#abq-ab> rdf:type shext:Valid ;
    mf:name      "abq-ab" ;
    rdfs:comment "ab? -> ab = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abq.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abq.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq-b> rdf:type shext:ValidationFailure ;
+<#abq-b> rdf:type shext:NotValid ;
    mf:name      "abq-b" ;
    rdfs:comment "ab? -> b = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <abq.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abq.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab_q-0> rdf:type shext:ValidationTest ;
+<#ab_q-0> rdf:type shext:Valid ;
    mf:name      "ab_q-0" ;
    rdfs:comment "(ab)? -> 0 = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_q.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_q.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab_q-ab> rdf:type shext:ValidationTest ;
+<#ab_q-ab> rdf:type shext:Valid ;
    mf:name      "ab_q-ab" ;
    rdfs:comment "(ab)? -> ab = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_q.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_q.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab_q-a> rdf:type shext:ValidationFailure ;
+# with open shapes it passes
+<#ab_q-a> rdf:type shext:Valid ;
    mf:name      "ab_q-a" ;
-   rdfs:comment "(ab)? -> a = FAIL" ;
+   rdfs:comment "(ab)? -> a = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_q.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_q.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab_q-b> rdf:type shext:ValidationFailure ;
+# with open shapes it passes
+<#ab_q-b> rdf:type shext:Valid ;
    mf:name      "ab_q-b" ;
-   rdfs:comment "(ab)? -> b = FAIL" ;
+   rdfs:comment "(ab)? -> b = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_q.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_q.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ap_b_c-abc> rdf:type shext:ValidationTest ;
+<#ap_b_c-abc> rdf:type shext:Valid ;
    mf:name      "ap_b_c-abc" ;
    rdfs:comment "(a+)bc -> abc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ap_b_c.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ap_b_c.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ap_b_c-aabc> rdf:type shext:ValidationTest ;
+<#ap_b_c-aabc> rdf:type shext:Valid ;
    mf:name      "ap_b_c-aabc" ;
    rdfs:comment "a+bc -> aabc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ap_b_c.shex> ;
-   shext:data <aabc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ap_b_c.shex> ;
+      shext:data     <aabc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ap_b_c-bc> rdf:type shext:ValidationFailure ;
+<#ap_b_c-bc> rdf:type shext:NotValid ;
    mf:name      "ap_b_c-bc" ;
    rdfs:comment "a+bc -> bc = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <ap_b_c.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ap_b_c.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqbq_q-a> rdf:type shext:ValidationTest ;
+<#aqbq_q-a> rdf:type shext:Valid ;
    mf:name      "aqbq_q-a" ;
    rdfs:comment "(a?b?)? -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqbq_q.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqbq_q.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqbq_q-b> rdf:type shext:ValidationTest ;
+<#aqbq_q-b> rdf:type shext:Valid ;
    mf:name      "aqbq_q-b" ;
    rdfs:comment "(a?b?)? -> b = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqbq_q.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqbq_q.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqbq_q-ab> rdf:type shext:ValidationTest ;
+<#aqbq_q-ab> rdf:type shext:Valid ;
    mf:name      "aqbq_q-ab" ;
    rdfs:comment "(a?b?)? -> ab = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqbq_q.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqbq_q.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqbq_q-0> rdf:type shext:ValidationTest ;
+<#aqbq_q-0> rdf:type shext:Valid ;
    mf:name      "aqbq_q-0" ;
    rdfs:comment "(a?b?)? -> 0 = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqbq_q.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqbq_q.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqb_q-b> rdf:type shext:ValidationTest ;
+<#aqb_q-b> rdf:type shext:Valid ;
    mf:name      "aqb_q-b" ;
    rdfs:comment "(a?b)? -> b = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqb_q.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqb_q.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqb_q-ab> rdf:type shext:ValidationTest ;
+<#aqb_q-ab> rdf:type shext:Valid ;
    mf:name      "aqb_q-ab" ;
    rdfs:comment "(a?b)? -> ab = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aqb_q.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqb_q.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aqb_q-a> rdf:type shext:ValidationFailure ;
+# with open shapes a is a remaining
+<#aqb_q-a> rdf:type shext:Valid ;
    mf:name      "aqb_q-a" ;
-   rdfs:comment "(a?b)? -> a = FAIL" ;
+   rdfs:comment "(a?b)? -> a = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <aqb_q.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aqb_q.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq_q-0> rdf:type shext:ValidationTest ;
+<#abq_q-0> rdf:type shext:Valid ;
    mf:name      "abq_q-0" ;
    rdfs:comment "(ab?)q -> 0 = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abq_q.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abq_q.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq_q-a> rdf:type shext:ValidationTest ;
+<#abq_q-a> rdf:type shext:Valid ;
    mf:name      "abq_q-a" ;
    rdfs:comment "(ab?)q -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abq_q.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abq_q.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq_q-ab> rdf:type shext:ValidationTest ;
+<#abq_q-ab> rdf:type shext:Valid ;
    mf:name      "abq_q-ab" ;
    rdfs:comment "(ab?)q -> ab = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abq_q.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abq_q.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abq_q-b> rdf:type shext:ValidationFailure ;
+# with open shapes it passes
+<#abq_q-b> rdf:type shext:Valid ;
    mf:name      "abq_q-b" ;
-   rdfs:comment "(ab?)q -> b = FAIL" ;
+   rdfs:comment "(ab?)q -> b = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <abq_q.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abq_q.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOr_b-a> rdf:type shext:ValidationTest ;
+<#aOr_b-a> rdf:type shext:Valid ;
    mf:name      "aOr_b-a" ;
    rdfs:comment "a|(b) -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOr_b.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOr_b.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOr_b-b> rdf:type shext:ValidationTest ;
+<#aOr_b-b> rdf:type shext:Valid ;
    mf:name      "aOr_b-b" ;
    rdfs:comment "a|(b) -> b = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOr_b.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOr_b.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOr_b-0> rdf:type shext:ValidationFailure ;
+<#aOr_b-0> rdf:type shext:NotValid ;
    mf:name      "aOr_b-0" ;
    rdfs:comment "a|(b) -> 0 = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <aOr_b.shex> ;
-   shext:data <0.ttl> ;
-   .
+   mf:action [
+      shext:schema   <aOr_b.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOr_b-ab> rdf:type shext:ValidationFailure ;
+<#aOr_b-ab> rdf:type shext:Valid ;
    mf:name      "aOr_b-ab" ;
-   rdfs:comment "a|(b) -> ab = Fail" ;
+   rdfs:comment "a|(b) -> ab = PASS (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOr_b.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOr_b.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb-a> rdf:type shext:ValidationTest ;
+<#aOrb-a> rdf:type shext:Valid ;
    mf:name      "aOrb-a" ;
    rdfs:comment "a|b -> a = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb-b> rdf:type shext:ValidationTest ;
+<#aOrb-b> rdf:type shext:Valid ;
    mf:name      "aOrb-b" ;
    rdfs:comment "a|b -> b = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb-0> rdf:type shext:ValidationFailure ;
+<#aOrb-0> rdf:type shext:NotValid ;
    mf:name      "aOrb-0" ;
    rdfs:comment "a|b -> 0 = Fail" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <0.ttl> ;
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/doesnotexist> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrb-ab> rdf:type shext:ValidationFailure ;
+<#aOrb-ab> rdf:type shext:Valid ;
    mf:name      "aOrb-ab" ;
-   rdfs:comment "a|b -> ab = Fail" ;
+   rdfs:comment "a|b -> ab = PASS (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrb.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrb.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#a_bOrc-ab> rdf:type shext:ValidationTest ;
+<#a_bOrc-ab> rdf:type shext:Valid ;
    mf:name      "a_bOrc-ab" ;
    rdfs:comment "a(b|c) -> ab = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <a_bOrc.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <a_bOrc.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#a_bOrc-ac> rdf:type shext:ValidationTest ;
+<#a_bOrc-ac> rdf:type shext:Valid ;
    mf:name      "a_bOrc-ac" ;
    rdfs:comment "a(b|c) -> ac = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <a_bOrc.shex> ;
-   shext:data <ac.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <a_bOrc.shex> ;
+      shext:data     <ac.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#a_bOrc-a> rdf:type shext:ValidationFailure ;
+<#a_bOrc-a> rdf:type shext:NotValid ;
    mf:name      "a_bOrc-a" ;
    rdfs:comment "a(b|c) -> a = FAIL" ;
    shext:status mf:proposed ;
-   shext:schema   <a_bOrc.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <a_bOrc.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#a_bOrc-abc> rdf:type shext:ValidationFailure ;
+<#a_bOrc-abc> rdf:type shext:Valid ;
    mf:name      "a_bOrc-abc" ;
-   rdfs:comment "a(b|c) -> abc = FAIL" ;
+   rdfs:comment "a(b|c) -> abc = PASS (remaining triples)" ;
    shext:status mf:proposed ;
-   shext:schema   <a_bOrc.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <a_bOrc.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
 
-<#abqc_q-0> rdf:type shext:ValidationTest ;
+<#abqc_q-0> rdf:type shext:Valid ;
    mf:name      "abqc_q-0" ;
    rdfs:comment "(ab?c)? -> 0= ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abqc_q.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abqc_q.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abqc_q-c> rdf:type shext:ValidationTest ;
+<#abqc_q-c> rdf:type shext:Valid ;
    mf:name      "abqc_q-c" ;
    rdfs:comment "(ab?c)? -> c= ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abqc_q.shex> ;
-   shext:data <c.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abqc_q.shex> ;
+      shext:data     <c.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abqc_q-abc> rdf:type shext:ValidationTest ;
+<#abqc_q-abc> rdf:type shext:Valid ;
    mf:name      "abqc_q-abc" ;
    rdfs:comment "(ab?c)? -> abc= ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abqc_q.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abqc_q.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abqc_q-b> rdf:type shext:ValidationFailure ;
+# with open shapes it passes
+<#abqc_q-b> rdf:type shext:Valid ;
    mf:name      "abqc_q-b" ;
-   rdfs:comment "(ab?c)? -> b = FAIL" ;
+   rdfs:comment "(ab?c)? -> b = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <abqc_q.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abqc_q.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abqc_q-ab> rdf:type shext:ValidationFailure ;
+<#abqc_q-ab> rdf:type shext:Valid ;
    mf:name      "abqc_q-ab" ;
-   rdfs:comment "(ab?c)? -> ab = FAIL" ;
+   rdfs:comment "(ab?c)? -> ab = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <abqc_q.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <abqc_q.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#abqc_q-0> rdf:type shext:ValidationTest ;
+<#abqc_q-0> rdf:type shext:Valid ;
    mf:name      "abqc_q-0" ;
    rdfs:comment "(ab?c)? -> 0 = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <abqc_q.shex> ;
-   shext:data <0.ttl> ;
-   .
+   mf:action [
+      shext:schema   <abqc_q.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#__abq_qc_q-0> rdf:type shext:ValidationTest ;
+<#__abq_qc_q-0> rdf:type shext:Valid ;
    mf:name      "__abq_qc_q-0" ;
    rdfs:comment "((ab?)?c)? -> 0 = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <__abq_qc_q.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <__abq_qc_q.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#__abq_qc_q-c> rdf:type shext:ValidationTest ;
+<#__abq_qc_q-c> rdf:type shext:Valid ;
    mf:name      "__abq_qc_q-c" ;
    rdfs:comment "((ab?)?c)? -> c = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <__abq_qc_q.shex> ;
-   shext:data <c.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <__abq_qc_q.shex> ;
+      shext:data     <c.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#__abq_qc_q-ac> rdf:type shext:ValidationTest ;
+<#__abq_qc_q-ac> rdf:type shext:Valid ;
    mf:name      "__abq_qc_q-ac" ;
    rdfs:comment "((ab?)?c)? -> ac = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <__abq_qc_q.shex> ;
-   shext:data <ac.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <__abq_qc_q.shex> ;
+      shext:data     <ac.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#__abq_qc_q-abc> rdf:type shext:ValidationTest ;
+<#__abq_qc_q-abc> rdf:type shext:Valid ;
    mf:name      "__abq_qc_q-abc" ;
    rdfs:comment "((ab?)?c)? -> abc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <__abq_qc_q.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <__abq_qc_q.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#__abq_qc_q-a> rdf:type shext:ValidationFailure ;
+# With open semantics it passes...the remaining triples are the a
+<#__abq_qc_q-a> rdf:type shext:Valid ;
    mf:name      "__abq_qc_q-a" ;
-   rdfs:comment "((ab?)?c)? -> a = FAIL" ;
+   rdfs:comment "((ab?)?c)? -> a = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <__abq_qc_q.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <__abq_qc_q.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#__abq_qc_q-b> rdf:type shext:ValidationFailure ;
+
+# With open semantics it passes...the remaining triples are the b
+<#__abq_qc_q-b> rdf:type shext:Valid ;
    mf:name      "__abq_qc_q-b" ;
-   rdfs:comment "((ab?)?c)? -> b = FAIL" ;
+   rdfs:comment "((ab?)?c)? -> b = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <__abq_qc_q.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <__abq_qc_q.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#__abq_qc_q-ab> rdf:type shext:ValidationFailure ;
+# With open semantics it passes...the remaining triples are the ab
+<#__abq_qc_q-ab> rdf:type shext:Valid ;
    mf:name      "__abq_qc_q-ab" ;
-   rdfs:comment "((ab?)?c)? -> ab = FAIL" ;
+   rdfs:comment "((ab?)?c)? -> ab = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <__abq_qc_q.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <__abq_qc_q.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#__abq_qc_q-bc> rdf:type shext:ValidationFailure ;
+# With open semantics it passes...the remaining triples are the bc
+<#__abq_qc_q-bc> rdf:type shext:Valid ;
    mf:name      "__abq_qc_q-bc" ;
-   rdfs:comment "((ab?)?c)? -> bc = FAIL" ;
+   rdfs:comment "((ab?)?c)? -> bc = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <__abq_qc_q.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <__abq_qc_q.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#_aqb_qc_q-0> rdf:type shext:ValidationTest ;
+<#_aqb_qc_q-0> rdf:type shext:Valid ;
    mf:name      "_aqb_qc_q-0" ;
    rdfs:comment "((a?b)?c)? -> 0 = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <_aqb_qc_q.shex> ;
-   shext:data <0.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <_aqb_qc_q.shex> ;
+      shext:data     <0.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#_aqb_qc_q-c> rdf:type shext:ValidationTest ;
+<#_aqb_qc_q-c> rdf:type shext:Valid ;
    mf:name      "_aqb_qc_q-c" ;
    rdfs:comment "((a?b)?c)? -> c = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <_aqb_qc_q.shex> ;
-   shext:data <c.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <_aqb_qc_q.shex> ;
+      shext:data     <c.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#_aqb_qc_q-bc> rdf:type shext:ValidationTest ;
+<#_aqb_qc_q-bc> rdf:type shext:Valid ;
    mf:name      "_aqb_qc_q-bc" ;
    rdfs:comment "((a?b)?c)? -> bc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <_aqb_qc_q.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <_aqb_qc_q.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#_aqb_qc_q-abc> rdf:type shext:ValidationTest ;
+<#_aqb_qc_q-abc> rdf:type shext:Valid ;
    mf:name      "_aqb_qc_q-abc" ;
    rdfs:comment "((a?b)?c)? -> abc = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <_aqb_qc_q.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <_aqb_qc_q.shex> ;
+      shext:data     <abc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#_aqb_qc_q-a> rdf:type shext:ValidationFailure ;
+# With open semantics it passes...the remaining triple is a
+<#_aqb_qc_q-a> rdf:type shext:Valid ;
    mf:name      "_aqb_qc_q-a" ;
-   rdfs:comment "((a?b)?c)? -> a = Fail" ;
+   rdfs:comment "((a?b)?c)? -> a = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <_aqb_qc_q.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <_aqb_qc_q.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#_aqb_qc_q-b> rdf:type shext:ValidationFailure ;
+# With open semantics it passes...the remaining triple is a
+<#_aqb_qc_q-b> rdf:type shext:Valid ;
    mf:name      "_aqb_qc_q-b" ;
-   rdfs:comment "((a?b)?c)? -> b = Fail" ;
+   rdfs:comment "((a?b)?c)? -> b = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <_aqb_qc_q.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <_aqb_qc_q.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
 
-<#_aqb_qc_q-ab> rdf:type shext:ValidationFailure ;
+# With open semantics it passes...the remaining triples are ab
+<#_aqb_qc_q-ab> rdf:type shext:Valid ;
    mf:name      "_aqb_qc_q-ab" ;
-   rdfs:comment "((a?b)?c)? -> ab = Fail" ;
+   rdfs:comment "((a?b)?c)? -> ab = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <_aqb_qc_q.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <_aqb_qc_q.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#_aqb_qc_q-ac> rdf:type shext:ValidationFailure ;
+# With open semantics it passes...the remaining triples are ac
+<#_aqb_qc_q-ac> rdf:type shext:Valid ;
    mf:name      "_aqb_qc_q-ac" ;
-   rdfs:comment "((a?b)?c)? -> ac = Fail" ;
+   rdfs:comment "((a?b)?c)? -> ac = PASS" ;
    shext:status mf:proposed ;
-   shext:schema   <_aqb_qc_q.shex> ;
-   shext:data <ac.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <_aqb_qc_q.shex> ;
+      shext:data     <ac.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-# Different semantics in Jesse's tests
-<#aOrbOrc-abc> rdf:type shext:ValidationFailure ;
-   mf:name      "aOrbOrc-abc" ;
-   rdfs:comment "(a|b)|c -> abc = Fail" ;
-   shext:status shext:discussion ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <abc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
-
-<#aOrbOrc-bc> rdf:type shext:ValidationFailure ;
+<#aOrbOrc-bc> rdf:type shext:Valid ;
    mf:name      "aOrbOrc-bc" ;
-   rdfs:comment "(a|b)|c -> bc = Fail" ;
+   rdfs:comment "(a|b)|c -> bc = PASS (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrbOrc.shex> ;
-   shext:data <bc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrbOrc.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrc-c> rdf:type shext:ValidationTest ;
+<#aOrc-c> rdf:type shext:Valid ;
    mf:name      "aOrc-c" ;
    rdfs:comment "a|c -> c = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrc.shex> ;
-   shext:data <c.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrc.shex> ;
+      shext:data     <c.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-# Different semantics in Jesse's tests
-<#aOrc-Ac> rdf:type shext:ValidationFailure ;
+<#aOrc-Ac> rdf:type shext:Valid ;
    mf:name      "aOrc-Ac" ;
-   rdfs:comment "a|c -> Ac = Fail" ;
+   rdfs:comment "a|c -> Ac = PASS (remaining triples)" ;
    shext:status shext:discussion ;
-   shext:schema   <aOrc.shex> ;
-   shext:data <notAc.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrc.shex> ;
+      shext:data     <notAc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#aOrc-ac> rdf:type shext:ValidationFailure ;
+<#aOrc-ac> rdf:type shext:Valid ;
    mf:name      "aOrc-ac" ;
-   rdfs:comment "a|c -> ac = Fail" ;
+   rdfs:comment "a|c -> ac = Fail (remaining)" ;
    shext:status mf:proposed ;
-   shext:schema   <aOrc.shex> ;
-   shext:data <ac.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <aOrc.shex> ;
+      shext:data     <ac.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#ab-ab-rdf> rdf:type shext:ValidationTest_FromRDF ;
-   mf:name      "ab-ab" ;
+<#ab-ab-rdf> rdf:type shext:Valid_FromRDF ; # @@ what's that?
+   mf:name      "ab-ab-rdf" ;
    rdfs:comment "ab -> ab = ALL" ;
    shext:status mf:proposed ;
-   shext:schema   <ab_shex.ttl> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <ab_shex.ttl> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#neg_ab_ab> rdf:type shext:ValidationFailure ;
+<#neg_ab_ab> rdf:type shext:ExtendedNotValid ;
    mf:name      "neg_ab_ab" ;
    rdfs:comment "neg_ab_ab" ;
    shext:status mf:proposed ;
-   shext:schema   <neg_ab.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <neg_ab.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#neg_ab_b> rdf:type shext:ValidationTest ;
+<#neg_ab_b> rdf:type shext:ExtendedValid ;
    mf:name      "neg_ab_b" ;
    rdfs:comment "neg_ab_b" ;
    shext:status mf:proposed ;
-   shext:schema   <neg_ab.shex> ;
-   shext:data <b.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <neg_ab.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
 
-<#neg_ab_a> rdf:type shext:ValidationTest ;
+<#neg_ab_a> rdf:type shext:ExtendedValid ;
    mf:name      "neg_ab_a" ;
    rdfs:comment "neg_ab_a" ;
    shext:status mf:proposed ;
-   shext:schema   <neg_ab.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <neg_ab.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#neg_aab_ab> rdf:type shext:ValidationTest ;
+<#neg_aab_ab> rdf:type shext:ExtendedValid ;
    mf:name      "neg_aab_ab" ;
    rdfs:comment "neg_aab_ab" ;
    shext:status mf:proposed ;
-   shext:schema   <neg_aab.shex> ;
-   shext:data <ab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <neg_aab.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#neg_aab_aab> rdf:type shext:ValidationFailure ;
+<#neg_aab_aab> rdf:type shext:NotValid ;
    mf:name      "neg_aab_aab" ;
    rdfs:comment "neg_aab_aab" ;
    shext:status mf:proposed ;
-   shext:schema   <neg_aab.shex> ;
-   shext:data <aab.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <neg_aab.shex> ;
+      shext:data     <aab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#rec_a> rdf:type shext:ValidationTest ;
+<#rec_a> rdf:type shext:Valid ;
    mf:name      "rec_a" ;
    rdfs:comment "rec_a" ;
    shext:status mf:proposed ;
-   shext:schema   <rec_a.shex> ;
-   shext:data <self.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <rec_a.shex> ;
+      shext:data     <self.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#valueSet21> rdf:type shext:ValidationTest ;
+<#valueSet21> rdf:type shext:Valid ;
    mf:name      "valueSet21" ;
    rdfs:comment "ValueSet21" ;
    shext:status mf:proposed ;
-   shext:schema   <valueSet2.shex> ;
-   shext:data <valueSet2_1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <valueSet2.shex> ;
+      shext:data     <valueSet2_1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#valueSet22> rdf:type shext:ValidationTest ;
+<#valueSet22> rdf:type shext:Valid ;
    mf:name      "valueSet22" ;
    rdfs:comment "ValueSet22" ;
    shext:status mf:proposed ;
-   shext:schema   <valueSet2.shex> ;
-   shext:data <valueSet2_2.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <valueSet2.shex> ;
+      shext:data     <valueSet2_2.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#valueSet2_none> rdf:type shext:ValidationFailure ;
+<#valueSet2_none> rdf:type shext:NotValid ;
    mf:name      "valueSet2_none" ;
    rdfs:comment "ValueSet2_none" ;
    shext:status mf:proposed ;
-   shext:schema   <valueSet2.shex> ;
-   shext:data <valueSet2_none.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <valueSet2.shex> ;
+      shext:data     <valueSet2_none.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#xsd_double> rdf:type shext:ValidationTest ;
+<#xsd_double> rdf:type shext:Valid ;
    mf:name      "xsd_double" ;
    rdfs:comment "xsd_double" ;
    shext:status mf:proposed ;
-   shext:schema   <xsd_double.shex> ;
-   shext:data <xsd_double.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <xsd_double.shex> ;
+      shext:data     <xsd_double.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#xsd_double_simplified> rdf:type shext:ValidationTest ;
+<#xsd_double_simplified> rdf:type shext:Valid ;
    mf:name      "xsd_double_simplified" ;
    rdfs:comment "xsd_double_simplified" ;
    shext:status mf:proposed ;
-   shext:schema   <xsd_double.shex> ;
-   shext:data <xsd_double_simplified.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <xsd_double.shex> ;
+      shext:data     <xsd_double_simplified.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#listOfInt1> rdf:type shext:ValidationTest ;
+<#listOfInt1> rdf:type shext:Valid ;
    mf:name      "listOfInt1" ;
    rdfs:comment "listOfInt1" ;
    shext:status mf:proposed ;
-   shext:schema   <listOfInt.shex> ;
-   shext:data <listOfInt1.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <listOfInt.shex> ;
+      shext:data     <listOfInt1.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#listOfInt1_extended> rdf:type shext:ValidationTest ;
+<#listOfInt1_extended> rdf:type shext:Valid ;
    mf:name      "listOfInt1_extended" ;
    rdfs:comment "list of 1 int expressed in extended form" ;
    shext:status mf:proposed ;
-   shext:schema   <listOfInt.shex> ;
-   shext:data <listOfInt1_extended.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <listOfInt.shex> ;
+      shext:data     <listOfInt1_extended.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#listOfInt> rdf:type shext:ValidationTest ;
+<#listOfInt> rdf:type shext:Valid ;
    mf:name      "listOfInt" ;
    rdfs:comment "listOfInt" ;
    shext:status mf:proposed ;
-   shext:schema   <listOfInt.shex> ;
-   shext:data <listOfInt.ttl> ;
-   shext:focus    ex:x ;
-   shext:shape  ex:a
-   .
+   mf:action [
+      shext:schema   <listOfInt.shex> ;
+      shext:data     <listOfInt.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/a>
+   ] .
 
-<#range2-4-2> rdf:type shext:ValidationTest ;
+<#range2-4-2> rdf:type shext:Valid ;
    mf:name      "range2-4_2" ;
    rdfs:comment "range2-4_2" ;
    shext:status mf:proposed ;
-   shext:schema   <range2-4.shex> ;
-   shext:data <aa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <range2-4.shex> ;
+      shext:data     <aa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#range2-4-1> rdf:type shext:ValidationFailure ;
+<#range2-4-1> rdf:type shext:NotValid ;
    mf:name      "range2-4_1" ;
    rdfs:comment "range2-4_1" ;
    shext:status mf:proposed ;
-   shext:schema   <range2-4.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <range2-4.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#range2-4-3> rdf:type shext:ValidationTest ;
+<#range2-4-3> rdf:type shext:Valid ;
    mf:name      "range2-4_3" ;
    rdfs:comment "range2-4_3" ;
    shext:status mf:proposed ;
-   shext:schema   <range2-4.shex> ;
-   shext:data <aaa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <range2-4.shex> ;
+      shext:data     <aaa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#range2-4-4> rdf:type shext:ValidationTest ;
+<#range2-4-4> rdf:type shext:Valid ;
    mf:name      "range2-4_4" ;
    rdfs:comment "range2-4_4" ;
    shext:status mf:proposed ;
-   shext:schema   <range2-4.shex> ;
-   shext:data <aaaa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <range2-4.shex> ;
+      shext:data     <aaaa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#range2-4-5> rdf:type shext:ValidationFailure ;
+<#range2-4-5> rdf:type shext:NotValid ;
    mf:name      "range2-4_5" ;
    rdfs:comment "range2-4_5" ;
    shext:status mf:proposed ;
-   shext:schema   <range2-4.shex> ;
-   shext:data <aaaaa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <range2-4.shex> ;
+      shext:data     <aaaaa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#rangeMin2-1> rdf:type shext:ValidationFailure ;
+<#rangeMin2-1> rdf:type shext:NotValid ;
    mf:name      "rangeMin2-1" ;
    rdfs:comment "rangeMin2-1" ;
    shext:status mf:proposed ;
-   shext:schema   <range2.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <range2.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
 
-<#range2-4-2_plain> rdf:type shext:ValidationTest ;
+<#range2-4-2_plain> rdf:type shext:Valid ;
    mf:name      "range2-4_2_plain" ;
    rdfs:comment "range2-4_2_plain" ;
    shext:status mf:proposed ;
-   shext:schema   <range2-4_plain.shex> ;
-   shext:data <aa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <range2-4_plain.shex> ;
+      shext:data     <aa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#range1-2-1_plain> rdf:type shext:ValidationTest ;
+<#range1-2-1_plain> rdf:type shext:Valid ;
    mf:name      "range1-2_1_plain" ;
    rdfs:comment "range1-2_1_plain" ;
    shext:status mf:proposed ;
-   shext:schema   <range1-2_plain.shex> ;
-   shext:data <a.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <range1-2_plain.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#range1-2-2_plain> rdf:type shext:ValidationTest ;
+<#range1-2-2_plain> rdf:type shext:Valid ;
    mf:name      "range1-2_2_plain" ;
    rdfs:comment "range1-2_2_plain" ;
    shext:status mf:proposed ;
-   shext:schema   <range1-2_plain.shex> ;
-   shext:data <aa.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <range1-2_plain.shex> ;
+      shext:data     <aa.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#recursion_skos> rdf:type shext:ValidationTest ;
-   mf:name      "recursion_skos" ;
-   rdfs:comment "recursion_skos" ;
-   shext:status mf:proposed ;
-   shext:schema   <skos.shex> ;
-   shext:data <skos.ttl> ;
-   shext:focus    ex:MyConcept ;
-   shext:shape  ex:SkosConceptShape
-   .
+# Commented because it generates lots of solutions...
+#<#recursion_skos> rdf:type shext:Valid ;
+#   mf:name      "recursion_skos" ;
+#   rdfs:comment "recursion_skos" ;
+#   shext:status mf:proposed ;
+#   mf:action [
+#      shext:schema   <skos.shex> ;
+#      shext:data     <skos.ttl> ;
+#      shext:focus  <http://example.org/MyConcept> ;
+#      shext:shape  <http://example.org/SkosConceptShape>
+#   .] 
 
 # ShEx non-standard extensions
 
-<#lang_es_es> rdf:type shext:ValidationTest ;
+<#lang_es_es> rdf:type shext:ExtendedValid ;
    mf:name      "lang_es_es" ;
    rdfs:comment "lang_es_es" ;
    shext:status mf:proposed ;
-   shext:schema   <lang_es.shex> ;
-   shext:data <es.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <lang_es.shex> ;
+      shext:data     <es.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#lang_es_en> rdf:type shext:ValidationFailure ;
+<#lang_es_en> rdf:type shext:ExtendedNotValid ;
    mf:name      "lang_es_en" ;
    rdfs:comment "lang_es_en" ;
    shext:status mf:proposed ;
-   shext:schema   <lang_es.shex> ;
-   shext:data <en.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <lang_es.shex> ;
+      shext:data     <en.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#regex_a> rdf:type shext:ValidationTest ;
+<#regex_a> rdf:type shext:ExtendedValid ;
    mf:name      "regex_a" ;
    rdfs:comment "regex_a" ;
    shext:status mf:proposedExtension ;
-   shext:schema   <regex_a.shex> ;
-   shext:data <a_str.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <regex_a.shex> ;
+      shext:data     <a_str.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
 
-<#regex_aa> rdf:type shext:ValidationTest ;
+<#regex_aa> rdf:type shext:ExtendedValid ;
    mf:name      "regex_aa" ;
    rdfs:comment "regex_aa" ;
    shext:status mf:proposedExtension ;
-   shext:schema   <regex_a.shex> ;
-   shext:data <aa_str.ttl> ;
-   shext:focus    ex:item ;
-   shext:shape  ex:Item
-   .
+   mf:action [
+      shext:schema   <regex_a.shex> ;
+      shext:data     <aa_str.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+
+<#optOr2_closed> rdf:type shext:NotValid ;
+   mf:name      "optOr2_closed" ;
+   rdfs:comment "optOr 2 closed" ;
+   shext:status mf:proposed ;
+   mf:action [
+      shext:schema   <optOrClosed.shex> ;
+      shext:data     <optOr2.ttl> ;
+      shext:focus  <http://example.org/x> ;
+      shext:shape  <http://example.org/>
+   ] .
+
+# With closed shapes it fails
+<#__abq_qc_q-a_closed> rdf:type shext:NotValid ;
+   mf:name      "__abq_qc_q-a_closed" ;
+   rdfs:comment "((ab?)?c)? -> a = FAIL" ;
+   shext:status mf:proposed ;
+   mf:action [
+      shext:schema   <__abq_qc_q_closed.shex> ;
+      shext:data     <a.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+
+# With closed shapes it fails...
+<#__abq_qc_q-b_closed> rdf:type shext:NotValid ;
+   mf:name      "__abq_qc_q-b_closed" ;
+   rdfs:comment "((ab?)?c)? -> b = FAIL" ;
+   shext:status mf:proposed ;
+   mf:action [
+      shext:schema   <__abq_qc_q_closed.shex> ;
+      shext:data     <b.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+
+<#__abq_qc_q-ab_closed> rdf:type shext:NotValid ;
+   mf:name      "__abq_qc_q-ab_closed" ;
+   rdfs:comment "((ab?)?c)? -> ab = FAIL" ;
+   shext:status mf:proposed ;
+   mf:action [
+      shext:schema   <__abq_qc_q_closed.shex> ;
+      shext:data     <ab.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+
+<#__abq_qc_q-bc_closed> rdf:type shext:NotValid ;
+   mf:name      "__abq_qc_q-bc" ;
+   rdfs:comment "((ab?)?c)? -> bc = FAIL" ;
+   shext:status mf:proposed ;
+   mf:action [
+      shext:schema   <__abq_qc_q_closed.shex> ;
+      shext:data     <bc.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+
+# with open shapes B is a remaining triple
+<#aqbq-B_closed> rdf:type shext:NotValid ;
+   mf:name      "aqbq-B_closed" ;
+   rdfs:comment "a?b?->B = Fail" ;
+   shext:status mf:proposed ;
+   mf:action [
+      shext:schema   <aqbq_closed.shex> ;
+      shext:data     <notB.ttl> ;
+      shext:focus  <http://example.org/item> ;
+      shext:shape  <http://example.org/Item>
+   ] .
+

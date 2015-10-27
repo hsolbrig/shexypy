@@ -1,7 +1,7 @@
 # ../shexypy/schema/ShEx.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:e868452c6455e6b80cb8bd5f90c308bc5a49c9be
-# Generated 2015-09-11 16:37:32.809273 by PyXB version 1.2.4 using Python 3.4.3.final.0
+# Generated 2015-10-26 13:12:18.891110 by PyXB version 1.2.4 using Python 3.4.3.final.0
 # Namespace http://www.w3.org/shex/
 
 from __future__ import unicode_literals
@@ -15,7 +15,7 @@ import sys
 import pyxb.utils.six as _six
 
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:4f494c02-58cd-11e5-91b8-6c40088fdb3a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:182f33f6-7c0d-11e5-abf5-6c40088fdb3a')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
@@ -63,6 +63,7 @@ def CreateFromDocument (xml_text, default_namespace=None, location_base=None):
     instance = handler.rootObject()
     return instance
 
+
 def CreateFromDOM (node, default_namespace=None):
     """Create a Python instance from the given DOM node.
     The node tag must correspond to an element declaration in this module.
@@ -79,7 +80,7 @@ class NodeType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mi
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NodeType')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 230, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 217, 4)
     _Documentation = None
 NodeType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=NodeType, enum_prefix=None)
 NodeType.IRI = NodeType._CF_enumeration.addEnumeration(unicode_value='IRI', tag='IRI')
@@ -95,7 +96,7 @@ class UCASE_LABEL (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'UCASE_LABEL')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 411, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 398, 4)
     _Documentation = None
 UCASE_LABEL._CF_pattern = pyxb.binding.facets.CF_pattern()
 UCASE_LABEL._CF_pattern.addPattern(pattern='[A-Z0-9_]+')
@@ -108,7 +109,7 @@ class IRI (pyxb.binding.datatypes.anyURI):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IRI')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 550, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 545, 4)
     _Documentation = None
 IRI._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'IRI', IRI)
@@ -119,7 +120,7 @@ class PrefixedName (pyxb.binding.datatypes.QName):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'PrefixedName')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 558, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 553, 4)
     _Documentation = None
 PrefixedName._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'PrefixedName', PrefixedName)
@@ -130,7 +131,7 @@ class STD_ANON (pyxb.binding.datatypes.nonNegativeInteger):
     """An atomic simple type."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 569, 20)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 564, 20)
     _Documentation = None
 STD_ANON._InitializeFacetMap()
 
@@ -140,7 +141,7 @@ class STD_ANON_ (pyxb.binding.datatypes.NMTOKEN, pyxb.binding.basis.enumeration_
     """An atomic simple type."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 572, 20)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 567, 20)
     _Documentation = None
 STD_ANON_._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=STD_ANON_, enum_prefix=None)
 STD_ANON_.unbounded = STD_ANON_._CF_enumeration.addEnumeration(unicode_value='unbounded', tag='unbounded')
@@ -152,7 +153,7 @@ class ValueClassLabel (IRI):
     """The identifier of a value class definition"""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ValueClassLabel')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 375, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 362, 4)
     _Documentation = 'The identifier of a value class definition'
 ValueClassLabel._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'ValueClassLabel', ValueClassLabel)
@@ -163,7 +164,7 @@ class ShapeLabel (IRI):
     """The identifier of a shape definition"""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ShapeLabel')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 390, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 377, 4)
     _Documentation = 'The identifier of a shape definition'
 ShapeLabel._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'ShapeLabel', ShapeLabel)
@@ -175,7 +176,7 @@ class STD_ANON_2 (pyxb.binding.basis.STD_union):
     """Simple type that is a union of STD_ANON, STD_ANON_."""
 
     _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 567, 12)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 562, 12)
     _Documentation = None
 
     _MemberTypes = ( STD_ANON, STD_ANON_, )
@@ -192,13 +193,13 @@ class SemanticActions (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SemanticActions')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 250, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 237, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}action uses Python identifier action
-    __action = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'action'), 'action', '__httpwww_w3_orgshex_SemanticActions_httpwww_w3_orgshexaction', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 255, 12), )
+    __action = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'action'), 'action', '__httpwww_w3_orgshex_SemanticActions_httpwww_w3_orgshexaction', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 242, 12), )
 
     
     action = property(__action.value, __action.set, None, None)
@@ -219,20 +220,20 @@ class SemanticAction (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SemanticAction')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 259, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 246, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
-    # Element {http://www.w3.org/shex/}codeLabel uses Python identifier codeLabel
-    __codeLabel = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'codeLabel'), 'codeLabel', '__httpwww_w3_orgshex_SemanticAction_httpwww_w3_orgshexcodeLabel', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 264, 12), )
+    # Element {http://www.w3.org/shex/}productionName uses Python identifier productionName
+    __productionName = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'productionName'), 'productionName', '__httpwww_w3_orgshex_SemanticAction_httpwww_w3_orgshexproductionName', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 251, 12), )
 
     
-    codeLabel = property(__codeLabel.value, __codeLabel.set, None, 'The name of a function that will be bound when the shape is evaluated')
+    productionName = property(__productionName.value, __productionName.set, None, 'The name of a function that will be bound when the shape is evaluated')
 
     
     # Element {http://www.w3.org/shex/}codeDecl uses Python identifier codeDecl
-    __codeDecl = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'codeDecl'), 'codeDecl', '__httpwww_w3_orgshex_SemanticAction_httpwww_w3_orgshexcodeDecl', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 269, 12), )
+    __codeDecl = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'codeDecl'), 'codeDecl', '__httpwww_w3_orgshex_SemanticAction_httpwww_w3_orgshexcodeDecl', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 256, 12), )
 
     
     codeDecl = property(__codeDecl.value, __codeDecl.set, None, 'The language specific function to be invoked')
@@ -240,13 +241,13 @@ class SemanticAction (pyxb.binding.basis.complexTypeDefinition):
     
     # Attribute validating uses Python identifier validating
     __validating = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'validating'), 'validating', '__httpwww_w3_orgshex_SemanticAction_validating', pyxb.binding.datatypes.boolean, unicode_default='false')
-    __validating._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 275, 8)
-    __validating._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 275, 8)
+    __validating._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 262, 8)
+    __validating._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 262, 8)
     
     validating = property(__validating.value, __validating.set, None, 'If , the action returns a boolean value that determines whether the triples being being evalueated pass or fail. If , the action is involked\n                    strictly for side effects. A validating semantic action may be called any number of times for a given shape and in any order. A non-validating action will be called at most once\n                    and in a pre-established order with respect to other actions.')
 
     _ElementMap.update({
-        __codeLabel.name() : __codeLabel,
+        __productionName.name() : __productionName,
         __codeDecl.name() : __codeDecl
     })
     _AttributeMap.update({
@@ -262,15 +263,15 @@ class CodeDecl (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_MIXED
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodeDecl')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 284, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 271, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Attribute iri uses Python identifier iri
     __iri = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'iri'), 'iri', '__httpwww_w3_orgshex_CodeDecl_iri', pyxb.binding.datatypes.anyURI)
-    __iri._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 291, 8)
-    __iri._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 291, 8)
+    __iri._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 278, 8)
+    __iri._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 278, 8)
     
     iri = property(__iri.value, __iri.set, None, 'An IRI that identifies the specific process to be used')
 
@@ -291,20 +292,20 @@ class ValueClassDefinition (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ValueClassDefinition')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 303, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 290, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}definition uses Python identifier definition
-    __definition = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'definition'), 'definition', '__httpwww_w3_orgshex_ValueClassDefinition_httpwww_w3_orgshexdefinition', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 305, 12), )
+    __definition = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'definition'), 'definition', '__httpwww_w3_orgshex_ValueClassDefinition_httpwww_w3_orgshexdefinition', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 292, 12), )
 
     
     definition = property(__definition.value, __definition.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}external uses Python identifier external
-    __external = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'external'), 'external', '__httpwww_w3_orgshex_ValueClassDefinition_httpwww_w3_orgshexexternal', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 306, 12), )
+    __external = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'external'), 'external', '__httpwww_w3_orgshex_ValueClassDefinition_httpwww_w3_orgshexexternal', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 293, 12), )
 
     
     external = property(__external.value, __external.set, None, None)
@@ -326,20 +327,20 @@ class GroupShapeConstr (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'GroupShapeConstr')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 328, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 315, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}disjunct uses Python identifier disjunct
-    __disjunct = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'disjunct'), 'disjunct', '__httpwww_w3_orgshex_GroupShapeConstr_httpwww_w3_orgshexdisjunct', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 333, 12), )
+    __disjunct = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'disjunct'), 'disjunct', '__httpwww_w3_orgshex_GroupShapeConstr_httpwww_w3_orgshexdisjunct', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 320, 12), )
 
     
     disjunct = property(__disjunct.value, __disjunct.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}stringFacet uses Python identifier stringFacet
-    __stringFacet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'stringFacet'), 'stringFacet', '__httpwww_w3_orgshex_GroupShapeConstr_httpwww_w3_orgshexstringFacet', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 334, 12), )
+    __stringFacet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'stringFacet'), 'stringFacet', '__httpwww_w3_orgshex_GroupShapeConstr_httpwww_w3_orgshexstringFacet', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 321, 12), )
 
     
     stringFacet = property(__stringFacet.value, __stringFacet.set, None, None)
@@ -361,27 +362,27 @@ class TripleConstraintValueClass (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TripleConstraintValueClass')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 338, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 325, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}facet uses Python identifier facet
-    __facet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'facet'), 'facet', '__httpwww_w3_orgshex_TripleConstraintValueClass_httpwww_w3_orgshexfacet', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 343, 12), )
+    __facet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'facet'), 'facet', '__httpwww_w3_orgshex_TripleConstraintValueClass_httpwww_w3_orgshexfacet', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 330, 12), )
 
     
     facet = property(__facet.value, __facet.set, None, 'Occurs in:\n                    ')
 
     
     # Element {http://www.w3.org/shex/}or uses Python identifier or_
-    __or = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'or'), 'or_', '__httpwww_w3_orgshex_TripleConstraintValueClass_httpwww_w3_orgshexor', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 353, 12), )
+    __or = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'or'), 'or_', '__httpwww_w3_orgshex_TripleConstraintValueClass_httpwww_w3_orgshexor', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 340, 12), )
 
     
     or_ = property(__or.value, __or.set, None, 'Occurs in:\n                        \n                    ')
 
     
     # Element {http://www.w3.org/shex/}valueSet uses Python identifier valueSet
-    __valueSet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'valueSet'), 'valueSet', '__httpwww_w3_orgshex_TripleConstraintValueClass_httpwww_w3_orgshexvalueSet', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 363, 12), )
+    __valueSet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'valueSet'), 'valueSet', '__httpwww_w3_orgshex_TripleConstraintValueClass_httpwww_w3_orgshexvalueSet', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 350, 12), )
 
     
     valueSet = property(__valueSet.value, __valueSet.set, None, 'valueSet')
@@ -404,69 +405,69 @@ class XSFacet (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'XSFacet')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 420, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 407, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}pattern uses Python identifier pattern
-    __pattern = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'pattern'), 'pattern', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexpattern', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 425, 12), )
+    __pattern = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'pattern'), 'pattern', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexpattern', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 412, 12), )
 
     
     pattern = property(__pattern.value, __pattern.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}not uses Python identifier not_
-    __not = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'not'), 'not_', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexnot', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 426, 12), )
+    __not = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'not'), 'not_', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexnot', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 413, 12), )
 
     
     not_ = property(__not.value, __not.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}minLength uses Python identifier minLength
-    __minLength = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'minLength'), 'minLength', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexminLength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 427, 12), )
+    __minLength = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'minLength'), 'minLength', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexminLength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 414, 12), )
 
     
     minLength = property(__minLength.value, __minLength.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}maxLength uses Python identifier maxLength
-    __maxLength = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'maxLength'), 'maxLength', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexmaxLength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 428, 12), )
+    __maxLength = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'maxLength'), 'maxLength', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexmaxLength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 415, 12), )
 
     
     maxLength = property(__maxLength.value, __maxLength.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}length uses Python identifier length
-    __length = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'length'), 'length', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexlength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 429, 12), )
+    __length = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'length'), 'length', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexlength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 416, 12), )
 
     
     length = property(__length.value, __length.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}minValue uses Python identifier minValue
-    __minValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'minValue'), 'minValue', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexminValue', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 430, 12), )
+    __minValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'minValue'), 'minValue', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexminValue', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 417, 12), )
 
     
     minValue = property(__minValue.value, __minValue.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}maxValue uses Python identifier maxValue
-    __maxValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'maxValue'), 'maxValue', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexmaxValue', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 431, 12), )
+    __maxValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'maxValue'), 'maxValue', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexmaxValue', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 418, 12), )
 
     
     maxValue = property(__maxValue.value, __maxValue.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}totalDigits uses Python identifier totalDigits
-    __totalDigits = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'totalDigits'), 'totalDigits', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshextotalDigits', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 432, 12), )
+    __totalDigits = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'totalDigits'), 'totalDigits', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshextotalDigits', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 419, 12), )
 
     
     totalDigits = property(__totalDigits.value, __totalDigits.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}fractionDigits uses Python identifier fractionDigits
-    __fractionDigits = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits'), 'fractionDigits', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexfractionDigits', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 433, 12), )
+    __fractionDigits = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits'), 'fractionDigits', '__httpwww_w3_orgshex_XSFacet_httpwww_w3_orgshexfractionDigits', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 420, 12), )
 
     
     fractionDigits = property(__fractionDigits.value, __fractionDigits.set, None, None)
@@ -488,34 +489,6 @@ class XSFacet (pyxb.binding.basis.complexTypeDefinition):
 Namespace.addCategoryObject('typeBinding', 'XSFacet', XSFacet)
 
 
-# Complex type {http://www.w3.org/shex/}EndPoint with content type SIMPLE
-class EndPoint (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.w3.org/shex/}EndPoint with content type SIMPLE"""
-    _TypeDefinition = pyxb.binding.datatypes.int
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_SIMPLE
-    _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EndPoint')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 437, 4)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.int
-    
-    # Attribute open uses Python identifier open
-    __open = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'open'), 'open', '__httpwww_w3_orgshex_EndPoint_open', pyxb.binding.datatypes.boolean, unicode_default='false')
-    __open._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 440, 16)
-    __open._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 440, 16)
-    
-    open = property(__open.value, __open.set, None, None)
-
-    _ElementMap.update({
-        
-    })
-    _AttributeMap.update({
-        __open.name() : __open
-    })
-Namespace.addCategoryObject('typeBinding', 'EndPoint', EndPoint)
-
-
 # Complex type {http://www.w3.org/shex/}StringFacet with content type ELEMENT_ONLY
 class StringFacet (pyxb.binding.basis.complexTypeDefinition):
     """A restriction on the set of possible string values"""
@@ -523,41 +496,41 @@ class StringFacet (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'StringFacet')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 445, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 432, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}pattern uses Python identifier pattern
-    __pattern = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'pattern'), 'pattern', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexpattern', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 450, 12), )
+    __pattern = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'pattern'), 'pattern', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexpattern', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 437, 12), )
 
     
     pattern = property(__pattern.value, __pattern.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}not uses Python identifier not_
-    __not = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'not'), 'not_', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexnot', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 451, 12), )
+    __not = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'not'), 'not_', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexnot', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 438, 12), )
 
     
     not_ = property(__not.value, __not.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}minLength uses Python identifier minLength
-    __minLength = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'minLength'), 'minLength', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexminLength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 452, 12), )
+    __minLength = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'minLength'), 'minLength', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexminLength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 439, 12), )
 
     
     minLength = property(__minLength.value, __minLength.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}maxLength uses Python identifier maxLength
-    __maxLength = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'maxLength'), 'maxLength', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexmaxLength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 453, 12), )
+    __maxLength = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'maxLength'), 'maxLength', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexmaxLength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 440, 12), )
 
     
     maxLength = property(__maxLength.value, __maxLength.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}length uses Python identifier length
-    __length = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'length'), 'length', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexlength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 454, 12), )
+    __length = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'length'), 'length', '__httpwww_w3_orgshex_StringFacet_httpwww_w3_orgshexlength', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 441, 12), )
 
     
     length = property(__length.value, __length.set, None, None)
@@ -582,34 +555,34 @@ class NumericFacet (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumericFacet')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 458, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 445, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}minValue uses Python identifier minValue
-    __minValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'minValue'), 'minValue', '__httpwww_w3_orgshex_NumericFacet_httpwww_w3_orgshexminValue', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 463, 12), )
+    __minValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'minValue'), 'minValue', '__httpwww_w3_orgshex_NumericFacet_httpwww_w3_orgshexminValue', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 450, 12), )
 
     
     minValue = property(__minValue.value, __minValue.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}maxValue uses Python identifier maxValue
-    __maxValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'maxValue'), 'maxValue', '__httpwww_w3_orgshex_NumericFacet_httpwww_w3_orgshexmaxValue', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 464, 12), )
+    __maxValue = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'maxValue'), 'maxValue', '__httpwww_w3_orgshex_NumericFacet_httpwww_w3_orgshexmaxValue', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 451, 12), )
 
     
     maxValue = property(__maxValue.value, __maxValue.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}totalDigits uses Python identifier totalDigits
-    __totalDigits = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'totalDigits'), 'totalDigits', '__httpwww_w3_orgshex_NumericFacet_httpwww_w3_orgshextotalDigits', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 465, 12), )
+    __totalDigits = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'totalDigits'), 'totalDigits', '__httpwww_w3_orgshex_NumericFacet_httpwww_w3_orgshextotalDigits', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 452, 12), )
 
     
     totalDigits = property(__totalDigits.value, __totalDigits.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}fractionDigits uses Python identifier fractionDigits
-    __fractionDigits = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits'), 'fractionDigits', '__httpwww_w3_orgshex_NumericFacet_httpwww_w3_orgshexfractionDigits', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 466, 12), )
+    __fractionDigits = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits'), 'fractionDigits', '__httpwww_w3_orgshex_NumericFacet_httpwww_w3_orgshexfractionDigits', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 453, 12), )
 
     
     fractionDigits = property(__fractionDigits.value, __fractionDigits.set, None, None)
@@ -626,6 +599,49 @@ class NumericFacet (pyxb.binding.basis.complexTypeDefinition):
 Namespace.addCategoryObject('typeBinding', 'NumericFacet', NumericFacet)
 
 
+# Complex type {http://www.w3.org/shex/}NumericLiteral with content type ELEMENT_ONLY
+class NumericLiteral (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.w3.org/shex/}NumericLiteral with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumericLiteral')
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 460, 4)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.w3.org/shex/}integer uses Python identifier integer
+    __integer = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'integer'), 'integer', '__httpwww_w3_orgshex_NumericLiteral_httpwww_w3_orgshexinteger', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 462, 13), )
+
+    
+    integer = property(__integer.value, __integer.set, None, None)
+
+    
+    # Element {http://www.w3.org/shex/}decimal uses Python identifier decimal
+    __decimal = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'decimal'), 'decimal', '__httpwww_w3_orgshex_NumericLiteral_httpwww_w3_orgshexdecimal', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 463, 12), )
+
+    
+    decimal = property(__decimal.value, __decimal.set, None, None)
+
+    
+    # Element {http://www.w3.org/shex/}double uses Python identifier double
+    __double = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'double'), 'double', '__httpwww_w3_orgshex_NumericLiteral_httpwww_w3_orgshexdouble', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 464, 12), )
+
+    
+    double = property(__double.value, __double.set, None, None)
+
+    _ElementMap.update({
+        __integer.name() : __integer,
+        __decimal.name() : __decimal,
+        __double.name() : __double
+    })
+    _AttributeMap.update({
+        
+    })
+Namespace.addCategoryObject('typeBinding', 'NumericLiteral', NumericLiteral)
+
+
 # Complex type {http://www.w3.org/shex/}ValueSet with content type ELEMENT_ONLY
 class ValueSet (pyxb.binding.basis.complexTypeDefinition):
     """A list of of the possible value(s) in the object or subject"""
@@ -633,48 +649,48 @@ class ValueSet (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ValueSet')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 473, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 468, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}iriRange uses Python identifier iriRange
-    __iriRange = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'iriRange'), 'iriRange', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexiriRange', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 478, 12), )
+    __iriRange = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'iriRange'), 'iriRange', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexiriRange', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 473, 12), )
 
     
     iriRange = property(__iriRange.value, __iriRange.set, None, 'Match an iri or a range of iris')
 
     
     # Element {http://www.w3.org/shex/}rdfLiteral uses Python identifier rdfLiteral
-    __rdfLiteral = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'rdfLiteral'), 'rdfLiteral', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexrdfLiteral', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 483, 12), )
+    __rdfLiteral = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'rdfLiteral'), 'rdfLiteral', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexrdfLiteral', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 478, 12), )
 
     
     rdfLiteral = property(__rdfLiteral.value, __rdfLiteral.set, None, 'Match a specific RDF literal')
 
     
     # Element {http://www.w3.org/shex/}integer uses Python identifier integer
-    __integer = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'integer'), 'integer', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexinteger', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 488, 12), )
+    __integer = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'integer'), 'integer', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexinteger', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 483, 12), )
 
     
     integer = property(__integer.value, __integer.set, None, 'Match a specific integer value')
 
     
     # Element {http://www.w3.org/shex/}decimal uses Python identifier decimal
-    __decimal = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'decimal'), 'decimal', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexdecimal', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 493, 12), )
+    __decimal = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'decimal'), 'decimal', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexdecimal', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 488, 12), )
 
     
     decimal = property(__decimal.value, __decimal.set, None, 'Match a decimal value')
 
     
     # Element {http://www.w3.org/shex/}double uses Python identifier double
-    __double = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'double'), 'double', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexdouble', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 498, 12), )
+    __double = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'double'), 'double', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexdouble', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 493, 12), )
 
     
     double = property(__double.value, __double.set, None, 'Match a double value')
 
     
     # Element {http://www.w3.org/shex/}boolean uses Python identifier boolean
-    __boolean = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'boolean'), 'boolean', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexboolean', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 503, 12), )
+    __boolean = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'boolean'), 'boolean', '__httpwww_w3_orgshex_ValueSet_httpwww_w3_orgshexboolean', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 498, 12), )
 
     
     boolean = property(__boolean.value, __boolean.set, None, 'Match a boolean value')
@@ -700,20 +716,20 @@ class Annotation (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Annotation')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 239, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 226, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}iriref uses Python identifier iriref
-    __iriref = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'iriref'), 'iriref', '__httpwww_w3_orgshex_Annotation_httpwww_w3_orgshexiriref', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 241, 12), )
+    __iriref = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'iriref'), 'iriref', '__httpwww_w3_orgshex_Annotation_httpwww_w3_orgshexiriref', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 228, 12), )
 
     
     iriref = property(__iriref.value, __iriref.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}literal uses Python identifier literal
-    __literal = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'literal'), 'literal', '__httpwww_w3_orgshex_Annotation_httpwww_w3_orgshexliteral', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 242, 12), )
+    __literal = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'literal'), 'literal', '__httpwww_w3_orgshex_Annotation_httpwww_w3_orgshexliteral', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 229, 12), )
 
     
     literal = property(__literal.value, __literal.set, None, None)
@@ -721,8 +737,8 @@ class Annotation (pyxb.binding.basis.complexTypeDefinition):
     
     # Attribute iri uses Python identifier iri
     __iri = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'iri'), 'iri', '__httpwww_w3_orgshex_Annotation_iri', IRI)
-    __iri._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 244, 8)
-    __iri._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 244, 8)
+    __iri._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 231, 8)
+    __iri._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 231, 8)
     
     iri = property(__iri.value, __iri.set, None, None)
 
@@ -743,48 +759,48 @@ class InlineValueClassDefinition (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'InlineValueClassDefinition')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 310, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 297, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}nodetype uses Python identifier nodetype
-    __nodetype = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nodetype'), 'nodetype', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexnodetype', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 316, 16), )
+    __nodetype = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nodetype'), 'nodetype', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexnodetype', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 303, 16), )
 
     
     nodetype = property(__nodetype.value, __nodetype.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}datatype uses Python identifier datatype
-    __datatype = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'datatype'), 'datatype', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexdatatype', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 317, 16), )
+    __datatype = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'datatype'), 'datatype', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexdatatype', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 304, 16), )
 
     
     datatype = property(__datatype.value, __datatype.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}facet uses Python identifier facet
-    __facet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'facet'), 'facet', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexfacet', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 318, 16), )
+    __facet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'facet'), 'facet', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexfacet', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 305, 16), )
 
     
     facet = property(__facet.value, __facet.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}or uses Python identifier or_
-    __or = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'or'), 'or_', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexor', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 319, 16), )
+    __or = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'or'), 'or_', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexor', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 306, 16), )
 
     
     or_ = property(__or.value, __or.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}valueSet uses Python identifier valueSet
-    __valueSet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'valueSet'), 'valueSet', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexvalueSet', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 320, 16), )
+    __valueSet = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'valueSet'), 'valueSet', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexvalueSet', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 307, 16), )
 
     
     valueSet = property(__valueSet.value, __valueSet.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}actions uses Python identifier actions
-    __actions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'actions'), 'actions', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexactions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 322, 12), )
+    __actions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'actions'), 'actions', '__httpwww_w3_orgshex_InlineValueClassDefinition_httpwww_w3_orgshexactions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 309, 12), )
 
     
     actions = property(__actions.value, __actions.set, None, None)
@@ -792,8 +808,8 @@ class InlineValueClassDefinition (pyxb.binding.basis.complexTypeDefinition):
     
     # Attribute valueClassLabel uses Python identifier valueClassLabel
     __valueClassLabel = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'valueClassLabel'), 'valueClassLabel', '__httpwww_w3_orgshex_InlineValueClassDefinition_valueClassLabel', IRI, required=True)
-    __valueClassLabel._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 324, 8)
-    __valueClassLabel._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 324, 8)
+    __valueClassLabel._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 311, 8)
+    __valueClassLabel._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 311, 8)
     
     valueClassLabel = property(__valueClassLabel.value, __valueClassLabel.set, None, None)
 
@@ -811,22 +827,22 @@ class InlineValueClassDefinition (pyxb.binding.basis.complexTypeDefinition):
 Namespace.addCategoryObject('typeBinding', 'InlineValueClassDefinition', InlineValueClassDefinition)
 
 
-# Complex type {http://www.w3.org/shex/}CodeLabel with content type EMPTY
-class CodeLabel (pyxb.binding.basis.complexTypeDefinition):
+# Complex type {http://www.w3.org/shex/}ProductionName with content type EMPTY
+class ProductionName (pyxb.binding.basis.complexTypeDefinition):
     """A label that identifies an external process to be invoked"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_EMPTY
     _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodeLabel')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 404, 4)
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ProductionName')
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 391, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Attribute ref uses Python identifier ref
-    __ref = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'ref'), 'ref', '__httpwww_w3_orgshex_CodeLabel_ref', UCASE_LABEL, required=True)
-    __ref._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 408, 8)
-    __ref._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 408, 8)
+    __ref = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'ref'), 'ref', '__httpwww_w3_orgshex_ProductionName_ref', UCASE_LABEL, required=True)
+    __ref._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 395, 8)
+    __ref._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 395, 8)
     
     ref = property(__ref.value, __ref.set, None, None)
 
@@ -836,7 +852,41 @@ class CodeLabel (pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __ref.name() : __ref
     })
-Namespace.addCategoryObject('typeBinding', 'CodeLabel', CodeLabel)
+Namespace.addCategoryObject('typeBinding', 'ProductionName', ProductionName)
+
+
+# Complex type {http://www.w3.org/shex/}EndPoint with content type ELEMENT_ONLY
+class EndPoint (NumericLiteral):
+    """Complex type {http://www.w3.org/shex/}EndPoint with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EndPoint')
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 424, 4)
+    _ElementMap = NumericLiteral._ElementMap.copy()
+    _AttributeMap = NumericLiteral._AttributeMap.copy()
+    # Base type is NumericLiteral
+    
+    # Element integer ({http://www.w3.org/shex/}integer) inherited from {http://www.w3.org/shex/}NumericLiteral
+    
+    # Element decimal ({http://www.w3.org/shex/}decimal) inherited from {http://www.w3.org/shex/}NumericLiteral
+    
+    # Element double ({http://www.w3.org/shex/}double) inherited from {http://www.w3.org/shex/}NumericLiteral
+    
+    # Attribute open uses Python identifier open
+    __open = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'open'), 'open', '__httpwww_w3_orgshex_EndPoint_open', pyxb.binding.datatypes.boolean, unicode_default='false')
+    __open._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 427, 16)
+    __open._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 427, 16)
+    
+    open = property(__open.value, __open.set, None, None)
+
+    _ElementMap.update({
+        
+    })
+    _AttributeMap.update({
+        __open.name() : __open
+    })
+Namespace.addCategoryObject('typeBinding', 'EndPoint', EndPoint)
 
 
 # Complex type {http://www.w3.org/shex/}IRIStem with content type EMPTY
@@ -847,23 +897,23 @@ class IRIStem (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_EMPTY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IRIStem')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 510, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 505, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Attribute base uses Python identifier base
     __base = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'base'), 'base', '__httpwww_w3_orgshex_IRIStem_base', IRI)
-    __base._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 515, 8)
-    __base._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 515, 8)
+    __base._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 510, 8)
+    __base._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 510, 8)
     
     base = property(__base.value, __base.set, None, None)
 
     
     # Attribute stem uses Python identifier stem
     __stem = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'stem'), 'stem', '__httpwww_w3_orgshex_IRIStem_stem', pyxb.binding.datatypes.boolean, unicode_default='false')
-    __stem._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 516, 8)
-    __stem._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 516, 8)
+    __stem._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 511, 8)
+    __stem._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 511, 8)
     
     stem = property(__stem.value, __stem.set, None, None)
 
@@ -885,23 +935,23 @@ class RDFLiteral (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_SIMPLE
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RDFLiteral')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 533, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 528, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.string
     
     # Attribute datatype uses Python identifier datatype
     __datatype = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'datatype'), 'datatype', '__httpwww_w3_orgshex_RDFLiteral_datatype', IRI)
-    __datatype._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 544, 16)
-    __datatype._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 544, 16)
+    __datatype._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 539, 16)
+    __datatype._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 539, 16)
     
     datatype = property(__datatype.value, __datatype.set, None, None)
 
     
     # Attribute langtag uses Python identifier langtag
     __langtag = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'langtag'), 'langtag', '__httpwww_w3_orgshex_RDFLiteral_langtag', pyxb.binding.datatypes.string)
-    __langtag._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 545, 16)
-    __langtag._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 545, 16)
+    __langtag._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 540, 16)
+    __langtag._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 540, 16)
     
     langtag = property(__langtag.value, __langtag.set, None, None)
 
@@ -922,15 +972,15 @@ class IRIRef (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_EMPTY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IRIRef')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 554, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 549, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Attribute ref uses Python identifier ref
     __ref = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'ref'), 'ref', '__httpwww_w3_orgshex_IRIRef_ref', IRI)
-    __ref._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 555, 8)
-    __ref._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 555, 8)
+    __ref._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 550, 8)
+    __ref._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 550, 8)
     
     ref = property(__ref.value, __ref.set, None, None)
 
@@ -950,27 +1000,27 @@ class Schema_ (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Schema')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 18, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 22, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}startActions uses Python identifier startActions
-    __startActions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'startActions'), 'startActions', '__httpwww_w3_orgshex_Schema__httpwww_w3_orgshexstartActions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 30, 12), )
+    __startActions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'startActions'), 'startActions', '__httpwww_w3_orgshex_Schema__httpwww_w3_orgshexstartActions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 34, 12), )
 
     
     startActions = property(__startActions.value, __startActions.set, None, 'A set of semantic actions to be invoked  the shape is evaluated')
 
     
     # Element {http://www.w3.org/shex/}shape uses Python identifier shape
-    __shape = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'shape'), 'shape', '__httpwww_w3_orgshex_Schema__httpwww_w3_orgshexshape', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 35, 12), )
+    __shape = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'shape'), 'shape', '__httpwww_w3_orgshex_Schema__httpwww_w3_orgshexshape', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 39, 12), )
 
     
     shape = property(__shape.value, __shape.set, None, 'An unordered list of labeled shape definitions')
 
     
     # Element {http://www.w3.org/shex/}valueClass uses Python identifier valueClass
-    __valueClass = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'valueClass'), 'valueClass', '__httpwww_w3_orgshex_Schema__httpwww_w3_orgshexvalueClass', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 40, 12), )
+    __valueClass = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'valueClass'), 'valueClass', '__httpwww_w3_orgshex_Schema__httpwww_w3_orgshexvalueClass', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 44, 12), )
 
     
     valueClass = property(__valueClass.value, __valueClass.set, None, 'An unordered set of labeled value class definitions. Labels can either be explicit or internally generated')
@@ -978,24 +1028,24 @@ class Schema_ (pyxb.binding.basis.complexTypeDefinition):
     
     # Attribute start uses Python identifier start
     __start = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'start'), 'start', '__httpwww_w3_orgshex_Schema__start', ShapeLabel)
-    __start._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 46, 8)
-    __start._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 46, 8)
+    __start._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 50, 8)
+    __start._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 50, 8)
     
     start = property(__start.value, __start.set, None, 'The label initial shape (entry point) in the definition. If absent, the start shape must be supplied by the application')
 
     
     # Attribute exclude-prefixes uses Python identifier exclude_prefixes
     __exclude_prefixes = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'exclude-prefixes'), 'exclude_prefixes', '__httpwww_w3_orgshex_Schema__exclude_prefixes', pyxb.binding.datatypes.string)
-    __exclude_prefixes._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 51, 8)
-    __exclude_prefixes._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 51, 8)
+    __exclude_prefixes._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 55, 8)
+    __exclude_prefixes._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 55, 8)
     
     exclude_prefixes = property(__exclude_prefixes.value, __exclude_prefixes.set, None, 'A space separated list of namespaces to be excluded from the target ShEx document')
 
     
     # Attribute default-namespace uses Python identifier default_namespace
     __default_namespace = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'default-namespace'), 'default_namespace', '__httpwww_w3_orgshex_Schema__default_namespace', pyxb.binding.datatypes.anyURI)
-    __default_namespace._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 56, 8)
-    __default_namespace._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 56, 8)
+    __default_namespace._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 60, 8)
+    __default_namespace._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 60, 8)
     
     default_namespace = property(__default_namespace.value, __default_namespace.set, None, "The URI of the default ShEx namespace, if any. Corresponds to the ShEx ':' namespace")
 
@@ -1019,69 +1069,62 @@ class Shape (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Shape')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 64, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 68, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}import uses Python identifier import_
-    __import = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'import'), 'import_', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgsheximport', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 71, 12), )
+    __import = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'import'), 'import_', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgsheximport', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 75, 12), )
 
     
     import_ = property(__import.value, __import.set, None, 'Shapes that are included externally')
 
     
     # Element {http://www.w3.org/shex/}extra uses Python identifier extra
-    __extra = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'extra'), 'extra', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexextra', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 76, 12), )
+    __extra = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'extra'), 'extra', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexextra', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 80, 12), )
 
     
     extra = property(__extra.value, __extra.set, None, 'A list of property IRI\'s that can be "open" in the sense that, if they remain after the shape is evaluated they can be ignored')
 
     
     # Element {http://www.w3.org/shex/}someOf uses Python identifier someOf
-    __someOf = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'someOf'), 'someOf', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexsomeOf', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 114, 16), )
+    __someOf = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'someOf'), 'someOf', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexsomeOf', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 119, 16), )
 
     
     someOf = property(__someOf.value, __someOf.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}group uses Python identifier group
-    __group = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'group'), 'group', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexgroup', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 115, 16), )
+    __group = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'group'), 'group', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexgroup', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 120, 16), )
 
     
     group = property(__group.value, __group.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}tripleConstraint uses Python identifier tripleConstraint
-    __tripleConstraint = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), 'tripleConstraint', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshextripleConstraint', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 116, 16), )
+    __tripleConstraint = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), 'tripleConstraint', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshextripleConstraint', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 121, 16), )
 
     
     tripleConstraint = property(__tripleConstraint.value, __tripleConstraint.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}include uses Python identifier include
-    __include = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'include'), 'include', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexinclude', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 117, 16), )
+    __include = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'include'), 'include', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexinclude', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 122, 16), )
 
     
     include = property(__include.value, __include.set, None, None)
 
     
-    # Element {http://www.w3.org/shex/}wrapper uses Python identifier wrapper
-    __wrapper = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'wrapper'), 'wrapper', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexwrapper', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 118, 16), )
-
-    
-    wrapper = property(__wrapper.value, __wrapper.set, None, None)
-
-    
     # Element {http://www.w3.org/shex/}annotation uses Python identifier annotation
-    __annotation = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'annotation'), 'annotation', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexannotation', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12), )
+    __annotation = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'annotation'), 'annotation', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexannotation', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12), )
 
     
     annotation = property(__annotation.value, __annotation.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}actions uses Python identifier actions
-    __actions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'actions'), 'actions', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexactions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12), )
+    __actions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'actions'), 'actions', '__httpwww_w3_orgshex_Shape_httpwww_w3_orgshexactions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12), )
 
     
     actions = property(__actions.value, __actions.set, None, None)
@@ -1089,24 +1132,24 @@ class Shape (pyxb.binding.basis.complexTypeDefinition):
     
     # Attribute label uses Python identifier label
     __label = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'label'), 'label', '__httpwww_w3_orgshex_Shape_label', ShapeLabel, required=True)
-    __label._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 82, 8)
-    __label._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 82, 8)
+    __label._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 86, 8)
+    __label._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 86, 8)
     
     label = property(__label.value, __label.set, None, "The name of the shape. The local name of an anonymous shape begins with an underscore ('_') (i.e. it is a blank node")
 
     
     # Attribute virtual uses Python identifier virtual
     __virtual = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'virtual'), 'virtual', '__httpwww_w3_orgshex_Shape_virtual', pyxb.binding.datatypes.boolean, unicode_default='false')
-    __virtual._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 87, 8)
-    __virtual._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 87, 8)
+    __virtual._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 91, 8)
+    __virtual._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 91, 8)
     
     virtual = property(__virtual.value, __virtual.set, None, 'If true, this shape cannot be applied directly and may only be included in another shape definition.')
 
     
     # Attribute closed uses Python identifier closed
     __closed = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'closed'), 'closed', '__httpwww_w3_orgshex_Shape_closed', pyxb.binding.datatypes.boolean, unicode_default='false')
-    __closed._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 92, 8)
-    __closed._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 92, 8)
+    __closed._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 96, 8)
+    __closed._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 96, 8)
     
     closed = property(__closed.value, __closed.set, None, 'If true, this shape definition is "strict", in the sense that  of the triples in the graph must match the shape definition. If false, graphs that\n                         the matching shape definition are considered passing. ')
 
@@ -1117,7 +1160,6 @@ class Shape (pyxb.binding.basis.complexTypeDefinition):
         __group.name() : __group,
         __tripleConstraint.name() : __tripleConstraint,
         __include.name() : __include,
-        __wrapper.name() : __wrapper,
         __annotation.name() : __annotation,
         __actions.name() : __actions
     })
@@ -1129,99 +1171,6 @@ class Shape (pyxb.binding.basis.complexTypeDefinition):
 Namespace.addCategoryObject('typeBinding', 'Shape', Shape)
 
 
-# Complex type {http://www.w3.org/shex/}Wrapper with content type ELEMENT_ONLY
-class Wrapper (pyxb.binding.basis.complexTypeDefinition):
-    """Wrapper implements the  construct, providing a point to hang:
-            """
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Wrapper')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 123, 4)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.w3.org/shex/}someOf uses Python identifier someOf
-    __someOf = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'someOf'), 'someOf', '__httpwww_w3_orgshex_Wrapper_httpwww_w3_orgshexsomeOf', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 114, 16), )
-
-    
-    someOf = property(__someOf.value, __someOf.set, None, None)
-
-    
-    # Element {http://www.w3.org/shex/}group uses Python identifier group
-    __group = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'group'), 'group', '__httpwww_w3_orgshex_Wrapper_httpwww_w3_orgshexgroup', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 115, 16), )
-
-    
-    group = property(__group.value, __group.set, None, None)
-
-    
-    # Element {http://www.w3.org/shex/}tripleConstraint uses Python identifier tripleConstraint
-    __tripleConstraint = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), 'tripleConstraint', '__httpwww_w3_orgshex_Wrapper_httpwww_w3_orgshextripleConstraint', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 116, 16), )
-
-    
-    tripleConstraint = property(__tripleConstraint.value, __tripleConstraint.set, None, None)
-
-    
-    # Element {http://www.w3.org/shex/}include uses Python identifier include
-    __include = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'include'), 'include', '__httpwww_w3_orgshex_Wrapper_httpwww_w3_orgshexinclude', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 117, 16), )
-
-    
-    include = property(__include.value, __include.set, None, None)
-
-    
-    # Element {http://www.w3.org/shex/}wrapper uses Python identifier wrapper
-    __wrapper = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'wrapper'), 'wrapper', '__httpwww_w3_orgshex_Wrapper_httpwww_w3_orgshexwrapper', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 118, 16), )
-
-    
-    wrapper = property(__wrapper.value, __wrapper.set, None, None)
-
-    
-    # Element {http://www.w3.org/shex/}annotation uses Python identifier annotation
-    __annotation = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'annotation'), 'annotation', '__httpwww_w3_orgshex_Wrapper_httpwww_w3_orgshexannotation', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12), )
-
-    
-    annotation = property(__annotation.value, __annotation.set, None, None)
-
-    
-    # Element {http://www.w3.org/shex/}actions uses Python identifier actions
-    __actions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'actions'), 'actions', '__httpwww_w3_orgshex_Wrapper_httpwww_w3_orgshexactions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12), )
-
-    
-    actions = property(__actions.value, __actions.set, None, None)
-
-    
-    # Attribute min uses Python identifier min
-    __min = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'min'), 'min', '__httpwww_w3_orgshex_Wrapper_min', pyxb.binding.datatypes.nonNegativeInteger, unicode_default='1')
-    __min._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 565, 8)
-    __min._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 565, 8)
-    
-    min = property(__min.value, __min.set, None, None)
-
-    
-    # Attribute max uses Python identifier max
-    __max = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'max'), 'max', '__httpwww_w3_orgshex_Wrapper_max', STD_ANON_2, unicode_default='1')
-    __max._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 566, 8)
-    __max._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 566, 8)
-    
-    max = property(__max.value, __max.set, None, None)
-
-    _ElementMap.update({
-        __someOf.name() : __someOf,
-        __group.name() : __group,
-        __tripleConstraint.name() : __tripleConstraint,
-        __include.name() : __include,
-        __wrapper.name() : __wrapper,
-        __annotation.name() : __annotation,
-        __actions.name() : __actions
-    })
-    _AttributeMap.update({
-        __min.name() : __min,
-        __max.name() : __max
-    })
-Namespace.addCategoryObject('typeBinding', 'Wrapper', Wrapper)
-
-
 # Complex type {http://www.w3.org/shex/}ShapeConstraint with content type ELEMENT_ONLY
 class ShapeConstraint (pyxb.binding.basis.complexTypeDefinition):
     """A complete shape constraint."""
@@ -1229,55 +1178,48 @@ class ShapeConstraint (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ShapeConstraint')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 150, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 137, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}someOf uses Python identifier someOf
-    __someOf = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'someOf'), 'someOf', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexsomeOf', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 114, 16), )
+    __someOf = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'someOf'), 'someOf', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexsomeOf', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 119, 16), )
 
     
     someOf = property(__someOf.value, __someOf.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}group uses Python identifier group
-    __group = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'group'), 'group', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexgroup', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 115, 16), )
+    __group = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'group'), 'group', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexgroup', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 120, 16), )
 
     
     group = property(__group.value, __group.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}tripleConstraint uses Python identifier tripleConstraint
-    __tripleConstraint = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), 'tripleConstraint', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshextripleConstraint', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 116, 16), )
+    __tripleConstraint = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), 'tripleConstraint', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshextripleConstraint', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 121, 16), )
 
     
     tripleConstraint = property(__tripleConstraint.value, __tripleConstraint.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}include uses Python identifier include
-    __include = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'include'), 'include', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexinclude', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 117, 16), )
+    __include = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'include'), 'include', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexinclude', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 122, 16), )
 
     
     include = property(__include.value, __include.set, None, None)
 
     
-    # Element {http://www.w3.org/shex/}wrapper uses Python identifier wrapper
-    __wrapper = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'wrapper'), 'wrapper', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexwrapper', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 118, 16), )
-
-    
-    wrapper = property(__wrapper.value, __wrapper.set, None, None)
-
-    
     # Element {http://www.w3.org/shex/}annotation uses Python identifier annotation
-    __annotation = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'annotation'), 'annotation', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexannotation', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12), )
+    __annotation = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'annotation'), 'annotation', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexannotation', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12), )
 
     
     annotation = property(__annotation.value, __annotation.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}actions uses Python identifier actions
-    __actions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'actions'), 'actions', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexactions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12), )
+    __actions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'actions'), 'actions', '__httpwww_w3_orgshex_ShapeConstraint_httpwww_w3_orgshexactions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12), )
 
     
     actions = property(__actions.value, __actions.set, None, None)
@@ -1285,16 +1227,16 @@ class ShapeConstraint (pyxb.binding.basis.complexTypeDefinition):
     
     # Attribute min uses Python identifier min
     __min = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'min'), 'min', '__httpwww_w3_orgshex_ShapeConstraint_min', pyxb.binding.datatypes.nonNegativeInteger, unicode_default='1')
-    __min._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 565, 8)
-    __min._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 565, 8)
+    __min._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 560, 8)
+    __min._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 560, 8)
     
     min = property(__min.value, __min.set, None, None)
 
     
     # Attribute max uses Python identifier max
     __max = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'max'), 'max', '__httpwww_w3_orgshex_ShapeConstraint_max', STD_ANON_2, unicode_default='1')
-    __max._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 566, 8)
-    __max._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 566, 8)
+    __max._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 561, 8)
+    __max._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 561, 8)
     
     max = property(__max.value, __max.set, None, None)
 
@@ -1303,7 +1245,6 @@ class ShapeConstraint (pyxb.binding.basis.complexTypeDefinition):
         __group.name() : __group,
         __tripleConstraint.name() : __tripleConstraint,
         __include.name() : __include,
-        __wrapper.name() : __wrapper,
         __annotation.name() : __annotation,
         __actions.name() : __actions
     })
@@ -1325,34 +1266,34 @@ class TripleConstraint (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TripleConstraint')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 161, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 148, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Element {http://www.w3.org/shex/}annotation uses Python identifier annotation
-    __annotation = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'annotation'), 'annotation', '__httpwww_w3_orgshex_TripleConstraint_httpwww_w3_orgshexannotation', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12), )
+    __annotation = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'annotation'), 'annotation', '__httpwww_w3_orgshex_TripleConstraint_httpwww_w3_orgshexannotation', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12), )
 
     
     annotation = property(__annotation.value, __annotation.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}actions uses Python identifier actions
-    __actions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'actions'), 'actions', '__httpwww_w3_orgshex_TripleConstraint_httpwww_w3_orgshexactions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12), )
+    __actions = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'actions'), 'actions', '__httpwww_w3_orgshex_TripleConstraint_httpwww_w3_orgshexactions', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12), )
 
     
     actions = property(__actions.value, __actions.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}objectConstraint uses Python identifier objectConstraint
-    __objectConstraint = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'objectConstraint'), 'objectConstraint', '__httpwww_w3_orgshex_TripleConstraint_httpwww_w3_orgshexobjectConstraint', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 171, 16), )
+    __objectConstraint = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'objectConstraint'), 'objectConstraint', '__httpwww_w3_orgshex_TripleConstraint_httpwww_w3_orgshexobjectConstraint', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 158, 16), )
 
     
     objectConstraint = property(__objectConstraint.value, __objectConstraint.set, None, None)
 
     
     # Element {http://www.w3.org/shex/}subjectConstraint uses Python identifier subjectConstraint
-    __subjectConstraint = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'subjectConstraint'), 'subjectConstraint', '__httpwww_w3_orgshex_TripleConstraint_httpwww_w3_orgshexsubjectConstraint', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 172, 16), )
+    __subjectConstraint = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'subjectConstraint'), 'subjectConstraint', '__httpwww_w3_orgshex_TripleConstraint_httpwww_w3_orgshexsubjectConstraint', False, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 159, 16), )
 
     
     subjectConstraint = property(__subjectConstraint.value, __subjectConstraint.set, None, None)
@@ -1360,104 +1301,104 @@ class TripleConstraint (pyxb.binding.basis.complexTypeDefinition):
     
     # Attribute predicate uses Python identifier predicate
     __predicate = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'predicate'), 'predicate', '__httpwww_w3_orgshex_TripleConstraint_predicate', IRI, required=True)
-    __predicate._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 176, 8)
-    __predicate._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 176, 8)
+    __predicate._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 163, 8)
+    __predicate._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 163, 8)
     
     predicate = property(__predicate.value, __predicate.set, None, None)
 
     
     # Attribute inverse uses Python identifier inverse
     __inverse = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'inverse'), 'inverse', '__httpwww_w3_orgshex_TripleConstraint_inverse', pyxb.binding.datatypes.boolean)
-    __inverse._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 177, 8)
-    __inverse._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 177, 8)
+    __inverse._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 164, 8)
+    __inverse._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 164, 8)
     
     inverse = property(__inverse.value, __inverse.set, None, 'Only used in the case of a reverse predicate with any subject ({ ^ :p .})')
 
     
     # Attribute object uses Python identifier object
     __object = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'object'), 'object', '__httpwww_w3_orgshex_TripleConstraint_object', IRI)
-    __object._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 182, 8)
-    __object._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 182, 8)
+    __object._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 169, 8)
+    __object._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 169, 8)
     
     object = property(__object.value, __object.set, None, 'A simple object IRI. Equivalent to a single, non-stemmed value set in the object position.')
 
     
     # Attribute subject uses Python identifier subject
     __subject = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'subject'), 'subject', '__httpwww_w3_orgshex_TripleConstraint_subject', IRI)
-    __subject._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 187, 8)
-    __subject._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 187, 8)
+    __subject._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 174, 8)
+    __subject._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 174, 8)
     
     subject = property(__subject.value, __subject.set, None, 'A simple subject IRI. Used for a single, non-stemmed value set in the subject position.')
 
     
     # Attribute objectShape uses Python identifier objectShape
     __objectShape = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'objectShape'), 'objectShape', '__httpwww_w3_orgshex_TripleConstraint_objectShape', ShapeLabel)
-    __objectShape._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 192, 8)
-    __objectShape._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 192, 8)
+    __objectShape._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 179, 8)
+    __objectShape._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 179, 8)
     
     objectShape = property(__objectShape.value, __objectShape.set, None, 'A reference to a shape. Used with a single groupShapeConstrin the object position.')
 
     
     # Attribute subjectShape uses Python identifier subjectShape
     __subjectShape = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'subjectShape'), 'subjectShape', '__httpwww_w3_orgshex_TripleConstraint_subjectShape', ShapeLabel)
-    __subjectShape._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 197, 8)
-    __subjectShape._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 197, 8)
+    __subjectShape._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 184, 8)
+    __subjectShape._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 184, 8)
     
     subjectShape = property(__subjectShape.value, __subjectShape.set, None, 'A reference to a shape. Used with a single groupShapeConstr in the subject position.')
 
     
     # Attribute objectType uses Python identifier objectType
     __objectType = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'objectType'), 'objectType', '__httpwww_w3_orgshex_TripleConstraint_objectType', NodeType)
-    __objectType._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 202, 8)
-    __objectType._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 202, 8)
+    __objectType._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 189, 8)
+    __objectType._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 189, 8)
     
     objectType = property(__objectType.value, __objectType.set, None, 'A constraint on the type of object.')
 
     
     # Attribute subjectType uses Python identifier subjectType
     __subjectType = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'subjectType'), 'subjectType', '__httpwww_w3_orgshex_TripleConstraint_subjectType', NodeType)
-    __subjectType._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 207, 8)
-    __subjectType._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 207, 8)
+    __subjectType._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 194, 8)
+    __subjectType._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 194, 8)
     
     subjectType = property(__subjectType.value, __subjectType.set, None, 'A constraint on the type of subject')
 
     
     # Attribute datatype uses Python identifier datatype
     __datatype = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'datatype'), 'datatype', '__httpwww_w3_orgshex_TripleConstraint_datatype', pyxb.binding.datatypes.anyURI)
-    __datatype._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 212, 8)
-    __datatype._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 212, 8)
+    __datatype._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 199, 8)
+    __datatype._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 199, 8)
     
     datatype = property(__datatype.value, __datatype.set, None, 'The URI of a datatype. Used for a single datatype in the object position, with or without facets')
 
     
     # Attribute negated uses Python identifier negated
     __negated = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'negated'), 'negated', '__httpwww_w3_orgshex_TripleConstraint_negated', pyxb.binding.datatypes.boolean, unicode_default='false')
-    __negated._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 217, 8)
-    __negated._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 217, 8)
+    __negated._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 204, 8)
+    __negated._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 204, 8)
     
     negated = property(__negated.value, __negated.set, None, 'True means that the match is NOT what is in the constraint')
 
     
     # Attribute valueClass uses Python identifier valueClass
     __valueClass = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'valueClass'), 'valueClass', '__httpwww_w3_orgshex_TripleConstraint_valueClass', ValueClassLabel)
-    __valueClass._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 222, 8)
-    __valueClass._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 222, 8)
+    __valueClass._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 209, 8)
+    __valueClass._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 209, 8)
     
     valueClass = property(__valueClass.value, __valueClass.set, None, 'Must be stand-alone (we need a relax-ng extension to cover this...)')
 
     
     # Attribute min uses Python identifier min
     __min = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'min'), 'min', '__httpwww_w3_orgshex_TripleConstraint_min', pyxb.binding.datatypes.nonNegativeInteger, unicode_default='1')
-    __min._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 565, 8)
-    __min._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 565, 8)
+    __min._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 560, 8)
+    __min._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 560, 8)
     
     min = property(__min.value, __min.set, None, None)
 
     
     # Attribute max uses Python identifier max
     __max = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'max'), 'max', '__httpwww_w3_orgshex_TripleConstraint_max', STD_ANON_2, unicode_default='1')
-    __max._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 566, 8)
-    __max._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 566, 8)
+    __max._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 561, 8)
+    __max._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 561, 8)
     
     max = property(__max.value, __max.set, None, None)
 
@@ -1492,15 +1433,15 @@ class ValueClassRef (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_EMPTY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ValueClassRef')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 383, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 370, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Attribute ref uses Python identifier ref
     __ref = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'ref'), 'ref', '__httpwww_w3_orgshex_ValueClassRef_ref', ValueClassLabel, required=True)
-    __ref._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 387, 8)
-    __ref._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 387, 8)
+    __ref._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 374, 8)
+    __ref._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 374, 8)
     
     ref = property(__ref.value, __ref.set, None, None)
 
@@ -1520,15 +1461,15 @@ class ShapeRef (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_EMPTY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ShapeRef')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 397, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 384, 4)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
     # Attribute ref uses Python identifier ref
     __ref = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'ref'), 'ref', '__httpwww_w3_orgshex_ShapeRef_ref', ShapeLabel, required=True)
-    __ref._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 401, 8)
-    __ref._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 401, 8)
+    __ref._DeclarationLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 388, 8)
+    __ref._UseLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 388, 8)
     
     ref = property(__ref.value, __ref.set, None, None)
 
@@ -1549,13 +1490,13 @@ class IRIRange (IRIStem):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IRIRange')
-    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 519, 4)
+    _XSDLocation = pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 514, 4)
     _ElementMap = IRIStem._ElementMap.copy()
     _AttributeMap = IRIStem._AttributeMap.copy()
     # Base type is IRIStem
     
     # Element {http://www.w3.org/shex/}exclusion uses Python identifier exclusion
-    __exclusion = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'exclusion'), 'exclusion', '__httpwww_w3_orgshex_IRIRange_httpwww_w3_orgshexexclusion', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 527, 20), )
+    __exclusion = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'exclusion'), 'exclusion', '__httpwww_w3_orgshex_IRIRange_httpwww_w3_orgshexexclusion', True, pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 522, 20), )
 
     
     exclusion = property(__exclusion.value, __exclusion.set, None, None)
@@ -1573,12 +1514,12 @@ class IRIRange (IRIStem):
 Namespace.addCategoryObject('typeBinding', 'IRIRange', IRIRange)
 
 
-Schema = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Schema'), Schema_, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 17, 4))
+Schema = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Schema'), Schema_, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 21, 4))
 Namespace.addCategoryObject('elementBinding', Schema.name().localName(), Schema)
 
 
 
-SemanticActions._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'action'), SemanticAction, scope=SemanticActions, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 255, 12)))
+SemanticActions._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'action'), SemanticAction, scope=SemanticActions, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 242, 12)))
 
 def _BuildAutomaton ():
     # Remove this helper function from the namespace after it is invoked
@@ -1589,7 +1530,7 @@ def _BuildAutomaton ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(SemanticActions._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'action')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 255, 12))
+    symbol = pyxb.binding.content.ElementUse(SemanticActions._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'action')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 242, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
@@ -1602,9 +1543,9 @@ SemanticActions._Automaton = _BuildAutomaton()
 
 
 
-SemanticAction._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'codeLabel'), CodeLabel, scope=SemanticAction, documentation='The name of a function that will be bound when the shape is evaluated', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 264, 12)))
+SemanticAction._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'productionName'), ProductionName, scope=SemanticAction, documentation='The name of a function that will be bound when the shape is evaluated', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 251, 12)))
 
-SemanticAction._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'codeDecl'), CodeDecl, scope=SemanticAction, documentation='The language specific function to be invoked', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 269, 12)))
+SemanticAction._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'codeDecl'), CodeDecl, scope=SemanticAction, documentation='The language specific function to be invoked', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 256, 12)))
 
 def _BuildAutomaton_ ():
     # Remove this helper function from the namespace after it is invoked
@@ -1615,11 +1556,11 @@ def _BuildAutomaton_ ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(SemanticAction._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'codeLabel')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 264, 12))
+    symbol = pyxb.binding.content.ElementUse(SemanticAction._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'productionName')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 251, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(SemanticAction._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'codeDecl')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 269, 12))
+    symbol = pyxb.binding.content.ElementUse(SemanticAction._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'codeDecl')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 256, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -1639,12 +1580,12 @@ def _BuildAutomaton_2 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 289, 12))
+    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 276, 12))
     counters.add(cc_0)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 289, 12))
+    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 276, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
@@ -1657,9 +1598,9 @@ CodeDecl._Automaton = _BuildAutomaton_2()
 
 
 
-ValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'definition'), InlineValueClassDefinition, scope=ValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 305, 12)))
+ValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'definition'), InlineValueClassDefinition, scope=ValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 292, 12)))
 
-ValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'external'), ValueClassRef, scope=ValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 306, 12)))
+ValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'external'), ValueClassRef, scope=ValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 293, 12)))
 
 def _BuildAutomaton_3 ():
     # Remove this helper function from the namespace after it is invoked
@@ -1670,11 +1611,11 @@ def _BuildAutomaton_3 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'definition')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 305, 12))
+    symbol = pyxb.binding.content.ElementUse(ValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'definition')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 292, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'external')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 306, 12))
+    symbol = pyxb.binding.content.ElementUse(ValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'external')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 293, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -1687,9 +1628,9 @@ ValueClassDefinition._Automaton = _BuildAutomaton_3()
 
 
 
-GroupShapeConstr._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'disjunct'), ShapeRef, scope=GroupShapeConstr, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 333, 12)))
+GroupShapeConstr._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'disjunct'), ShapeRef, scope=GroupShapeConstr, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 320, 12)))
 
-GroupShapeConstr._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'stringFacet'), StringFacet, scope=GroupShapeConstr, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 334, 12)))
+GroupShapeConstr._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'stringFacet'), StringFacet, scope=GroupShapeConstr, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 321, 12)))
 
 def _BuildAutomaton_4 ():
     # Remove this helper function from the namespace after it is invoked
@@ -1698,19 +1639,19 @@ def _BuildAutomaton_4 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 333, 12))
+    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 320, 12))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 334, 12))
+    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 321, 12))
     counters.add(cc_1)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(GroupShapeConstr._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'disjunct')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 333, 12))
+    symbol = pyxb.binding.content.ElementUse(GroupShapeConstr._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'disjunct')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 320, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(GroupShapeConstr._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'stringFacet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 334, 12))
+    symbol = pyxb.binding.content.ElementUse(GroupShapeConstr._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'stringFacet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 321, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -1729,11 +1670,11 @@ GroupShapeConstr._Automaton = _BuildAutomaton_4()
 
 
 
-TripleConstraintValueClass._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'facet'), XSFacet, scope=TripleConstraintValueClass, documentation='Occurs in:\n                    ', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 343, 12)))
+TripleConstraintValueClass._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'facet'), XSFacet, scope=TripleConstraintValueClass, documentation='Occurs in:\n                    ', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 330, 12)))
 
-TripleConstraintValueClass._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'or'), GroupShapeConstr, scope=TripleConstraintValueClass, documentation='Occurs in:\n                        \n                    ', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 353, 12)))
+TripleConstraintValueClass._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'or'), GroupShapeConstr, scope=TripleConstraintValueClass, documentation='Occurs in:\n                        \n                    ', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 340, 12)))
 
-TripleConstraintValueClass._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'valueSet'), ValueSet, scope=TripleConstraintValueClass, documentation='valueSet', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 363, 12)))
+TripleConstraintValueClass._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'valueSet'), ValueSet, scope=TripleConstraintValueClass, documentation='valueSet', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 350, 12)))
 
 def _BuildAutomaton_5 ():
     # Remove this helper function from the namespace after it is invoked
@@ -1744,15 +1685,15 @@ def _BuildAutomaton_5 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TripleConstraintValueClass._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'facet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 343, 12))
+    symbol = pyxb.binding.content.ElementUse(TripleConstraintValueClass._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'facet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 330, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TripleConstraintValueClass._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'or')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 353, 12))
+    symbol = pyxb.binding.content.ElementUse(TripleConstraintValueClass._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'or')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 340, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TripleConstraintValueClass._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'valueSet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 363, 12))
+    symbol = pyxb.binding.content.ElementUse(TripleConstraintValueClass._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'valueSet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 350, 12))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
@@ -1769,23 +1710,23 @@ TripleConstraintValueClass._Automaton = _BuildAutomaton_5()
 
 
 
-XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pattern'), pyxb.binding.datatypes.string, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 425, 12)))
+XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pattern'), pyxb.binding.datatypes.string, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 412, 12)))
 
-XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'not'), pyxb.binding.datatypes.string, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 426, 12)))
+XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'not'), pyxb.binding.datatypes.string, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 413, 12)))
 
-XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'minLength'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 427, 12)))
+XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'minLength'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 414, 12)))
 
-XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'maxLength'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 428, 12)))
+XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'maxLength'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 415, 12)))
 
-XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'length'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 429, 12)))
+XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'length'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 416, 12)))
 
-XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'minValue'), EndPoint, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 430, 12)))
+XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'minValue'), EndPoint, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 417, 12)))
 
-XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'maxValue'), EndPoint, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 431, 12)))
+XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'maxValue'), EndPoint, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 418, 12)))
 
-XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'totalDigits'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 432, 12)))
+XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'totalDigits'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 419, 12)))
 
-XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 433, 12)))
+XSFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits'), pyxb.binding.datatypes.int, scope=XSFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 420, 12)))
 
 def _BuildAutomaton_6 ():
     # Remove this helper function from the namespace after it is invoked
@@ -1796,39 +1737,39 @@ def _BuildAutomaton_6 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'pattern')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 425, 12))
+    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'pattern')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 412, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'not')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 426, 12))
+    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'not')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 413, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'minLength')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 427, 12))
+    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'minLength')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 414, 12))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'maxLength')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 428, 12))
+    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'maxLength')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 415, 12))
     st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'length')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 429, 12))
+    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'length')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 416, 12))
     st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'minValue')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 430, 12))
+    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'minValue')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 417, 12))
     st_5 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'maxValue')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 431, 12))
+    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'maxValue')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 418, 12))
     st_6 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'totalDigits')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 432, 12))
+    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'totalDigits')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 419, 12))
     st_7 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 433, 12))
+    symbol = pyxb.binding.content.ElementUse(XSFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 420, 12))
     st_8 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     transitions = []
@@ -1855,15 +1796,15 @@ XSFacet._Automaton = _BuildAutomaton_6()
 
 
 
-StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pattern'), pyxb.binding.datatypes.string, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 450, 12)))
+StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pattern'), pyxb.binding.datatypes.string, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 437, 12)))
 
-StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'not'), pyxb.binding.datatypes.string, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 451, 12)))
+StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'not'), pyxb.binding.datatypes.string, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 438, 12)))
 
-StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'minLength'), pyxb.binding.datatypes.int, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 452, 12)))
+StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'minLength'), pyxb.binding.datatypes.int, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 439, 12)))
 
-StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'maxLength'), pyxb.binding.datatypes.int, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 453, 12)))
+StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'maxLength'), pyxb.binding.datatypes.int, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 440, 12)))
 
-StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'length'), pyxb.binding.datatypes.int, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 454, 12)))
+StringFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'length'), pyxb.binding.datatypes.int, scope=StringFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 441, 12)))
 
 def _BuildAutomaton_7 ():
     # Remove this helper function from the namespace after it is invoked
@@ -1874,23 +1815,23 @@ def _BuildAutomaton_7 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'pattern')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 450, 12))
+    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'pattern')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 437, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'not')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 451, 12))
+    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'not')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 438, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'minLength')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 452, 12))
+    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'minLength')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 439, 12))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'maxLength')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 453, 12))
+    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'maxLength')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 440, 12))
     st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'length')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 454, 12))
+    symbol = pyxb.binding.content.ElementUse(StringFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'length')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 441, 12))
     st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     transitions = []
@@ -1909,13 +1850,13 @@ StringFacet._Automaton = _BuildAutomaton_7()
 
 
 
-NumericFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'minValue'), EndPoint, scope=NumericFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 463, 12)))
+NumericFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'minValue'), EndPoint, scope=NumericFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 450, 12)))
 
-NumericFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'maxValue'), EndPoint, scope=NumericFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 464, 12)))
+NumericFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'maxValue'), EndPoint, scope=NumericFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 451, 12)))
 
-NumericFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'totalDigits'), pyxb.binding.datatypes.int, scope=NumericFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 465, 12)))
+NumericFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'totalDigits'), pyxb.binding.datatypes.int, scope=NumericFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 452, 12)))
 
-NumericFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits'), pyxb.binding.datatypes.int, scope=NumericFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 466, 12)))
+NumericFacet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits'), pyxb.binding.datatypes.int, scope=NumericFacet, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 453, 12)))
 
 def _BuildAutomaton_8 ():
     # Remove this helper function from the namespace after it is invoked
@@ -1926,19 +1867,19 @@ def _BuildAutomaton_8 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(NumericFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'minValue')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 463, 12))
+    symbol = pyxb.binding.content.ElementUse(NumericFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'minValue')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 450, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(NumericFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'maxValue')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 464, 12))
+    symbol = pyxb.binding.content.ElementUse(NumericFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'maxValue')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 451, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(NumericFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'totalDigits')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 465, 12))
+    symbol = pyxb.binding.content.ElementUse(NumericFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'totalDigits')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 452, 12))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(NumericFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 466, 12))
+    symbol = pyxb.binding.content.ElementUse(NumericFacet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'fractionDigits')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 453, 12))
     st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
@@ -1955,17 +1896,11 @@ NumericFacet._Automaton = _BuildAutomaton_8()
 
 
 
-ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'iriRange'), IRIRange, scope=ValueSet, documentation='Match an iri or a range of iris', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 478, 12)))
+NumericLiteral._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'integer'), pyxb.binding.datatypes.int, scope=NumericLiteral, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 462, 13)))
 
-ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'rdfLiteral'), RDFLiteral, scope=ValueSet, documentation='Match a specific RDF literal', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 483, 12)))
+NumericLiteral._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'decimal'), pyxb.binding.datatypes.decimal, scope=NumericLiteral, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 463, 12)))
 
-ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'integer'), pyxb.binding.datatypes.int, scope=ValueSet, documentation='Match a specific integer value', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 488, 12)))
-
-ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'decimal'), pyxb.binding.datatypes.decimal, scope=ValueSet, documentation='Match a decimal value', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 493, 12)))
-
-ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'double'), pyxb.binding.datatypes.double, scope=ValueSet, documentation='Match a double value', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 498, 12)))
-
-ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'boolean'), pyxb.binding.datatypes.boolean, scope=ValueSet, documentation='Match a boolean value', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 503, 12)))
+NumericLiteral._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'double'), pyxb.binding.datatypes.double, scope=NumericLiteral, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 464, 12)))
 
 def _BuildAutomaton_9 ():
     # Remove this helper function from the namespace after it is invoked
@@ -1976,122 +1911,40 @@ def _BuildAutomaton_9 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'iriRange')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 478, 12))
+    symbol = pyxb.binding.content.ElementUse(NumericLiteral._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'integer')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 462, 13))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'rdfLiteral')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 483, 12))
+    symbol = pyxb.binding.content.ElementUse(NumericLiteral._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'decimal')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 463, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'integer')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 488, 12))
+    symbol = pyxb.binding.content.ElementUse(NumericLiteral._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'double')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 464, 12))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'decimal')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 493, 12))
-    st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_3)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'double')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 498, 12))
-    st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_4)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'boolean')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 503, 12))
-    st_5 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_5)
     transitions = []
-    transitions.append(fac.Transition(st_0, [
-         ]))
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    transitions.append(fac.Transition(st_4, [
-         ]))
-    transitions.append(fac.Transition(st_5, [
-         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_0, [
-         ]))
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    transitions.append(fac.Transition(st_4, [
-         ]))
-    transitions.append(fac.Transition(st_5, [
-         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_0, [
-         ]))
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    transitions.append(fac.Transition(st_4, [
-         ]))
-    transitions.append(fac.Transition(st_5, [
-         ]))
     st_2._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_0, [
-         ]))
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    transitions.append(fac.Transition(st_4, [
-         ]))
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    st_3._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_0, [
-         ]))
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    transitions.append(fac.Transition(st_4, [
-         ]))
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    st_4._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_0, [
-         ]))
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    transitions.append(fac.Transition(st_4, [
-         ]))
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-ValueSet._Automaton = _BuildAutomaton_9()
+NumericLiteral._Automaton = _BuildAutomaton_9()
 
 
 
 
-Annotation._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'iriref'), IRIRef, scope=Annotation, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 241, 12)))
+ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'iriRange'), IRIRange, scope=ValueSet, documentation='Match an iri or a range of iris', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 473, 12)))
 
-Annotation._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'literal'), RDFLiteral, scope=Annotation, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 242, 12)))
+ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'rdfLiteral'), RDFLiteral, scope=ValueSet, documentation='Match a specific RDF literal', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 478, 12)))
+
+ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'integer'), pyxb.binding.datatypes.int, scope=ValueSet, documentation='Match a specific integer value', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 483, 12)))
+
+ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'decimal'), pyxb.binding.datatypes.decimal, scope=ValueSet, documentation='Match a decimal value', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 488, 12)))
+
+ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'double'), pyxb.binding.datatypes.double, scope=ValueSet, documentation='Match a double value', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 493, 12)))
+
+ValueSet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'boolean'), pyxb.binding.datatypes.boolean, scope=ValueSet, documentation='Match a boolean value', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 498, 12)))
 
 def _BuildAutomaton_10 ():
     # Remove this helper function from the namespace after it is invoked
@@ -2102,34 +1955,122 @@ def _BuildAutomaton_10 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Annotation._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'iriref')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 241, 12))
+    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'iriRange')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 473, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Annotation._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'literal')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 242, 12))
+    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'rdfLiteral')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 478, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'integer')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 483, 12))
+    st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'decimal')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 488, 12))
+    st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'double')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 493, 12))
+    st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_4)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(ValueSet._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'boolean')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 498, 12))
+    st_5 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_5)
     transitions = []
+    transitions.append(fac.Transition(st_0, [
+         ]))
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    transitions.append(fac.Transition(st_5, [
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
+    transitions.append(fac.Transition(st_0, [
+         ]))
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    transitions.append(fac.Transition(st_5, [
+         ]))
     st_1._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+         ]))
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    transitions.append(fac.Transition(st_5, [
+         ]))
+    st_2._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+         ]))
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    transitions.append(fac.Transition(st_5, [
+         ]))
+    st_3._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+         ]))
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    transitions.append(fac.Transition(st_5, [
+         ]))
+    st_4._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+         ]))
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    transitions.append(fac.Transition(st_5, [
+         ]))
+    st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-Annotation._Automaton = _BuildAutomaton_10()
+ValueSet._Automaton = _BuildAutomaton_10()
 
 
 
 
-InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nodetype'), NodeType, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 316, 16)))
+Annotation._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'iriref'), IRIRef, scope=Annotation, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 228, 12)))
 
-InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'datatype'), pyxb.binding.datatypes.anyURI, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 317, 16)))
-
-InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'facet'), XSFacet, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 318, 16)))
-
-InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'or'), GroupShapeConstr, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 319, 16)))
-
-InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'valueSet'), ValueSet, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 320, 16)))
-
-InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'actions'), SemanticActions, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 322, 12)))
+Annotation._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'literal'), RDFLiteral, scope=Annotation, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 229, 12)))
 
 def _BuildAutomaton_11 ():
     # Remove this helper function from the namespace after it is invoked
@@ -2138,71 +2079,36 @@ def _BuildAutomaton_11 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 322, 12))
-    counters.add(cc_0)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nodetype')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 316, 16))
+    symbol = pyxb.binding.content.ElementUse(Annotation._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'iriref')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 228, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'datatype')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 317, 16))
+    symbol = pyxb.binding.content.ElementUse(Annotation._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'literal')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 229, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'facet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 318, 16))
-    st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_2)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'or')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 319, 16))
-    st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_3)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'valueSet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 320, 16))
-    st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_4)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'actions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 322, 12))
-    st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_5)
     transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
     st_1._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    st_2._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    st_3._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    st_4._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-InlineValueClassDefinition._Automaton = _BuildAutomaton_11()
+Annotation._Automaton = _BuildAutomaton_11()
 
 
 
 
-Schema_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'startActions'), SemanticActions, scope=Schema_, documentation='A set of semantic actions to be invoked  the shape is evaluated', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 30, 12)))
+InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nodetype'), NodeType, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 303, 16)))
 
-Schema_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'shape'), Shape, scope=Schema_, documentation='An unordered list of labeled shape definitions', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 35, 12)))
+InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'datatype'), pyxb.binding.datatypes.anyURI, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 304, 16)))
 
-Schema_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'valueClass'), ValueClassDefinition, scope=Schema_, documentation='An unordered set of labeled value class definitions. Labels can either be explicit or internally generated', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 40, 12)))
+InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'facet'), XSFacet, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 305, 16)))
+
+InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'or'), GroupShapeConstr, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 306, 16)))
+
+InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'valueSet'), ValueSet, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 307, 16)))
+
+InlineValueClassDefinition._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'actions'), SemanticActions, scope=InlineValueClassDefinition, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 309, 12)))
 
 def _BuildAutomaton_12 ():
     # Remove this helper function from the namespace after it is invoked
@@ -2211,69 +2117,65 @@ def _BuildAutomaton_12 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 30, 12))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 309, 12))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 35, 12))
-    counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 40, 12))
-    counters.add(cc_2)
     states = []
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(Schema_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'startActions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 30, 12))
+    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nodetype')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 303, 16))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(Schema_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'shape')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 35, 12))
+    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'datatype')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 304, 16))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(Schema_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'valueClass')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 40, 12))
+    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'facet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 305, 16))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'or')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 306, 16))
+    st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'valueSet')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 307, 16))
+    st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_4)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(InlineValueClassDefinition._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'actions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 309, 12))
+    st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_5)
     transitions = []
-    transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_5, [
+         ]))
     st_0._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_1, True) ]))
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_1, False) ]))
+    transitions.append(fac.Transition(st_5, [
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_2, True) ]))
+         ]))
+    transitions.append(fac.Transition(st_5, [
+         ]))
     st_2._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, True, containing_state=None)
-Schema_._Automaton = _BuildAutomaton_12()
+    transitions = []
+    transitions.append(fac.Transition(st_5, [
+         ]))
+    st_3._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_5, [
+         ]))
+    st_4._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_5, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    st_5._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+InlineValueClassDefinition._Automaton = _BuildAutomaton_12()
 
 
 
-
-Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'import'), ShapeRef, scope=Shape, documentation='Shapes that are included externally', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 71, 12)))
-
-Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'extra'), IRIRef, scope=Shape, documentation='A list of property IRI\'s that can be "open" in the sense that, if they remain after the shape is evaluated they can be ignored', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 76, 12)))
-
-Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'someOf'), ShapeConstraint, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 114, 16)))
-
-Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'group'), ShapeConstraint, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 115, 16)))
-
-Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), TripleConstraint, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 116, 16)))
-
-Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'include'), ShapeRef, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 117, 16)))
-
-Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'wrapper'), Wrapper, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 118, 16)))
-
-Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'annotation'), Annotation, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12)))
-
-Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'actions'), SemanticActions, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12)))
 
 def _BuildAutomaton_13 ():
     # Remove this helper function from the namespace after it is invoked
@@ -2282,209 +2184,36 @@ def _BuildAutomaton_13 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 69, 12))
-    counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12))
-    counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12))
-    counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 71, 12))
-    counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 76, 12))
-    counters.add(cc_4)
     states = []
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'someOf')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 114, 16))
+    symbol = pyxb.binding.content.ElementUse(EndPoint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'integer')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 462, 13))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'group')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 115, 16))
+    symbol = pyxb.binding.content.ElementUse(EndPoint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'decimal')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 463, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 116, 16))
+    symbol = pyxb.binding.content.ElementUse(EndPoint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'double')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 464, 12))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'include')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 117, 16))
-    st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_3)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'wrapper')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 118, 16))
-    st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_4)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'annotation')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12))
-    st_5 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_5)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'actions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12))
-    st_6 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_6)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'import')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 71, 12))
-    st_7 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_7)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'extra')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 76, 12))
-    st_8 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_8)
     transitions = []
-    transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_0, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_0, False) ]))
     st_2._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    st_3._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_4, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    st_4._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, True) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, False) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_1, False) ]))
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_1, False) ]))
-    st_5._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, True) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_2, False) ]))
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_2, False) ]))
-    st_6._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_3, True) ]))
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_3, False) ]))
-    st_7._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_4, True) ]))
-    st_8._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, True, containing_state=None)
-Shape._Automaton = _BuildAutomaton_13()
+    return fac.Automaton(states, counters, False, containing_state=None)
+EndPoint._Automaton = _BuildAutomaton_13()
 
 
 
 
-Wrapper._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'someOf'), ShapeConstraint, scope=Wrapper, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 114, 16)))
+Schema_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'startActions'), SemanticActions, scope=Schema_, documentation='A set of semantic actions to be invoked  the shape is evaluated', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 34, 12)))
 
-Wrapper._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'group'), ShapeConstraint, scope=Wrapper, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 115, 16)))
+Schema_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'shape'), Shape, scope=Schema_, documentation='An unordered list of labeled shape definitions', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 39, 12)))
 
-Wrapper._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), TripleConstraint, scope=Wrapper, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 116, 16)))
-
-Wrapper._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'include'), ShapeRef, scope=Wrapper, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 117, 16)))
-
-Wrapper._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'wrapper'), Wrapper, scope=Wrapper, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 118, 16)))
-
-Wrapper._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'annotation'), Annotation, scope=Wrapper, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12)))
-
-Wrapper._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'actions'), SemanticActions, scope=Wrapper, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12)))
+Schema_._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'valueClass'), ValueClassDefinition, scope=Schema_, documentation='An unordered set of labeled value class definitions. Labels can either be explicit or internally generated', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 44, 12)))
 
 def _BuildAutomaton_14 ():
     # Remove this helper function from the namespace after it is invoked
@@ -2493,100 +2222,67 @@ def _BuildAutomaton_14 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 34, 12))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12))
+    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 39, 12))
     counters.add(cc_1)
+    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 44, 12))
+    counters.add(cc_2)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Wrapper._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'someOf')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 114, 16))
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(Schema_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'startActions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 34, 12))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Wrapper._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'group')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 115, 16))
+    final_update.add(fac.UpdateInstruction(cc_1, False))
+    symbol = pyxb.binding.content.ElementUse(Schema_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'shape')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 39, 12))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Wrapper._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 116, 16))
+    final_update.add(fac.UpdateInstruction(cc_2, False))
+    symbol = pyxb.binding.content.ElementUse(Schema_._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'valueClass')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 44, 12))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Wrapper._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'include')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 117, 16))
-    st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_3)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(Wrapper._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'wrapper')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 118, 16))
-    st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_4)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(Wrapper._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'annotation')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12))
-    st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_5)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(Wrapper._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'actions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12))
-    st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_6)
     transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
+    transitions.append(fac.Transition(st_0, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_1, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
+    transitions.append(fac.Transition(st_1, [
+        fac.UpdateInstruction(cc_1, True) ]))
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_1, False) ]))
     st_1._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_2, True) ]))
     st_2._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
-    st_3._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
-    st_4._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    st_5._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, True) ]))
-    st_6._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-Wrapper._Automaton = _BuildAutomaton_14()
+    return fac.Automaton(states, counters, True, containing_state=None)
+Schema_._Automaton = _BuildAutomaton_14()
 
 
 
 
-ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'someOf'), ShapeConstraint, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 114, 16)))
+Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'import'), ShapeRef, scope=Shape, documentation='Shapes that are included externally', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 75, 12)))
 
-ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'group'), ShapeConstraint, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 115, 16)))
+Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'extra'), IRIRef, scope=Shape, documentation='A list of property IRI\'s that can be "open" in the sense that, if they remain after the shape is evaluated they can be ignored', location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 80, 12)))
 
-ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), TripleConstraint, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 116, 16)))
+Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'someOf'), ShapeConstraint, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 119, 16)))
 
-ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'include'), ShapeRef, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 117, 16)))
+Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'group'), ShapeConstraint, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 120, 16)))
 
-ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'wrapper'), Wrapper, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 118, 16)))
+Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), TripleConstraint, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 121, 16)))
 
-ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'annotation'), Annotation, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12)))
+Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'include'), ShapeRef, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 122, 16)))
 
-ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'actions'), SemanticActions, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12)))
+Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'annotation'), Annotation, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12)))
+
+Shape._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'actions'), SemanticActions, scope=Shape, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12)))
 
 def _BuildAutomaton_15 ():
     # Remove this helper function from the namespace after it is invoked
@@ -2595,41 +2291,213 @@ def _BuildAutomaton_15 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 73, 12))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12))
+    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12))
     counters.add(cc_1)
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12))
+    counters.add(cc_2)
+    cc_3 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 75, 12))
+    counters.add(cc_3)
+    cc_4 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 80, 12))
+    counters.add(cc_4)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'someOf')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 114, 16))
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'someOf')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 119, 16))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'group')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 115, 16))
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'group')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 120, 16))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 116, 16))
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 121, 16))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'include')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 117, 16))
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'include')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 122, 16))
     st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'wrapper')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 118, 16))
+    final_update.add(fac.UpdateInstruction(cc_1, False))
+    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'annotation')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12))
     st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'annotation')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12))
-    st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    final_update.add(fac.UpdateInstruction(cc_2, False))
+    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'actions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12))
+    st_5 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'actions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12))
-    st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    final_update.add(fac.UpdateInstruction(cc_3, False))
+    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'import')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 75, 12))
+    st_6 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_4, False))
+    symbol = pyxb.binding.content.ElementUse(Shape._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'extra')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 80, 12))
+    st_7 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_7)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_1, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_3, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_4, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_5, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_6, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_1, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_3, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_4, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_5, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_6, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_1, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_3, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_4, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_5, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_6, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    st_2._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_1, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_3, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_4, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_5, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_6, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    st_3._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_4, [
+        fac.UpdateInstruction(cc_1, True) ]))
+    transitions.append(fac.Transition(st_5, [
+        fac.UpdateInstruction(cc_1, False) ]))
+    transitions.append(fac.Transition(st_6, [
+        fac.UpdateInstruction(cc_1, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_1, False) ]))
+    st_4._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_5, [
+        fac.UpdateInstruction(cc_2, True) ]))
+    transitions.append(fac.Transition(st_6, [
+        fac.UpdateInstruction(cc_2, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_2, False) ]))
+    st_5._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_6, [
+        fac.UpdateInstruction(cc_3, True) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_3, False) ]))
+    st_6._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_4, True) ]))
+    st_7._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, True, containing_state=None)
+Shape._Automaton = _BuildAutomaton_15()
+
+
+
+
+ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'someOf'), ShapeConstraint, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 119, 16)))
+
+ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'group'), ShapeConstraint, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 120, 16)))
+
+ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint'), TripleConstraint, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 121, 16)))
+
+ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'include'), ShapeRef, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 122, 16)))
+
+ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'annotation'), Annotation, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12)))
+
+ShapeConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'actions'), SemanticActions, scope=ShapeConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12)))
+
+def _BuildAutomaton_16 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_16
+    del _BuildAutomaton_16
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12))
+    counters.add(cc_0)
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12))
+    counters.add(cc_1)
+    states = []
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'someOf')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 119, 16))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'group')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 120, 16))
+    st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tripleConstraint')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 121, 16))
+    st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'include')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 122, 16))
+    st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'annotation')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12))
+    st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_4)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_1, False))
+    symbol = pyxb.binding.content.ElementUse(ShapeConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'actions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12))
+    st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_5)
     transitions = []
     transitions.append(fac.Transition(st_0, [
          ]))
@@ -2642,8 +2510,6 @@ def _BuildAutomaton_15 ():
     transitions.append(fac.Transition(st_4, [
          ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
          ]))
     st_0._set_transitionSet(transitions)
     transitions = []
@@ -2659,8 +2525,6 @@ def _BuildAutomaton_15 ():
          ]))
     transitions.append(fac.Transition(st_5, [
          ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_0, [
@@ -2674,8 +2538,6 @@ def _BuildAutomaton_15 ():
     transitions.append(fac.Transition(st_4, [
          ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
          ]))
     st_2._set_transitionSet(transitions)
     transitions = []
@@ -2691,81 +2553,63 @@ def _BuildAutomaton_15 ():
          ]))
     transitions.append(fac.Transition(st_5, [
          ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
     st_3._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_0, [
-         ]))
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
     transitions.append(fac.Transition(st_4, [
-         ]))
+        fac.UpdateInstruction(cc_0, True) ]))
     transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
+        fac.UpdateInstruction(cc_0, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    st_5._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_6, [
         fac.UpdateInstruction(cc_1, True) ]))
-    st_6._set_transitionSet(transitions)
+    st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-ShapeConstraint._Automaton = _BuildAutomaton_15()
+ShapeConstraint._Automaton = _BuildAutomaton_16()
 
 
 
 
-TripleConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'annotation'), Annotation, scope=TripleConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12)))
+TripleConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'annotation'), Annotation, scope=TripleConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12)))
 
-TripleConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'actions'), SemanticActions, scope=TripleConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12)))
+TripleConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'actions'), SemanticActions, scope=TripleConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12)))
 
-TripleConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'objectConstraint'), TripleConstraintValueClass, scope=TripleConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 171, 16)))
+TripleConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'objectConstraint'), TripleConstraintValueClass, scope=TripleConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 158, 16)))
 
-TripleConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'subjectConstraint'), TripleConstraintValueClass, scope=TripleConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 172, 16)))
+TripleConstraint._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'subjectConstraint'), TripleConstraintValueClass, scope=TripleConstraint, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 159, 16)))
 
-def _BuildAutomaton_16 ():
+def _BuildAutomaton_17 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_16
-    del _BuildAutomaton_16
+    global _BuildAutomaton_17
+    del _BuildAutomaton_17
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 170, 12))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 157, 12))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12))
+    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12))
     counters.add(cc_2)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(TripleConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'objectConstraint')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 171, 16))
+    symbol = pyxb.binding.content.ElementUse(TripleConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'objectConstraint')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 158, 16))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(TripleConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'subjectConstraint')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 172, 16))
+    symbol = pyxb.binding.content.ElementUse(TripleConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'subjectConstraint')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 159, 16))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(TripleConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'annotation')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 145, 12))
+    symbol = pyxb.binding.content.ElementUse(TripleConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'annotation')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 132, 12))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(TripleConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'actions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 146, 12))
+    symbol = pyxb.binding.content.ElementUse(TripleConstraint._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'actions')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 133, 12))
     st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
@@ -2799,26 +2643,26 @@ def _BuildAutomaton_16 ():
         fac.UpdateInstruction(cc_2, True) ]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
-TripleConstraint._Automaton = _BuildAutomaton_16()
+TripleConstraint._Automaton = _BuildAutomaton_17()
 
 
 
 
-IRIRange._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'exclusion'), IRIStem, scope=IRIRange, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 527, 20)))
+IRIRange._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'exclusion'), IRIStem, scope=IRIRange, location=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 522, 20)))
 
-def _BuildAutomaton_17 ():
+def _BuildAutomaton_18 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_17
-    del _BuildAutomaton_17
+    global _BuildAutomaton_18
+    del _BuildAutomaton_18
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 527, 20))
+    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 522, 20))
     counters.add(cc_0)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(IRIRange._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'exclusion')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 527, 20))
+    symbol = pyxb.binding.content.ElementUse(IRIRange._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'exclusion')), pyxb.utils.utility.Location('/Users/mrf7578/Development/git/hsolbrig/shexypy/static/xsd/ShEx.xsd', 522, 20))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
@@ -2826,5 +2670,5 @@ def _BuildAutomaton_17 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
-IRIRange._Automaton = _BuildAutomaton_17()
+IRIRange._Automaton = _BuildAutomaton_18()
 

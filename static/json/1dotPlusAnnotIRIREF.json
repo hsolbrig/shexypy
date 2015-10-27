@@ -1,0 +1,24 @@
+{
+    "type": "schema",
+    "shapes": {
+        "http://a.example/S1": {
+            "type": "shape",
+            "expression": {
+                "value": {
+                    "type": "valueClass"
+                },
+                "predicate": "http://a.example/p1",
+                "annotations": [
+                    [
+                        "http://a.example/annot",
+                        "http://a.example/IRIREF"
+                    ]
+                ],
+                "min": 1,
+                "max": "*",
+                "type": "tripleConstraint"
+            }
+        }
+    },
+    "prefixes": {}
+}

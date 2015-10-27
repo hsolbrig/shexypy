@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" exclude-prefixes="xsi shex" xmlns="http://www.w3.org/shex/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <shape label="http://a.example/S1">
+        <tripleConstraint predicate="http://a.example/p1">
+            <annotation iri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+                <iriref ref="http://a.example/IRIREF"/>
+            </annotation>
+        </tripleConstraint>
+    </shape>
+</Schema>

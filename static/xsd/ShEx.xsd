@@ -11,6 +11,10 @@
         08/23/2015 - HS - 1) Major overhaul after ShEx FTF meeting
         
         09/02/2015 - HS - Simplification and more documentation
+
+        09/23/2015 - HS - Removed Wrapper as the grammar no longer allows a single group / oneOf.
+                        - Changed "codeLabel" to "productionName" on semantic actions (non-standard)
+                        - Allow multiple facets in a constraint
       -->
 
     <!-- Schema -->
@@ -105,7 +109,8 @@
                 <ul>
                     <li><i>someoOf</i> only appears when it has more than one member</li>
                     <li><i>group</i> only appears when it has more than one member</li>
-                    <li><i>unary</i> is always replaced by the corresponding <i>tripleConstraint</i>, <i>include</i> or <i>encapsulation (wrapper)</i></li>
+                    <li><i>unary</i> is always replaced by the corresponding <i>tripleConstraint</i>, <i>include</i> or <i>encapsulatedShape.</i></li>
+                    <li><i>encapsulatedShape</i> <emph>must</emph> be a multi-element someOf or group</li>
                 </ul>
             </xs:documentation>
         </xs:annotation>
@@ -115,27 +120,9 @@
                 <xs:element name="group" type="shex:ShapeConstraint"/>
                 <xs:element name="tripleConstraint" type="shex:TripleConstraint"/>
                 <xs:element name="include" type="shex:ShapeRef"/>
-                <xs:element name="wrapper" type="shex:Wrapper"/>
             </xs:choice>
         </xs:sequence>
     </xs:group>
-    
-    <xs:complexType name="Wrapper">
-        <xs:annotation>
-            <xs:documentation>Wrapper implements the <i>encapsulation</i> construct, providing a point to hang:
-            <ol>
-                <li><i>cardinality</i></li>
-                <li><i>annotations</i></li>
-                <li><i>semantic actions</i></li>
-            </ol></xs:documentation>
-            <xs:appinfo>encasulation : '(' someOfShape ')' cardinality? annotation* semanticActions</xs:appinfo>
-        </xs:annotation>
-        <xs:sequence>
-            <xs:group ref="shex:ExpressionChoice"/>
-            <xs:group ref="shex:AnnotationsAndActions"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="shex:Cardinality"/>
-    </xs:complexType>
 
     <xs:group name="AnnotationsAndActions">
         <xs:annotation>
@@ -261,7 +248,7 @@
             <xs:documentation>A semantic action</xs:documentation>
         </xs:annotation>
         <xs:choice>
-            <xs:element name="codeLabel" type="shex:CodeLabel">
+            <xs:element name="productionName" type="shex:ProductionName">
                 <xs:annotation>
                     <xs:documentation>The name of a function that will be bound when the shape is evaluated</xs:documentation>
                 </xs:annotation>
@@ -401,7 +388,7 @@
         <xs:attribute name="ref" type="shex:ShapeLabel" use="required"/>
     </xs:complexType>
     
-    <xs:complexType name="CodeLabel">
+    <xs:complexType name="ProductionName">
         <xs:annotation>
             <xs:documentation>A label that identifies an external process to be invoked</xs:documentation>
         </xs:annotation>
@@ -435,11 +422,11 @@
     </xs:complexType>
 
     <xs:complexType name="EndPoint">
-        <xs:simpleContent>
-            <xs:extension base="xs:int">
+        <xs:complexContent>
+            <xs:extension base="shex:NumericLiteral">
                 <xs:attribute name="open" type="xs:boolean" default="false"/>
             </xs:extension>
-        </xs:simpleContent>
+        </xs:complexContent>
     </xs:complexType>
 
     <xs:complexType name="StringFacet">
@@ -470,6 +457,14 @@
     <!-- =============================================================
         Data Types
         ============================================================== -->
+    <xs:complexType name="NumericLiteral">
+        <xs:choice>
+             <xs:element name="integer" type="xs:int"/>
+            <xs:element name="decimal" type="xs:decimal"/>
+            <xs:element name="double" type="xs:double"/>
+        </xs:choice>
+    </xs:complexType>
+
     <xs:complexType name="ValueSet">
         <xs:annotation>
             <xs:documentation>A list of of the possible value(s) in the object or subject</xs:documentation>

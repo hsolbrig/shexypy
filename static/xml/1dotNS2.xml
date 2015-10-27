@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Schema xmlns="http://www.w3.org/shex/" xmlns:p1="http://a.example/p1" xmlns:IssueShape="http://a.example/IssueShape" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" exclude-prefixes="xsi shex">
-    <shape label="IssueShape:">
+<Schema exclude-prefixes="xsi shex" xmlns:p1="http://a.example/p1" xmlns:S1="http://a.example/S1" xsi:schemaLocation="http://www.w3.org/shex/ ../xsd/ShEx.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.w3.org/shex/">
+    <shape label="S1:">
         <tripleConstraint predicate="p1:"/>
     </shape>
 </Schema>

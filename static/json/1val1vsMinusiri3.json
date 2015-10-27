@@ -1,16 +1,4 @@
 {
-    "shapes": {
-        "http://a.example/IssueShape": {
-            "type": "shape",
-            "expression": {
-                "valueClassRef": "http://a.example/vs1",
-                "type": "tripleConstraint",
-                "predicate": "http://a.example/p1"
-            }
-        }
-    },
-    "type": "schema",
-    "prefixes": {},
     "valueClasses": {
         "http://a.example/vs1": {
             "type": "valueClass",
@@ -28,5 +16,17 @@
                 }
             ]
         }
-    }
+    },
+    "type": "schema",
+    "shapes": {
+        "http://a.example/S1": {
+            "type": "shape",
+            "expression": {
+                "predicate": "http://a.example/p1",
+                "valueClassRef": "http://a.example/vs1",
+                "type": "tripleConstraint"
+            }
+        }
+    },
+    "prefixes": {}
 }
