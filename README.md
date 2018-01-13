@@ -1,12 +1,4 @@
 # shexypy
+# NOTE: This project has been superceded by the [PyShEx](http://github.com/hsolbrig/PyShEx) project -- an official implementation of the [ShEx 2.0 Semantics Specification](http://shex.io/shex-semantics/)
 
-ShExC parser and interpreter in Python
-
-The **shexypy** package includes:
-
-* **shextoxml** - a python3/antlr4 based parser that converts the ShEx Compact Syntax (ShExC) into ShExML.
-* **ShExML** - a formal XML markup language for ShEx
-* **shexmltojson** - a conversion tool to transform ShExML into the *S-JSON* format
-* **shexacution** - a ShExC / ShExML execution package
-
-
+What remains in this file is strictly here for historical reasons
